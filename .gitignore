@@ -14,3 +14,4 @@ runs/eval_history.local.jsonl
 runs/*.log
 runs/smoke*.txt
 web/audit.sqlite*
+runs/lh-*.json

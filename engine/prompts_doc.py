@@ -24,7 +24,9 @@ def main():
         active = cfg["prompts"][role]
         versions = sorted(PDIR.glob(f"{role}.v*.txt"), key=lambda p: int(re.search(r"\.v(\d+)\.", p.name).group(1)))
         out.append(f"### `{role}` (active: `{active}`)\n")
-        out.append(f"Model: `{cfg['llm']['models']['groq'][role]}` on Groq; fallback `{cfg['llm']['models']['gemini'][role]}` on Gemini.\n")
+        names = lambda m: " → ".join(f"`{x}`" for x in (m if isinstance(m, list) else [m]))
+        out.append(f"Models, in order of use (the next one only when the previous is rate-capped): "
+                   f"{names(cfg['llm']['models']['groq'][role])} on Groq, then {names(cfg['llm']['models']['gemini'][role])} on Gemini.\n")
         text = (PDIR / f"{active}.txt").read_text(encoding="utf-8").rstrip()
         out.append(f"````text\n{text}\n````\n")
         for older, newer in zip(versions, versions[1:]):

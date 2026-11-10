@@ -72,11 +72,16 @@ class LLM:
         env = os.environ.get(f"LLM_MODEL_{role.upper()}")
         if provider == self.provider and env:
             return env
-        return self.cfg["models"][provider][role]
+        return self.candidates(role, provider)[0]
 
-    def _payload(self, provider, role, system, user):
+    def candidates(self, role, provider):
+        """Models to try for a role, in order. Config may give one id or a list (next one is used when capped)."""
+        m = self.cfg["models"][provider][role]
+        return m if isinstance(m, list) else [m]
+
+    def _payload(self, provider, role, system, user, model):
         return {
-            "model": self.model_for(role, provider),
+            "model": model,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
             "temperature": self.cfg.get("temperature", 0),
             "response_format": {"type": "json_object"},
@@ -89,7 +94,13 @@ class LLM:
     def chat_json(self, role, system, user, tag=""):
         """Primary first; the fallback only when the primary is rate-capped.
         A cached answer from either provider is reused before touching the network."""
-        plan = [(p, self._payload(p, role, system, user)) for p in [self.provider, self.fallback] if p]
+        plan = []
+        for p in [self.provider, self.fallback]:
+            if p:
+                models = self.candidates(role, p)
+                if p == self.provider and os.environ.get(f"LLM_MODEL_{role.upper()}"):
+                    models = [os.environ[f"LLM_MODEL_{role.upper()}"]]
+                plan += [(p, self._payload(p, role, system, user, m)) for m in models]
         for p, payload in plan:
             path = self._cache_path(p, payload)
             if path.exists():
@@ -111,7 +122,7 @@ class LLM:
             except RateCapped as e:
                 self.capped.add((p, payload["model"]))
                 last = f"{p}/{payload['model']}: {e}"
-                print(f"    [llm] {last}; trying the next provider")
+                print(f"    [llm] {last}; trying the next model")
                 continue
             _parse_json(content)  # raises ValueError before garbage is cached
             self._cache_path(p, payload).write_text(json.dumps(
@@ -135,7 +146,7 @@ class LLM:
                 "Authorization": f"Bearer {key}", "Content-Type": "application/json",
                 "User-Agent": "report-fix-engine/1.0"})
             try:
-                with urllib.request.urlopen(req, timeout=180) as r:
+                with urllib.request.urlopen(req, timeout=90) as r:
                     data = json.loads(r.read().decode())
                 return data["choices"][0]["message"]["content"], data.get("usage") or {}
             except urllib.error.HTTPError as e:

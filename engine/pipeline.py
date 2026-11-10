@@ -393,6 +393,16 @@ class Engine:
                    "code-level proof missing" if needs_proof and not proof else "confidence below threshold")
             conf = min(conf, 0.75)
             trace.append(f"route: {why} -> faculty_review")
+        # Evidence a teacher can read: no finding ids, no reference to prompt rules.
+        if verdict == "defect" and repair == "syllabus":
+            evidence = (f"Student says this is outside the syllabus (filed under {q.get('subject')} / {q.get('chapter')}). "
+                        "Not something a check can settle: faculty confirm; the question stays live meanwhile.")
+        if verdict == "defect" and repair == "solution_fix":
+            hit = next((f for f in a["findings"] if f["field"] == "solution" and f.get("quote")), None)
+            evidence = ((f"Stored solution has a wrong or foreign line (\"{hit['quote']}\"). " if hit else "Stored solution has a wrong step. ")
+                        + f"Key {self.fmt_ans(a, a['key'])} is backed by the blind solve(s), so only the solution is edited.")
+        evidence = re.sub(r"\s*(?:audit )?findings? (?:[AL]\d+(?:, | and )?)+", " checks", evidence)
+        evidence = re.sub(r",? but rule \d+[^.;]*", "", evidence)
         if note:
             evidence = evidence.rstrip(". ") + ". " + note
         if "instruction_attempt" in flags:
@@ -443,7 +453,11 @@ class Engine:
         issue = c.get("claim", "") + ". " + " ".join(f"{f['detail']} {f.get('quote') or ''}" for f in rel)
         facts = (f"Stored key: {json.dumps(b.get('answer'))}. Checks: {self.key_check_text(a)}\n"
                  f"Classifier evidence: {c.get('evidence')}")
-        edit = self.llm_edit(rep, a, repair, issue, facts)
+        # One edit per (question, repair): two students reporting the same defect must get the same fix.
+        memo = a.setdefault("edit_memo", {})
+        if repair not in memo:
+            memo[repair] = self.llm_edit(rep, a, repair, issue, facts)
+        edit = memo[repair]
         return edit, [], None if edit else "No guard-passing edit could be written; faculty to edit by hand."
 
     def llm_edit(self, rep, a, repair, issue, facts):

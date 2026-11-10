@@ -20,20 +20,59 @@
     },
     "models": {
       "groq": {
-        "solve_a": "openai/gpt-oss-120b",
-        "solve_b": "qwen/qwen3.8-27b",
-        "audit": "openai/gpt-oss-120b",
-        "classify": "openai/gpt-oss-120b",
-        "edit": "openai/gpt-oss-120b",
-        "reply": "openai/gpt-oss-20b"
+        "solve_a": [
+          "openai/gpt-oss-120b",
+          "qwen/qwen3.8-27b",
+          "openai/gpt-oss-20b"
+        ],
+        "solve_b": [
+          "qwen/qwen3.8-27b",
+          "openai/gpt-oss-20b"
+        ],
+        "audit": [
+          "openai/gpt-oss-120b",
+          "qwen/qwen3.8-27b",
+          "openai/gpt-oss-20b"
+        ],
+        "classify": [
+          "openai/gpt-oss-120b",
+          "qwen/qwen3.8-27b",
+          "openai/gpt-oss-20b"
+        ],
+        "edit": [
+          "openai/gpt-oss-120b",
+          "qwen/qwen3.8-27b",
+          "openai/gpt-oss-20b"
+        ],
+        "reply": [
+          "qwen/qwen3.8-27b",
+          "openai/gpt-oss-20b"
+        ]
       },
       "gemini": {
-        "solve_a": "gemini-flash-latest",
-        "solve_b": "gemini-flash-latest",
-        "audit": "gemini-flash-latest",
-        "classify": "gemini-flash-latest",
-        "edit": "gemini-flash-latest",
-        "reply": "gemini-flash-lite-latest"
+        "solve_a": [
+          "gemini-2.5-flash",
+          "gemini-2.5-flash-lite"
+        ],
+        "solve_b": [
+          "gemini-2.5-flash",
+          "gemini-2.5-flash-lite"
+        ],
+        "audit": [
+          "gemini-2.5-flash",
+          "gemini-2.5-flash-lite"
+        ],
+        "classify": [
+          "gemini-2.5-flash",
+          "gemini-2.5-flash-lite"
+        ],
+        "edit": [
+          "gemini-2.5-flash",
+          "gemini-2.5-flash-lite"
+        ],
+        "reply": [
+          "gemini-2.5-flash-lite"
+        ]
       }
     },
     "prices_usd_per_mtok": {
@@ -58,7 +97,7 @@
     "audit": "audit.v2",
     "classify": "classify.v2",
     "edit": "edit.v1",
-    "reply": "reply.v2"
+    "reply": "reply.v3"
   },
   "thresholds": {
     "auto_apply": {
