@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+node_modules/
+.next/
+.vercel/
+*.sqlite
+*.sqlite-journal
+runs/eval_history.local.jsonl
+.claude/
+.playwright-mcp/
+runs/*.log
+runs/smoke*.txt
+web/audit.sqlite*
