@@ -353,6 +353,14 @@ class Engine:
                             f"correct option, {self.fmt_ans(a, a['key'])}. Single-correct, so scq.")
             else:
                 conf = min(conf, 0.7)
+        if verdict == "defect" and repair == "option_repair":
+            va, vb = (a["sa"] or {}).get("value", ""), (a["sb"] or {}).get("value", "")
+            same = re.sub(r"[^0-9a-z:./]", "", str(va).lower()) == re.sub(r"[^0-9a-z:./]", "", str(vb).lower()) and va
+            if keyed_empty and same and a["na"] == frozenset() and a["nb"] == frozenset():
+                proof, conf = True, max(conf, 0.95)
+                evidence = (f"Option {keyed_empty[0]} is blank and is the keyed answer; 2 blind solves agree on {va}, "
+                            f"which no listed option has. Restoring keyed option.")
+                trace.append("rule: blank keyed option proven by 2 matching solves -> auto_apply eligible")
         lint_backed = any(f["source"] == "lint" and f["certain"] and f["repair"] == repair for f in a["findings"])
         if verdict == "defect" and lint_backed:
             conf = max(conf, 0.9)

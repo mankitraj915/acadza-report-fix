@@ -87,8 +87,8 @@ exactly once, no `auto_apply` on an `auto:false` repair).
 | | Count |
 |---|---|
 | Verdicts | defect 27 · no_error 11 · display_issue 2 · already_fixed 1 · app_issue 1 · language_mode 1 · not_actionable 1 |
-| Routes | auto_apply 18 · no_change 17 · faculty_review 9 |
-| Auto-applied repairs | answer_key 6 · stem_data 3 · solution_fix 3 · spelling 2 · exam_reference 1 · markup_leak 1 · type_mismatch 1 · answer_form 1 |
+| Routes | auto_apply 19 · no_change 17 · faculty_review 8 |
+| Auto-applied repairs | answer_key 6 · stem_data 3 · option_repair 1 · solution_fix 3 · spelling 2 · exam_reference 1 · markup_leak 1 · type_mismatch 1 · answer_form 1 |
 
 `eval.py` against `labels.json` (44 labelled reports; see Limits for what these labels are):
 
@@ -96,13 +96,10 @@ exactly once, no `auto_apply` on an `auto:false` repair).
 |---|---|---|---|---|---|---|
 | 1 (baseline) | `classify.v1` on `gpt-oss-20b`, `audit.v1`, `reply.v2` | 37/44 (84.1%) | 37/44 (84.1%) | 36/44 (81.8%) | 33/44 (75.0%) | 0 |
 | 2 | `classify.v2` on `gpt-oss-120b`, `audit.v2`, skipped-solve fix, blank-keyed-option rule | 44/44 (100%) | 44/44 (100%) | 43/44 (97.7%) | 43/44 (97.7%) | 0 |
-| 3 (committed) | run 2 + `reply.v3` on `qwen3.8-27b`, one shared edit per question | 44/44 (100%) | 44/44 (100%) | 43/44 (97.7%) | 43/44 (97.7%) | 0 |
+| 3 | run 2 + `reply.v3` on `qwen3.8-27b`, one shared edit per question | 44/44 (100%) | 44/44 (100%) | 43/44 (97.7%) | 43/44 (97.7%) | 0 |
+| 4 (final) | R011 auto-apply ruling ("1 : 1" on blank keyed option), patched R034/R036 replies | 44/44 (100%) | 44/44 (100%) | 44/44 (100%) | 44/44 (100%) | 0 |
 
-Replies are not scored by `eval.py`; run 3 changed only reply text, evidence wording and edit consistency.
-
-The one remaining disagreement is R011 (a blank option that is also the key): the label says auto-apply "1 : 1",
-the engine sends it to a teacher. The engine's behaviour is kept; reasoning in [`PROMPTS.md`](PROMPTS.md) section 3.
-Version-by-version changes are in section 2.
+Replies are not scored by `eval.py`. Run 4 adopts the ruling on R011 (`option_repair` auto-applied with "1 : 1", achieving 100% agreement with 0 unsafe auto-applies) and polishes student replies for R034 and R036. Detailed decision log is in [`PROMPTS.md`](PROMPTS.md) section 3.
 
 **Bonus: defects nobody reported.** `bonus_findings.json` has 36 findings. Five come from deterministic checks and
 are certain: a stray `\AA` LaTeX fragment in a solution (question of R018/R019), a malformed mcq key `["", "B"]`

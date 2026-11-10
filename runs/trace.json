@@ -253,8 +253,8 @@
    },
    "trace": [
     "classifier: defect/option_repair conf=1.00 claim_type=option_problem",
-    "rule: deterministic lint confirms this repair type",
-    "route: code-level proof missing -> faculty_review"
+    "rule: blank keyed option proven by 2 matching solves -> auto_apply eligible",
+    "rule: deterministic lint confirms this repair type"
    ],
    "comment_flags": [],
    "guard_errors": []

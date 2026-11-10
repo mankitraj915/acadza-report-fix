@@ -151,10 +151,10 @@
    "find": "(C) <br />",
    "replace": "(C) <math display=\"inline\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mn> 1 </mn><mi>:</mi><mn> 1 </mn></mrow></math><br />"
   },
-  "route": "faculty_review",
-  "confidence": 0.75,
-  "evidence": "Stored record check: option(s) ['C'] blank.",
-  "student_reply": "Aap sahi the, option C blank tha. Coulomb force dono charges par equal hoti hai, isliye ratio 1:1 hai. Teacher abhi isse review kar raha hai."
+  "route": "auto_apply",
+  "confidence": 1.0,
+  "evidence": "Option C is blank and is the keyed answer; 2 blind solves agree on 1 : 1, which no listed option has. Restoring keyed option.",
+  "student_reply": "Aap sahi the, option C blank tha. Newton's third law ke hisaab se dono charges par force ka magnitude same hota hai, isliye ratio 1:1 hai. Ab option C mein 1:1 dikh raha hai."
  },
  {
   "reportId": "R012",
@@ -463,7 +463,7 @@
   "route": "faculty_review",
   "confidence": 0.95,
   "evidence": "2 blind solves agree: Both A and R are false; no listed option says that. Key D (A is false, but R is true.) cannot be repaired by changing the key.",
-  "student_reply": "You are right that the stored key is incorrect. With a phase difference of π/2, the resultant intensity is 2I, not I, so Assertion A is false. Since Reason R is also false, none of the options are correct. A teacher will review this question."
+  "student_reply": "Actually, the assertion is false: with a phase difference of π/2, resultant intensity is 2I, not I (it does not remain the same). Since Reason R is also false, none of the options are correct. A teacher will review this question."
  },
  {
   "reportId": "R035",
@@ -485,7 +485,7 @@
   "route": "no_change",
   "confidence": 1.0,
   "evidence": "Stored options are complete and valid; complaint is about phone rendering, not content.",
-  "student_reply": "The question content is correct, with the answer being 99 N. The issue is just how the options display on your phone screen. We have passed this rendering problem to the app team."
+  "student_reply": "The question content is correct. The issue is just how the options display on your phone screen. We have passed this rendering problem to the app team."
  },
  {
   "reportId": "R037",

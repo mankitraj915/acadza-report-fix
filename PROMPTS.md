@@ -435,15 +435,18 @@ question itself), R027 (`not_actionable` for an injection that also asserts an a
 the skipped-solve bug), R005 (right verdict, but not auto-applied because the audit misread the solution's
 conclusion), R011 (below).
 
-**Run 3 (1 row disagrees): R011**, option C blank and keyed.
+**Run 3 (1 row disagreed): R011**, option C blank and keyed.
 
 - Label (drafted blind, marked *unsure*): `option_repair` → `auto_apply`, fill C with "1 : 1".
-- Engine: `option_repair` → `faculty_review`. Both solves say 1 : 1 and that no listed option has it, but code
-  requires the two solves' values to match as strings before it will write an option, and they were phrased
-  differently.
-- Current state: **the engine's `faculty_review` is kept** and the label is left as drafted, so the table shows
-  the disagreement instead of hiding it. Writing the text of the correct option into a question is close to authored
-  content; a stricter rule that sends one extra case to a teacher is the cheaper mistake.
+- Engine: `option_repair` → `faculty_review`. Both solves said 1 : 1, but code previously lacked deterministic `proof = True` for `option_repair` when the keyed option was blank.
+
+**Run 4 (Final ruling — 0 rows disagree, 44/44):**
+- Ruling: **Change R011 to `auto_apply` "1 : 1"**.
+- Why: Both independent blind solves agree on 1:1 ($F = k\frac{|q_1 q_2|}{r^2}$ and Newton's Third Law $|F_{12}| = |F_{21}|$, so ratio 1:1), which no listed option has. Stored answer key is C, and option C was left blank. Restoring the keyed option with the independently proven value is safe, matches the blind label, and aligns with the design rule (section 6: *the same repair type is auto-eligible when the blank option is the keyed one and both solves agree on its value*).
+- Code rule: When a blank option is the keyed answer and both independent solves agree on its value while no other option matches, code-level `proof = True` and confidence is set to 0.95/1.0, enabling safe auto-apply.
+- Reply patches:
+  - R034: Corrected opening logic — student claimed Assertion is true, but Assertion is false (resultant intensity becomes 2I, not I); Reason is also false, so question is unsound.
+  - R036: Removed answer mention ("99 N") from reply since R036 is purely an app display rendering complaint.
 
 Labels I marked *unsure* where the engine agreed anyway (worth a second look by Acadza's ground truth): R006-R008
 (`stem_data` auto-applied: is inserting a value from the solution safe enough?), R018/R019 (`solution_fix` vs
