@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "68dea6e6387eea3d0d95f6f8#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Numeric answer (no options).\n\nQuestion:\nIn a setup of displacement method experiment, distance between the screen and a light source is 150 cm and the lens used has a small aperture. By moving the lens between the source and the screen, sharp images are obtained on the screen for two different positions of the lens. The focal length of the lens is 24 cm . Find the ratio of the sizes of these two images formed on the screen.\n"
+  }
+ ],
+ "content": "{\"working\":\"Using lens formula 1/f=1/u+1/v with u+v=150 cm. Solve u(D‑u)=fD => u^2‑150u+24·150=0. Discriminant sqrt(150^2‑4·24·150)=sqrt(22500‑14400)=sqrt(8100)=90. Hence u=(150±90)/2 → u1=30 cm, v1=120 cm; u2=120 cm, v2=30 cm. Magnifications m1=v1/u1=120/30=4, m2=v2/u2=30/120=0.25. Ratio of image sizes = m1/m2=4/0.25=16.\",\"value\":\"16\",\"letters\":[],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.376632496,
+  "prompt_tokens": 514,
+  "prompt_time": 0.03303297,
+  "completion_tokens": 1054,
+  "completion_time": 2.564080951,
+  "total_tokens": 1568,
+  "total_time": 2.597113921,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 871
+  }
+ }
+}

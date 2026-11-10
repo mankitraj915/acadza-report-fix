@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "68f21df0941cda588bc0470b#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Options question. One or more options may be correct.\n\nQuestion:\nIf the kinetic energy of a body becomes four times of its initial value, then new momentum will\n(A) Become twice its initial value\n(B) Become three times, its initial value\n(C) Become four times, its initial value\n(D) Remains constant"
+  }
+ ],
+ "content": "{\"working\":\"Kinetic energy KE = p^2/(2m). If KE becomes 4 times, then p^2/(2m)=4·(p0^2/(2m)) ⇒ p^2=4p0^2 ⇒ p=2p0 (magnitude). Thus momentum doubles. Option A is correct; others are false.\",\"value\":\"new momentum becomes twice its initial value\",\"letters\":[\"A\"],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.318661579,
+  "prompt_tokens": 491,
+  "prompt_time": 0.390349408,
+  "completion_tokens": 234,
+  "completion_time": 0.782010313,
+  "total_tokens": 725,
+  "total_time": 1.172359721,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 125
+  }
+ }
+}

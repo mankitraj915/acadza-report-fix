@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "68e870ef42c06737d6e565c4#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value, a figure or an option that is needed to answer is missing or blank, say what is missing in \"blocker\" and do not invent it.\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Options question. One or more options may be correct.\n\nQuestion:\nThe density of a gas is 9 ×10^(− 2) k g /m^(3) and root mean square velocity of gas molecules is 400 m / s . The pressure exerted by the gas on the walls of the vessel is\n(A) 4556 N /m^(2)\n(B) 8225 N /m^(2)\n(C) 7520 N /m^(2)\n(D) 4800 N /m^(2)"
+  }
+ ],
+ "content": "{\"working\":\"Given ρ=9×10⁻² kg/m³, v_rms=400 m/s. Use kinetic theory p=⅓ ρ v². v²=400²=1.6×10⁵. ρ·v²=9×10⁻²×1.6×10⁵=14.4×10³=1.44×10⁴. Divide by 3: p=1.44×10⁴/3=4.8×10³ Pa = 4800 N/m².\",\"value\":\"4800 N/m²\",\"letters\":[\"D\"],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.048853491,
+  "prompt_tokens": 484,
+  "prompt_time": 0.021168948,
+  "completion_tokens": 451,
+  "completion_time": 0.967585634,
+  "total_tokens": 935,
+  "total_time": 0.988754582,
+  "completion_tokens_details": {
+   "reasoning_tokens": 294
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "622f08d7b70e4b50e4500a1b#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Options question. One or more options may be correct.\n\nQuestion:\nTwo blocks of masses 10 kg and 4 kg are connected by a spring of negligible mass and placed on a frictionless horizontal surface. An impulse gives a velocity of 14 m/s to the heavier block in the direction of the lighter block. The velocity of the centre of mass is\n(A) 30 m/s\n(B) 20 m/s\n(C) 10 m/s"
+  }
+ ],
+ "content": "{\"working\":\"Total mass =10+4=14 kg. After impulse, v_heavy=14 m/s, v_light=0. V_cm=(10·14+4·0)/14=140/14=10 m/s.\",\"value\":\"10 m/s\",\"letters\":[\"C\"],\"blocker\":null,\"confidence\":1}",
+ "usage": {
+  "queue_time": 0.291435397,
+  "prompt_tokens": 517,
+  "prompt_time": 0.02610466,
+  "completion_tokens": 277,
+  "completion_time": 0.582793925,
+  "total_tokens": 794,
+  "total_time": 0.608898585,
+  "completion_tokens_details": {
+   "reasoning_tokens": 196
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "695ee00b88d7701e561aabc5#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Options question. One or more options may be correct.\n\nQuestion:\nAssertion (A) : When two waves of equal amplitude and a phase difference of (π)/(2) interfere, the resulting intensity is equal to the intensity of one wave.\nReason (R): In interference, the resultant intensity is always the sum of individual intensities if the phase difference is non-zero.\n(A) Both A and R are true, and R is the correct explanation of A .\n(B) Both A and R are true, but R is not the correct explanation of A .\n(C) A is true, but R is false.\n(D) A is false, but R is true."
+  }
+ ],
+ "content": "{\"working\":\"For equal amplitudes A, resultant amplitude = 2A cos(Δφ/2). With Δφ=π/2, cos(π/4)=√2/2, so amplitude=√2 A. Intensity ∝ amplitude² ⇒ I=2A², i.e., twice the intensity of one wave. Hence Assertion A (resultant intensity equals intensity of one wave) is false. Reason R claims intensity always equals sum of individual intensities for any non‑zero phase difference, which is false (only when cosΔφ=0). Thus both A and R are false. No option matches this.\", \"value\":\"Both A and R are false\", \"letters\":[], \"blocker\":null, \"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.811204658,
+  "prompt_tokens": 558,
+  "prompt_time": 0.042908373,
+  "completion_tokens": 915,
+  "completion_time": 1.964701456,
+  "total_tokens": 1473,
+  "total_time": 2.007609829,
+  "completion_tokens_details": {
+   "reasoning_tokens": 748
+  }
+ }
+}

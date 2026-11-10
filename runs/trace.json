@@ -1,0 +1,3407 @@
+{
+ "generated_at": "2026-11-10T18:50:10+00:00",
+ "prompts": {
+  "solve_a": "solve_a.v2",
+  "solve_b": "solve_b.v2",
+  "audit": "audit.v2",
+  "classify": "classify.v2",
+  "edit": "edit.v1",
+  "reply": "reply.v3"
+ },
+ "provider": "groq",
+ "models": {
+  "solve_a": "openai/gpt-oss-120b",
+  "solve_b": "qwen/qwen3.8-27b",
+  "audit": "openai/gpt-oss-120b",
+  "classify": "openai/gpt-oss-120b",
+  "edit": "openai/gpt-oss-120b",
+  "reply": "qwen/qwen3.8-27b"
+ },
+ "reports": [
+  {
+   "reportId": "R001",
+   "classifier": {
+    "claim": "Answer key points to 130 V but correct answer is 50 V",
+    "claim_type": "answer_wrong",
+    "verdict": "defect",
+    "repair": "answer_key",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [],
+    "confidence": 0.99,
+    "evidence": "Key check code: both blind solves give A (50 V) but stored key C (130 V)"
+   },
+   "trace": [
+    "classifier: defect/answer_key conf=0.99 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R002",
+   "classifier": {
+    "claim": "wrong ans",
+    "claim_type": "vague_wrong",
+    "verdict": "defect",
+    "repair": "answer_key",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [],
+    "confidence": 0.99,
+    "evidence": "Key check: blind solves A (50 V) vs stored key C (130 V)"
+   },
+   "trace": [
+    "classifier: defect/answer_key conf=0.99 claim_type=vague_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R003",
+   "classifier": {
+    "claim": "Answer key says 130 V but calculation gives 50 V",
+    "claim_type": "answer_wrong",
+    "verdict": "defect",
+    "repair": "answer_key",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [],
+    "confidence": 0.99,
+    "evidence": "Key check: blind solves A (50 V) vs stored key C (130 V)"
+   },
+   "trace": [
+    "classifier: defect/answer_key conf=0.99 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R004",
+   "classifier": {
+    "claim": "answer key is wrong, should be 8225",
+    "claim_type": "answer_wrong",
+    "verdict": "defect",
+    "repair": "answer_key",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [],
+    "confidence": 0.99,
+    "evidence": "key check code: blind solves D 4800, stored key A 4556 => key disproved"
+   },
+   "trace": [
+    "classifier: defect/answer_key conf=0.99 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R005",
+   "classifier": {
+    "claim": "answer key wrong, should be n=1",
+    "claim_type": "answer_wrong",
+    "verdict": "defect",
+    "repair": "answer_key",
+    "related_findings": [
+     "A1"
+    ],
+    "unrelated_findings": [],
+    "confidence": 0.99,
+    "evidence": "Key check: stored key 2 vs blind solves and solution both give n=1"
+   },
+   "trace": [
+    "classifier: defect/answer_key conf=0.99 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R006",
+   "classifier": {
+    "claim": "edge length of cube is not given",
+    "claim_type": "missing_data",
+    "verdict": "defect",
+    "repair": "stem_data",
+    "related_findings": [
+     "A1"
+    ],
+    "unrelated_findings": [],
+    "confidence": 0.97,
+    "evidence": "A1 stem_data: cube dimensions missing; both blind solves blocked due to missing side length"
+   },
+   "trace": [
+    "classifier: defect/stem_data conf=0.97 claim_type=missing_data"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R007",
+   "classifier": {
+    "claim": "Inductance value missing in question",
+    "claim_type": "missing_data",
+    "verdict": "defect",
+    "repair": "stem_data",
+    "related_findings": [
+     "A1"
+    ],
+    "unrelated_findings": [],
+    "confidence": 0.99,
+    "evidence": "Audit A1 notes inductance value not provided; solution uses 95.5 mH"
+   },
+   "trace": [
+    "classifier: defect/stem_data conf=0.99 claim_type=missing_data"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R008",
+   "classifier": {
+    "claim": "Question is missing necessary data (inductance value).",
+    "claim_type": "missing_data",
+    "verdict": "defect",
+    "repair": "stem_data",
+    "related_findings": [
+     "A1"
+    ],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "2 blind solves blocked by missing L; audit A1 confirms L missing from stem but used in solution."
+   },
+   "trace": [
+    "classifier: defect/stem_data conf=1.00 claim_type=missing_data"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R009",
+   "classifier": {
+    "claim": "Student reports option D is missing.",
+    "claim_type": "option_problem",
+    "verdict": "defect",
+    "repair": "option_repair",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [
+     "A3"
+    ],
+    "confidence": 1.0,
+    "evidence": "Lint L1 and Audit A2 confirm option D is missing from the question text."
+   },
+   "trace": [
+    "classifier: defect/option_repair conf=1.00 claim_type=option_problem",
+    "rule: deterministic lint confirms this repair type",
+    "route: no safe edit could be built -> faculty_review"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R010",
+   "classifier": {
+    "claim": "Student reports only 3 options are showing for the question.",
+    "claim_type": "option_problem",
+    "verdict": "defect",
+    "repair": "option_repair",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [
+     "A3"
+    ],
+    "confidence": 1.0,
+    "evidence": "Lint L1 and Audit A2 confirm option D is missing; only A, B, C are present."
+   },
+   "trace": [
+    "classifier: defect/option_repair conf=1.00 claim_type=option_problem",
+    "rule: deterministic lint confirms this repair type",
+    "route: no safe edit could be built -> faculty_review"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R011",
+   "classifier": {
+    "claim": "Option C is blank and is the keyed answer.",
+    "claim_type": "option_problem",
+    "verdict": "defect",
+    "repair": "option_repair",
+    "related_findings": [
+     "L1",
+     "L2",
+     "A3",
+     "A4"
+    ],
+    "unrelated_findings": [
+     "A5"
+    ],
+    "confidence": 1.0,
+    "evidence": "Question shows option C is blank; stored key points to C; lint L1, L2 and audit A3, A4 confirm."
+   },
+   "trace": [
+    "classifier: defect/option_repair conf=1.00 claim_type=option_problem",
+    "rule: deterministic lint confirms this repair type",
+    "route: code-level proof missing -> faculty_review"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R012",
+   "classifier": {
+    "claim": "Spelling mistake in option A",
+    "claim_type": "spelling",
+    "verdict": "defect",
+    "repair": "spelling",
+    "related_findings": [
+     "A1"
+    ],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "Audit finding A1 confirms spelling error in option A: 'Epithellial tisue' instead of 'Epithelial tissue'."
+   },
+   "trace": [
+    "classifier: defect/spelling conf=1.00 claim_type=spelling"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R013",
+   "classifier": {
+    "claim": "Student asks why 'NEET 2019' is in the question.",
+    "claim_type": "markup_or_noise",
+    "verdict": "defect",
+    "repair": "exam_reference",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [
+     "A3"
+    ],
+    "confidence": 0.9,
+    "evidence": "Lint finding L1 and audit A2 confirm the presence of '(NEET 2019)' in the question stem."
+   },
+   "trace": [
+    "classifier: defect/exam_reference conf=0.90 claim_type=markup_or_noise",
+    "rule: deterministic lint confirms this repair type"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R014",
+   "classifier": {
+    "claim": "Raw LaTeX '\\frac' is visible in the question.",
+    "claim_type": "markup_or_noise",
+    "verdict": "defect",
+    "repair": "markup_leak",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "Lint finding L1 and audit finding A2 confirm raw LaTeX '\\frac{7}{8}' is visible in the question text."
+   },
+   "trace": [
+    "classifier: defect/markup_leak conf=1.00 claim_type=markup_or_noise",
+    "rule: deterministic lint confirms this repair type"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R015",
+   "classifier": {
+    "claim": "Options B and C are identical.",
+    "claim_type": "option_problem",
+    "verdict": "defect",
+    "repair": "identical_options",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "Question text shows options B and C are both '0 W'; findings L1 and A2 confirm identical options."
+   },
+   "trace": [
+    "classifier: defect/identical_options conf=1.00 claim_type=option_problem",
+    "rule: deterministic lint confirms this repair type",
+    "route: identical_options is auto:false in the taxonomy -> faculty_review"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R016",
+   "classifier": {
+    "claim": "Solution gives 40 cm, answer key is 20 cm; which is correct?",
+    "claim_type": "solution_problem",
+    "verdict": "defect",
+    "repair": "solution_fix",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "2 blind solves = 20; key = 20. Solution calculates 40 with incorrect physics (A2), not supporting the key (L1)."
+   },
+   "trace": [
+    "classifier: defect/solution_fix conf=1.00 claim_type=solution_problem"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R017",
+   "classifier": {
+    "claim": "Student reports spelling mistake 'mere' in options.",
+    "claim_type": "spelling",
+    "verdict": "already_fixed",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "History shows faculty fixed 'mere' to 'more' in options A-C on 2026-11-07, after report date."
+   },
+   "trace": [
+    "classifier: already_fixed/None conf=1.00 claim_type=spelling"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R018",
+   "classifier": {
+    "claim": "Solution appears to be from another question.",
+    "claim_type": "solution_problem",
+    "verdict": "defect",
+    "repair": "solution_fix",
+    "related_findings": [
+     "L1",
+     "A2",
+     "A3",
+     "A4"
+    ],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "Audit findings A3, A4 show inconsistent wavelength and incorrect notation; solution contains raw LaTeX and irrelevant initial values."
+   },
+   "trace": [
+    "classifier: defect/solution_fix conf=1.00 claim_type=solution_problem"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R019",
+   "classifier": {
+    "claim": "Solution mentions 5.47 Angstrom, which is irrelevant to the question.",
+    "claim_type": "solution_problem",
+    "verdict": "defect",
+    "repair": "solution_fix",
+    "related_findings": [
+     "L1",
+     "A2",
+     "A3",
+     "A4"
+    ],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "Student notes irrelevant '5.47 Angstrom' in solution; audit findings L1, A2, A3, A4 confirm solution has markup leaks, noise, and inconsistent values."
+   },
+   "trace": [
+    "classifier: defect/solution_fix conf=1.00 claim_type=solution_problem"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R020",
+   "classifier": {
+    "claim": "Student marked A, B, D but was marked wrong.",
+    "claim_type": "answer_wrong",
+    "verdict": "defect",
+    "repair": "answer_key",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [
+     "A3"
+    ],
+    "confidence": 1.0,
+    "evidence": "Key confirmed by 2 blind solves; key check reports stored key is malformed for its type."
+   },
+   "trace": [
+    "classifier: defect/answer_key conf=1.00 claim_type=answer_wrong",
+    "rule: deterministic lint confirms this repair type"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R021",
+   "classifier": {
+    "claim": "Question is marked as multiple-correct but only B is right, causing negative marking.",
+    "claim_type": "other",
+    "verdict": "defect",
+    "repair": "type_mismatch",
+    "related_findings": [
+     "L2"
+    ],
+    "unrelated_findings": [
+     "L1",
+     "A3"
+    ],
+    "confidence": 0.95,
+    "evidence": "Both blind solves and solution confirm only option B is correct; stored type is mcq, which implies multiple correct."
+   },
+   "trace": [
+    "classifier: defect/type_mismatch conf=0.95 claim_type=other"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R022",
+   "classifier": {
+    "claim": "Option D has a spelling error: 'plexux' should be 'plexus'.",
+    "claim_type": "spelling",
+    "verdict": "defect",
+    "repair": "spelling",
+    "related_findings": [
+     "A1"
+    ],
+    "unrelated_findings": [
+     "A2"
+    ],
+    "confidence": 1.0,
+    "evidence": "Stored option D reads 'Choroid plexux'; finding A1 confirms typo; student complaint matches stored text."
+   },
+   "trace": [
+    "classifier: defect/spelling conf=1.00 claim_type=spelling"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R023",
+   "classifier": {
+    "claim": "Question belongs to neural control, not The Living World chapter.",
+    "claim_type": "chapter",
+    "verdict": "defect",
+    "repair": "wrong_chapter",
+    "related_findings": [
+     "A1"
+    ],
+    "unrelated_findings": [],
+    "confidence": 0.98,
+    "evidence": "Question is about neuronal action potentials; stored chapter is Botany/The Living World; finding A1 confirms mismatch."
+   },
+   "trace": [
+    "classifier: defect/wrong_chapter conf=0.98 claim_type=chapter",
+    "route: wrong_chapter is auto:false in the taxonomy -> faculty_review"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R024",
+   "classifier": {
+    "claim": "The question does not specify the unit for the frictional force.",
+    "claim_type": "unit_or_form",
+    "verdict": "defect",
+    "repair": "answer_form",
+    "related_findings": [],
+    "unrelated_findings": [
+     "L1"
+    ],
+    "confidence": 0.95,
+    "evidence": "Question text ends with 'equal to' without units; key is '20'; blind solves confirm 20 N."
+   },
+   "trace": [
+    "classifier: defect/answer_form conf=0.95 claim_type=unit_or_form"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R025",
+   "classifier": {
+    "claim": "The figure referenced in the question is missing from the record.",
+    "claim_type": "figure",
+    "verdict": "defect",
+    "repair": "diagram",
+    "related_findings": [
+     "L1",
+     "A2"
+    ],
+    "unrelated_findings": [
+     "A3"
+    ],
+    "confidence": 0.95,
+    "evidence": "Lint L1 and Audit A2 confirm text references 'as shown in figure' but no image is stored."
+   },
+   "trace": [
+    "classifier: defect/diagram conf=0.95 claim_type=figure",
+    "rule: deterministic lint confirms this repair type",
+    "route: diagram is auto:false in the taxonomy -> faculty_review"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R026",
+   "classifier": {
+    "claim": "The question is out of syllabus for NEET.",
+    "claim_type": "syllabus",
+    "verdict": "defect",
+    "repair": "syllabus",
+    "related_findings": [],
+    "unrelated_findings": [
+     "A1",
+     "A2"
+    ],
+    "confidence": 0.95,
+    "evidence": "Student claims out of syllabus; facts confirm topic is Evolution, which is in NEET syllabus, but rule 10 mandates defect/syllabus for faculty confirmation."
+   },
+   "trace": [
+    "classifier: defect/syllabus conf=0.95 claim_type=syllabus",
+    "route: syllabus is auto:false in the taxonomy -> faculty_review"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R027",
+   "classifier": {
+    "claim": "Instruction to change answer to C and mark report corrected.",
+    "claim_type": "instruction_attempt",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [
+     "A1",
+     "A2"
+    ],
+    "confidence": 1.0,
+    "evidence": "2 blind solves and solution confirm key A; student instruction ignored."
+   },
+   "trace": [
+    "classifier: no_error/None conf=1.00 claim_type=instruction_attempt"
+   ],
+   "comment_flags": [
+    "instruction_attempt"
+   ],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R028",
+   "classifier": {
+    "claim": "Student claims the correct answer is tan inverse 2, not the stored key.",
+    "claim_type": "answer_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [
+     "A1",
+     "A2"
+    ],
+    "confidence": 1.0,
+    "evidence": "2 blind solves and stored solution all derive tan⁻¹(4) = option B; key check confirms B."
+   },
+   "trace": [
+    "classifier: no_error/None conf=1.00 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R029",
+   "classifier": {
+    "claim": "Student claims the coefficient of friction should be 0.4.",
+    "claim_type": "answer_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "2 blind solves = 0.8 (A); solution = 0.8; key = A; key confirmed."
+   },
+   "trace": [
+    "classifier: no_error/None conf=1.00 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R030",
+   "classifier": {
+    "claim": "Student claims the amplitude should be 4 root 2 instead of the stored answer.",
+    "claim_type": "answer_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [
+     "L1",
+     "A2"
+    ],
+    "confidence": 0.95,
+    "evidence": "Blind solve 1 and stored solution both yield 8√2 m (Option D), matching the key; student's 4√2 is incorrect."
+   },
+   "trace": [
+    "classifier: no_error/None conf=0.95 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R031",
+   "classifier": {
+    "claim": "Student claims the correct answer is 2 seconds, not 4.",
+    "claim_type": "answer_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [
+     "A1",
+     "A2"
+    ],
+    "confidence": 1.0,
+    "evidence": "2 blind solves = 4 s; solution = 4 s; key = 4; KEY CONFIRMED."
+   },
+   "trace": [
+    "classifier: no_error/None conf=1.00 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R032",
+   "classifier": {
+    "claim": "Student thinks the answer is 0.08, not 8.",
+    "claim_type": "answer_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [
+     "L1"
+    ],
+    "confidence": 1.0,
+    "evidence": "2 blind solves = 8 cm; key = 8; question asks for shift in cm, so 0.08 m = 8 cm is correct."
+   },
+   "trace": [
+    "classifier: no_error/None conf=1.00 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R033",
+   "classifier": {
+    "claim": "The answer should be 3112.99 instead of 3113.",
+    "claim_type": "answer_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [
+     "L1",
+     "A2",
+     "A3"
+    ],
+    "confidence": 0.95,
+    "evidence": "2 blind solves = 3113; key check confirms 3113; student's 3112.99 ignores significant figure rules."
+   },
+   "trace": [
+    "classifier: no_error/None conf=0.95 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R034",
+   "classifier": {
+    "claim": "Assertion is true because resultant intensity equals single wave intensity.",
+    "claim_type": "answer_wrong",
+    "verdict": "defect",
+    "repair": "unsound",
+    "related_findings": [],
+    "unrelated_findings": [
+     "A1"
+    ],
+    "confidence": 0.95,
+    "evidence": "2 blind solves: A false (I=2I0), R false; no option matches; key D claims R true."
+   },
+   "trace": [
+    "classifier: defect/unsound conf=0.95 claim_type=answer_wrong",
+    "route: unsound is auto:false in the taxonomy -> faculty_review"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R035",
+   "classifier": {
+    "claim": "Relaxin and inhibin are antagonistic, so the stored answer is wrong.",
+    "claim_type": "answer_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [
+     "L1",
+     "L2",
+     "A3",
+     "A4",
+     "A5",
+     "A6"
+    ],
+    "confidence": 0.95,
+    "evidence": "Blind solve 1 = D; key = D; Relaxin (pelvic softening) and Inhibin (FSH inhibition) have unrelated, not opposite, actions."
+   },
+   "trace": [
+    "classifier: no_error/None conf=0.95 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R036",
+   "classifier": {
+    "claim": "Options are cut off on the phone screen.",
+    "claim_type": "display",
+    "verdict": "display_issue",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "Stored options are complete and valid; complaint is about phone rendering, not content."
+   },
+   "trace": [
+    "classifier: display_issue/None conf=1.00 claim_type=display"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R037",
+   "classifier": {
+    "claim": "The question takes a long time to load.",
+    "claim_type": "display",
+    "verdict": "display_issue",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [],
+    "confidence": 0.95,
+    "evidence": "Stored content is correct (key D confirmed by 2 solves); complaint is about loading speed, not content."
+   },
+   "trace": [
+    "classifier: display_issue/None conf=0.95 claim_type=display"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R038",
+   "classifier": {
+    "claim": "Selected option A was recorded as B by the app.",
+    "claim_type": "app",
+    "verdict": "app_issue",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [
+     "A1"
+    ],
+    "confidence": 0.95,
+    "evidence": "Key check confirms A is correct; student reports app saved B, a platform recording error."
+   },
+   "trace": [
+    "classifier: app_issue/None conf=0.95 claim_type=app"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R039",
+   "classifier": {
+    "claim": "Student requests the question in Hindi.",
+    "claim_type": "language",
+    "verdict": "language_mode",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [
+     "A1"
+    ],
+    "confidence": 1.0,
+    "evidence": "Comment explicitly asks for Hindi; stored content is English and factually correct."
+   },
+   "trace": [
+    "classifier: language_mode/None conf=1.00 claim_type=language"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R040",
+   "classifier": {
+    "claim": "The student claims the answer is wrong.",
+    "claim_type": "vague_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "2 blind solves = C; solution = C; key = C; KEY CONFIRMED."
+   },
+   "trace": [
+    "classifier: no_error/None conf=1.00 claim_type=vague_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R041",
+   "classifier": {
+    "claim": "Unintelligible comment",
+    "claim_type": "unintelligible",
+    "verdict": "not_actionable",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "Comment is 'asdfgh'; 2 blind solves and key check confirm A is correct."
+   },
+   "trace": [
+    "classifier: not_actionable/None conf=1.00 claim_type=unintelligible"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R042",
+   "classifier": {
+    "claim": "Question is filed under the wrong chapter; displacement current is not geometrical optics.",
+    "claim_type": "chapter",
+    "verdict": "defect",
+    "repair": "wrong_chapter",
+    "related_findings": [],
+    "unrelated_findings": [
+     "A1"
+    ],
+    "confidence": 1.0,
+    "evidence": "Question topic is displacement current (Electromagnetic Waves), but stored chapter is Geometrical optics."
+   },
+   "trace": [
+    "classifier: defect/wrong_chapter conf=1.00 claim_type=chapter",
+    "route: wrong_chapter is auto:false in the taxonomy -> faculty_review"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R043",
+   "classifier": {
+    "claim": "Student claims the ratio should be 1:4 because the bigger drop has more area.",
+    "claim_type": "answer_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "2 blind solves = 4:1 (B); solution = 4:1; key = B; student ignored charge increase."
+   },
+   "trace": [
+    "classifier: no_error/None conf=1.00 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  },
+  {
+   "reportId": "R044",
+   "classifier": {
+    "claim": "Student claims the answer is 22 V instead of the stored 14 V.",
+    "claim_type": "answer_wrong",
+    "verdict": "no_error",
+    "repair": null,
+    "related_findings": [],
+    "unrelated_findings": [],
+    "confidence": 1.0,
+    "evidence": "2 blind solves = 14 V; solution = 14 V; key = 14 V; student likely confused V_P (22 V) with V_P - V_S."
+   },
+   "trace": [
+    "classifier: no_error/None conf=1.00 claim_type=answer_wrong"
+   ],
+   "comment_flags": [],
+   "guard_errors": []
+  }
+ ],
+ "questions": {
+  "60f744b3f1b9bc7cc7b4a949": {
+   "key_state": "disproved",
+   "key_check": "solve 1 = A (50 V) [value: 50 V]; solve 2 = A (50 V) [value: 50 V]; solution = A (50 V); stored key = C (130 V). KEY DISPROVED: both blind solves agree with each other and with the stored solution, and differ from the stored key.",
+   "solve_a": {
+    "working": "In a series AC LCR circuit the voltages are phasors. V_R is in phase with current, V_L leads by 90°, V_C lags by 90°. Hence V_L and V_C are opposite in phase, so the net reactive voltage is V_L‑V_C. The supply voltage magnitude is the vector sum: V = √[V_R²+(V_L‑V_C)²] = √[40²+(60‑30)²] = √[1600+900] = √2500 = 50 V.",
+    "value": "50 V",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "In a series LCR circuit, the supply voltage $V$ is related to the potential differences across the components by the phasor sum: $V = \\sqrt{V_R^2 + (V_L - V_C)^2}$. Given $V_R = 40$ V, $V_L = 60$ V, and $V_C = 30$ V. Substituting these values: $V = \\sqrt{40^2 + (60 - 30)^2} = \\sqrt{1600 + 30^2} = \\sqrt{1600 + 900} = \\sqrt{2500} = 50$ V. This matches option (A).",
+    "value": "50 V",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "50 V",
+     "letters": [
+      "A"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": false,
+    "issues": [
+     {
+      "repair": "answer_key",
+      "field": "answer",
+      "quote": "Stored answer key: \"C\"",
+      "why": "Key points to option C (130 V) but correct answer is 50 V (option A)",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "solution_final_differs",
+     "repair": "answer_key",
+     "field": "answer",
+     "detail": "solution ends at 50 = option A; key is C",
+     "certain": false
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "answer_key",
+     "field": "answer",
+     "quote": "Stored answer key: \"C\"",
+     "detail": "Key points to option C (130 V) but correct answer is 50 V (option A)",
+     "severity": "high"
+    }
+   ]
+  },
+  "68e870ef42c06737d6e565c4": {
+   "key_state": "disproved",
+   "key_check": "solve 1 = D (4800 N /m^(2)) [value: 4800 N/m^2]; solve 2 = D (4800 N /m^(2)) [value: 4800 N/m^2]; solution = D (4800 N /m^(2)); stored key = A (4556 N /m^(2)). KEY DISPROVED: both blind solves agree with each other and with the stored solution, and differ from the stored key.",
+   "solve_a": {
+    "working": "Using kinetic theory p = (1/3)ρv_rms^2. ρ = 9×10⁻² kg/m³ = 0.09 kg/m³, v_rms = 400 m/s. v_rms² = 400² = 1.6×10⁵ (m²/s²). ρv_rms² = 0.09×1.6×10⁵ = 1.44×10⁴ Pa. Divide by 3: p = 1.44×10⁴/3 = 4.8×10³ Pa = 4800 N/m².",
+    "value": "4800 N/m^2",
+    "letters": [
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "The pressure $P$ exerted by an ideal gas is given by the kinetic theory formula: $P = \\frac{1}{3} \\rho v_{rms}^2$, where $\\rho$ is the density and $v_{rms}$ is the root mean square velocity.\n\nGiven:\n$\\rho = 9 \\times 10^{-2} \\, \\text{kg/m}^3 = 0.09 \\, \\text{kg/m}^3$\n$v_{rms} = 400 \\, \\text{m/s}$\n\nCalculation:\n$P = \\frac{1}{3} (0.09) (400)^2$\n$P = \\frac{1}{3} (0.09) (160,000)$\n$P = 0.03 \\times 160,000$\n$P = 4,800 \\, \\text{N/m}^2$ (or Pa)\n\nComparing with options:\n(A) 4556\n(B) 8225\n(C) 7520\n(D) 4800\n\nThe calculated value matches option (D).",
+    "value": "4800 N/m^2",
+    "letters": [
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "4800 N/m^2",
+     "letters": [
+      "D"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": false,
+    "issues": [
+     {
+      "repair": "answer_key",
+      "field": "answer",
+      "quote": "Stored answer key: \"A\"",
+      "why": "Correct answer is D per solution",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "solution_final_differs",
+     "repair": "answer_key",
+     "field": "answer",
+     "detail": "solution ends at 4800 = option D; key is A",
+     "certain": false
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "answer_key",
+     "field": "answer",
+     "quote": "Stored answer key: \"A\"",
+     "detail": "Correct answer is D per solution",
+     "severity": "high"
+    }
+   ]
+  },
+  "68dea616d0cda73d07e93ae6": {
+   "key_state": "disproved",
+   "key_check": "solve 1 = 1 [value: 1]; solve 2 = 1 [value: 1]; solution = 1; stored key = 2. KEY DISPROVED: both blind solves agree with each other and with the stored solution, and differ from the stored key.",
+   "solve_a": {
+    "working": "Flux = Σ (fraction of solid angle)·(enclosed charge)/ε0. Charge q/2 at face centre contributes half of its full flux: Φ1=½·(q/2)/ε0 = q/(4ε0). Charge 2q at a corner contributes one‑eighth of its full flux: Φ2=⅛·(2q)/ε0 = q/(4ε0). Total Φ = Φ1+Φ2 = q/(2ε0). Given Φ = (n q)/(2ε0) ⇒ n=1.",
+    "value": "1",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "The total electric flux through a closed surface is given by Gauss's Law: $\\Phi_{total} = \\frac{Q_{enclosed}}{\\varepsilon_0}$.\n\n1. Identify enclosed charges:\n   - Charge $q/2$ is at the center of a face. A face center is on the boundary of the cube. By symmetry, half of this charge's flux passes through the cube (the other half goes into the adjacent imaginary cube). Thus, effective enclosed charge contribution is $\\frac{1}{2} \\times \\frac{q}{2} = \\frac{q}{4}$.\n   - Charge $2q$ is at a corner. A corner is shared by 8 identical cubes. By symmetry, $1/8$ of this charge's flux passes through the given cube. Thus, effective enclosed charge contribution is $\\frac{1}{8} \\times 2q = \\frac{q}{4}$.\n\n2. Calculate total effective enclosed charge:\n   $Q_{eff} = \\frac{q}{4} + \\frac{q}{4} = \\frac{2q}{4} = \\frac{q}{2}$.\n\n3. Calculate total flux:\n   $\\Phi_{total} = \\frac{Q_{eff}}{\\varepsilon_0} = \\frac{q/2}{\\varepsilon_0} = \\frac{q}{2\\varepsilon_0}$.\n\n4. Compare with given expression:\n   Given $\\Phi = \\frac{n q}{2 \\varepsilon_0}$.\n   Equating the two: $\\frac{q}{2\\varepsilon_0} = \\frac{n q}{2 \\varepsilon_0} \\implies n = 1$.\n\nSanity check: Units are consistent. The logic relies on standard symmetry arguments for charges on boundaries.",
+    "value": "1",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "1",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": false,
+    "issues": [
+     {
+      "repair": "answer_key",
+      "field": "answer",
+      "quote": "Stored answer key: \"2\"",
+      "why": "Key gives n=2 but solution (and correct calculation) yields n=1",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "answer_key",
+     "field": "answer",
+     "quote": "Stored answer key: \"2\"",
+     "detail": "Key gives n=2 but solution (and correct calculation) yields n=1",
+     "severity": "high"
+    }
+   ]
+  },
+  "696a866665252c04fc1f81c2": {
+   "key_state": "unresolved",
+   "key_check": "solve 1 = blocked: Original volume or dimensions of the copper cube are missing; solve 2 = blocked: Side length of the copper cube is missing; solution = 50; stored key = 50. Unresolved: the blind solves do not settle the key.",
+   "solve_a": {
+    "working": "Bulk modulus K = -V ΔP/ΔV ⇒ ΔV = -V ΔP/K. To find the absolute volume contraction we need the original volume V (or cube dimensions). Without V the numerical ΔV cannot be computed.",
+    "value": "",
+    "letters": [],
+    "blocker": "Original volume or dimensions of the copper cube are missing",
+    "confidence": 0.97
+   },
+   "solve_b": {
+    "working": "The bulk modulus $B$ is defined as $B = -V \frac{dP}{dV}$, or for finite changes, $B = \frac{Delta P}{-Delta V/V}$. Rearranging for the volume contraction $Delta V$: $Delta V = -\frac{V Delta P}{B}$. The magnitude of contraction is $|Delta V| = \frac{V Delta P}{B}$. Given $Delta P = 7 \times 10^6$ Pa and $B = 1.4 \times 10^{11}$ Pa. The side length of the cube is not provided in the question text. Without the side length $a$, the initial volume $V = a^3$ cannot be determined, making it impossible to calculate the specific volume contraction in $mm^3$.",
+    "value": "Cannot be determined",
+    "letters": [],
+    "blocker": "Side length of the copper cube is missing",
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "50",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "stem_data",
+      "field": "question",
+      "quote": "The volume contraction of a solid copper cube, when subjected to a hydraulic pressure of 7×10^(6) Pa , would be ____ mm^(3) .",
+      "why": "Cube dimensions missing; needed to compute ΔV",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "stem_data",
+     "field": "question",
+     "quote": "The volume contraction of a solid copper cube, when subjected to a hydraulic pressure of 7×10^(6) Pa , would be ____ mm^(3) .",
+     "detail": "Cube dimensions missing; needed to compute ΔV",
+     "severity": "high"
+    }
+   ]
+  },
+  "60f742f6660d187cc13a8078": {
+   "key_state": "unresolved",
+   "key_check": "solve 1 = blocked: Inductance value (L) is missing; solve 2 = blocked: Value of inductance L is missing; solution = C (50 ohm); stored key = C (50 ohm). Unresolved: the blind solves do not settle the key.",
+   "solve_a": {
+    "working": "Impedance Z = sqrt(R^2 + (X_L)^2) where X_L = 2πfL. Given R = 40 Ω and f = 50 Hz, we need L to compute X_L. Without the inductance value, Z cannot be determined.",
+    "value": "",
+    "letters": [],
+    "blocker": "Inductance value (L) is missing",
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "The problem asks for the impedance $Z$ of a series RL circuit. The formula is $Z = \\sqrt{R^2 + X_L^2}$, where $R = 40 \\, \\Omega$ and $X_L = 2\\pi f L$. The frequency $f = 50$ Hz is given. However, the value of the inductance $L$ is not provided in the question text. Without $L$, the inductive reactance $X_L$ cannot be calculated, and thus the total impedance cannot be determined. Since the input value for inductance is missing, the problem cannot be solved.",
+    "value": "Cannot be determined",
+    "letters": [],
+    "blocker": "Value of inductance L is missing",
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "50",
+     "letters": [
+      "C"
+     ]
+    },
+    "solution_belongs": "partly",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "stem_data",
+      "field": "question",
+      "quote": "... an inductance are connected ...",
+      "why": "Inductance value not provided, yet solution uses 95.5 mH",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "stem_data",
+     "field": "question",
+     "quote": "... an inductance are connected ...",
+     "detail": "Inductance value not provided, yet solution uses 95.5 mH",
+     "severity": "high"
+    }
+   ]
+  },
+  "622f08d7b70e4b50e4500a1b": {
+   "key_state": "single_confirmed",
+   "key_check": "solve 1 = C (10 m/s) [value: 10 m/s]; solve 2 = skipped (lint already proves a key-independent defect); solution = C (10 m/s); stored key = C (10 m/s). The one blind solve that was run reaches the stored key.",
+   "solve_a": {
+    "working": "Total mass =10+4=14 kg. After impulse, v_heavy=14 m/s, v_light=0. V_cm=(10·14+4·0)/14=140/14=10 m/s.",
+    "value": "10 m/s",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 1
+   },
+   "solve_b": null,
+   "audit": {
+    "solution_final": {
+     "value": "10 m/s",
+     "letters": [
+      "C"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "option_repair",
+      "field": "question",
+      "quote": "option(s) ['D'] missing",
+      "why": "Option D missing, incomplete option set",
+      "severity": "medium"
+     },
+     {
+      "repair": "markup_leak",
+      "field": "solution",
+      "quote": "v_(CM)&=(m_(1)v_(1)+m_(2)v_(2))/(m_(1)+m_(2))",
+      "why": "LaTeX markup displayed as plain text",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "option_missing",
+     "repair": "option_repair",
+     "field": "question",
+     "detail": "option(s) ['D'] missing; only ['A', 'B', 'C'] present",
+     "certain": true
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "option_repair",
+     "field": "question",
+     "quote": "option(s) ['D'] missing",
+     "detail": "Option D missing, incomplete option set",
+     "severity": "medium"
+    },
+    {
+     "id": "A3",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "markup_leak",
+     "field": "solution",
+     "quote": "v_(CM)&=(m_(1)v_(1)+m_(2)v_(2))/(m_(1)+m_(2))",
+     "detail": "LaTeX markup displayed as plain text",
+     "severity": "low"
+    }
+   ]
+  },
+  "68e872546e45ba37dcc16bc0": {
+   "key_state": "solves_only_disagree",
+   "key_check": "solve 1 = none of the listed options [value: 1 : 1]; solve 2 = none of the listed options [value: 1:1]; solution = no result; stored key = C (blank). Both blind solves agree with each other and differ from the stored key; the stored solution does not back them.",
+   "solve_a": {
+    "working": "Coulomb force magnitude on each charge is F = k|q1 q2|/r^2. Since the product |q1 q2| and distance r are same for both, the forces have equal magnitude. Hence the ratio of the forces acting on the two charges is 1:1.",
+    "value": "1 : 1",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "According to Newton's Third Law, the electrostatic force exerted by charge $q_1$ on $q_2$ is equal in magnitude and opposite in direction to the force exerted by $q_2$ on $q_1$. Coulomb's Law states $F = k \\frac{|q_1 q_2|}{r^2}$. Since the product $|q_1 q_2|$ and the distance $r$ are the same for both interactions, the magnitude of the force on each charge is identical. Therefore, the ratio of the forces is $1:1$. Comparing this with the given options: (A) 9:16, (B) 2:$\\sqrt{3}$, (D) 3:4. None of the provided non-blank options match 1:1. Option (C) is blank.",
+    "value": "1:1",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": null,
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": null,
+    "issues": [
+     {
+      "repair": "option_repair",
+      "field": "question",
+      "quote": "C) [blank]",
+      "why": "Option C is blank, so key cannot refer to it",
+      "severity": "high"
+     },
+     {
+      "repair": "answer_key",
+      "field": "answer",
+      "quote": "Stored answer key: \"C\"",
+      "why": "Key points to a missing option",
+      "severity": "high"
+     },
+     {
+      "repair": "solution_missing",
+      "field": "solution",
+      "quote": "vec(F)_(12)+vec(F)_(21)= 0",
+      "why": "Solution provides no final answer or ratio",
+      "severity": "medium"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "option_blank",
+     "repair": "option_repair",
+     "field": "question",
+     "detail": "option(s) ['C'] blank",
+     "certain": true
+    },
+    {
+     "id": "L2",
+     "source": "lint",
+     "code": "key_points_to_empty",
+     "repair": "option_repair",
+     "field": "question",
+     "detail": "the keyed option ['C'] is blank or missing",
+     "certain": true
+    },
+    {
+     "id": "A3",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "option_repair",
+     "field": "question",
+     "quote": "C) [blank]",
+     "detail": "Option C is blank, so key cannot refer to it",
+     "severity": "high"
+    },
+    {
+     "id": "A4",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "answer_key",
+     "field": "answer",
+     "quote": "Stored answer key: \"C\"",
+     "detail": "Key points to a missing option",
+     "severity": "high"
+    },
+    {
+     "id": "A5",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "solution_missing",
+     "field": "solution",
+     "quote": "vec(F)_(12)+vec(F)_(21)= 0",
+     "detail": "Solution provides no final answer or ratio",
+     "severity": "medium"
+    }
+   ]
+  },
+  "61dffbec08489156b684bd22": {
+   "key_state": "partly_confirmed",
+   "key_check": "solve 1 = A (Epithellial tisue), B (Connective tissue), D (Muscular tissue) [value: Epithelium, connective tissue and muscular tissue]; solve 2 = A (Epithellial tisue) [value: Epithelial tissue]; solution = A (Epithellial tisue); stored key = A (Epithellial tisue). One blind solve reaches the stored key, the other does not.",
+   "solve_a": {
+    "working": "The mucosa (lining) of the small intestine consists of three layers: (1) epithelium (simple columnar with microvilli), (2) lamina propria – connective tissue, and (3) muscularis mucosa – smooth muscle. Nervous tissue lies in the submucosa, not in the lining.",
+    "value": "Epithelium, connective tissue and muscular tissue",
+    "letters": [
+     "A",
+     "B",
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 0.97
+   },
+   "solve_b": {
+    "working": "The small intestine is a hollow organ. Its innermost layer, the mucosa, is lined by a simple columnar epithelium (specifically, intestinal epithelium with villi and microvilli) responsible for absorption and secretion. While the intestinal wall also contains connective tissue (lamina propria, submucosa), muscular tissue (muscularis externa), and nervous tissue (enteric nervous system), the specific tissue forming the *lining* (the surface facing the lumen) is epithelial tissue. Therefore, option (A) is the correct answer.",
+    "value": "Epithelial tissue",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "Epithelial tissue",
+     "letters": [
+      "A"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "spelling",
+      "field": "question",
+      "quote": "Epithellial tisue",
+      "why": "Option A misspelled",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "spelling",
+     "field": "question",
+     "quote": "Epithellial tisue",
+     "detail": "Option A misspelled",
+     "severity": "low"
+    }
+   ]
+  },
+  "617fa18efd53ff1629ed890f": {
+   "key_state": "single_confirmed",
+   "key_check": "solve 1 = D (Lamina) [value: Lamina]; solve 2 = skipped (lint already proves a key-independent defect); solution = D (Lamina); stored key = D (Lamina). The one blind solve that was run reaches the stored key.",
+   "solve_a": {
+    "working": "The leaf consists of a stalk (petiole) and a broad, flat, green blade that contains the network of veins and veinlets. This blade is called the lamina. Petiole is the stalk, node is a stem region, stipule are small appendages. Hence the green expanded part with veins is the lamina.",
+    "value": "Lamina",
+    "letters": [
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": null,
+   "audit": {
+    "solution_final": {
+     "value": "Lamina",
+     "letters": [
+      "D"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "exam_reference",
+      "field": "question",
+      "quote": "(NEET 2019)",
+      "why": "Exam tag should be removed from stem",
+      "severity": "low"
+     },
+     {
+      "repair": "spelling",
+      "field": "question",
+      "quote": "ofleaf",
+      "why": "Missing space between words",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "exam_tag",
+     "repair": "exam_reference",
+     "field": "question",
+     "detail": "exam tag in text: '(NEET 2019)'",
+     "certain": true
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "exam_reference",
+     "field": "question",
+     "quote": "(NEET 2019)",
+     "detail": "Exam tag should be removed from stem",
+     "severity": "low"
+    },
+    {
+     "id": "A3",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "spelling",
+     "field": "question",
+     "quote": "ofleaf",
+     "detail": "Missing space between words",
+     "severity": "low"
+    }
+   ]
+  },
+  "63765a28f1d8416ae0408d89": {
+   "key_state": "single_confirmed",
+   "key_check": "solve 1 = C (180 days) [value: 180 days]; solve 2 = skipped (lint already proves a key-independent defect); solution = C (180 days); stored key = C (180 days). The one blind solve that was run reaches the stored key.",
+   "solve_a": {
+    "working": "Half‑life 60 d. After n half‑lives remaining fraction = (1/2)^n. Need remaining mass = 1‑7/8 = 1/8. So (1/2)^n = 1/8 = (1/2)^3 ⇒ n=3. Time = n×half‑life = 3×60 d = 180 d.",
+    "value": "180 days",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": null,
+   "audit": {
+    "solution_final": {
+     "value": "180 days",
+     "letters": [
+      "C"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "markup_leak",
+      "field": "question",
+      "quote": "e taken for \\frac{7}{8} th of",
+      "why": "LaTeX appears as raw text",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "markup_leak",
+     "repair": "markup_leak",
+     "field": "question",
+     "detail": "raw LaTeX visible as text: 'e taken for \\frac{7}{8} th of'",
+     "certain": true
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "markup_leak",
+     "field": "question",
+     "quote": "e taken for \\frac{7}{8} th of",
+     "detail": "LaTeX appears as raw text",
+     "severity": "low"
+    }
+   ]
+  },
+  "6956d79788d7701e5617bc29": {
+   "key_state": "unresolved",
+   "key_check": "solve 1 = B (0 W), C (0 W) [value: 0 W]; solve 2 = skipped (lint already proves a key-independent defect); solution = B (0 W); stored key = B (0 W). Unresolved: the blind solves do not settle the key.",
+   "solve_a": {
+    "working": "Voltage: e=200 sin(100t) → phase 0. Current: i=5 sin(100t-π/2) → phase -π/2. Phase difference φ=0-(-π/2)=π/2 (90°). Real power P=Vrms·Irms·cosφ. Vrms=200/√2, Irms=5/√2, cos90°=0 ⇒ P=0. Hence power consumption is 0 W.",
+    "value": "0 W",
+    "letters": [
+     "B",
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 1
+   },
+   "solve_b": null,
+   "audit": {
+    "solution_final": {
+     "value": "0",
+     "letters": [
+      "B",
+      "C"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "identical_options",
+      "field": "question",
+      "quote": "(B) 0 W (C) 0 W",
+      "why": "Two options are identical causing ambiguity",
+      "severity": "medium"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "options_identical",
+     "repair": "identical_options",
+     "field": "question",
+     "detail": "options B and C are identical ('0 W')",
+     "certain": true
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "identical_options",
+     "field": "question",
+     "quote": "(B) 0 W (C) 0 W",
+     "detail": "Two options are identical causing ambiguity",
+     "severity": "medium"
+    }
+   ]
+  },
+  "6263d75bdd44e265ef926d97": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = 20 [value: 20 cm]; solve 2 = 20 [value: 20]; solution = 40; stored key = 20. KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Let side = a cm. Volume = a^3 cm^3. With 800 g on cube, it is fully submerged: m_c+800 = a^3 (g). So cube mass m_c = a^3‑800. Without mass, 2 cm of cube is above water, so submerged depth = a‑2. Submerged volume = a^2(a‑2). Buoyancy = a^2(a‑2) = m_c. Equate: a^2(a‑2)=a^3‑800 ⇒ a^3‑2a^2 = a^3‑800 ⇒ -2a^2 = -800 ⇒ a^2 = 400 ⇒ a = 20 cm.",
+    "value": "20 cm",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Let side length be $a$ cm. Volume $V = a^3$. Density of water $\rho = 1$ g/cm$^3$.\n\nCase 1 (Mass $m=800$ g on top): The cube floats with the added mass. Assuming the cube is fully submerged (standard for 'just floats' with load in this context, or at least the displacement equals the total weight):\n$\\rho V g = (M_{cube} + m)g \\Rightarrow M_{cube} + 800 = a^3$ (in grams).\n\nCase 2 (No mass): The cube floats with 2 cm above water. Submerged depth $h = a - 2$.\nDisplaced volume $V_{sub} = a^2(a-2)$.\nBuoyancy equals weight of cube: $\\rho V_{sub} g = M_{cube} g \\Rightarrow M_{cube} = a^2(a-2) = a^3 - 2a^2$.\n\nEquating the two expressions for $M_{cube}$:\n$a^3 - 800 = a^3 - 2a^2$\n$-800 = -2a^2$\n$2a^2 = 800$\n$a^2 = 400$\n$a = 20$ cm.\n\nSanity check: If $a=20$, $V=8000$ cm$^3$. $M_{cube} = 8000 - 2(400) = 7200$ g. With 800 g mass, total weight = 8000 g, which equals the weight of 8000 cm$^3$ of water (fully submerged). Consistent.",
+    "value": "20",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "40",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": false,
+    "issues": [
+     {
+      "repair": "solution_fix",
+      "field": "solution",
+      "quote": "800 × g = (2) × (a^(2)) × 1 × g",
+      "why": "Incorrect physics; equation does not represent buoyant force correctly",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "solution_final_differs",
+     "repair": "answer_key",
+     "field": "answer",
+     "detail": "last number in solution is 40; key is 20",
+     "certain": false
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "solution_fix",
+     "field": "solution",
+     "quote": "800 × g = (2) × (a^(2)) × 1 × g",
+     "detail": "Incorrect physics; equation does not represent buoyant force correctly",
+     "severity": "high"
+    }
+   ]
+  },
+  "6208e80a9cb2ab67dac61bd0": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = C (Herb, shrubs receive more green light) [value: ]; solve 2 = C (Herb, shrubs receive more green light) [value: Herb, shrubs receive more green light]; solution = C (Herb, shrubs receive more green light); stored key = C (Herb, shrubs receive more green light). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Photosynthetic pigments absorb mainly red (≈660 nm) and blue (≈450 nm) light; green light is largely reflected or transmitted. Herbs and shrubs growing under canopy (shade plants) receive a higher proportion of green light and reduced red/blue light, leading to a lower photosynthetic rate compared to sun‑adapted plants. Hence the low rate is due to more green light.",
+    "value": "",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 0.97
+   },
+   "solve_b": {
+    "working": "Sun plants receive direct sunlight rich in red and blue light, which are efficiently absorbed by chlorophyll. Herbs and shrubs under the canopy receive filtered light where red and blue wavelengths have been largely absorbed by upper leaves. This leaves a higher proportion of green light, which is poorly absorbed by photosynthetic pigments. Thus, the lower light quality (more green) results in a lower rate of photosynthesis for herbs and shrubs compared to sun plants.",
+    "value": "Herb, shrubs receive more green light",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "more green light",
+     "letters": [
+      "C"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": []
+  },
+  "612151a6a34397610a9a2e58": {
+   "key_state": "single_confirmed",
+   "key_check": "solve 1 = B (16.8 eV) [value: 16.8 eV]; solve 2 = skipped (lint already proves a key-independent defect); solution = B (16.8 eV); stored key = B (16.8 eV). The one blind solve that was run reaches the stored key.",
+   "solve_a": {
+    "working": "Using λ=h/p, p=h/λ. For λ=0.3 nm=3×10⁻¹⁰ m, p=6.626×10⁻³⁴/3×10⁻¹⁰=2.21×10⁻²⁴ kg·m/s. Kinetic energy K=p²/(2m_e). p²≈(2.21×10⁻²⁴)²=4.88×10⁻⁴⁸. 2m_e=2×9.11×10⁻³¹=1.82×10⁻³⁰. Hence K=4.88×10⁻⁴⁸/1.82×10⁻³⁰≈2.68×10⁻¹⁸ J. Convert to eV: 1 eV=1.602×10⁻¹⁹ J, so K≈2.68×10⁻¹⁸/1.602×10⁻¹⁹≈16.7 eV ≈16.8 eV.",
+    "value": "16.8 eV",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": null,
+   "audit": {
+    "solution_final": {
+     "value": "16.8 eV",
+     "letters": []
+    },
+    "solution_belongs": "partly",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "markup_leak",
+      "field": "solution",
+      "quote": "10^(−10)m=5.47\\AA λ=(h)/(|p|)",
+      "why": "Raw LaTeX appears in solution text",
+      "severity": "low"
+     },
+     {
+      "repair": "solution_fix",
+      "field": "solution",
+      "quote": "λ=(h)/(|p|)=(h)/(|I|)",
+      "why": "Incorrect notation and inconsistent wavelength value",
+      "severity": "medium"
+     },
+     {
+      "repair": "noise",
+      "field": "solution",
+      "quote": "=5.469×10^(−10)m",
+      "why": "Stray leading '=' and unrelated number",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "markup_leak",
+     "repair": "markup_leak",
+     "field": "solution",
+     "detail": "raw LaTeX visible as text: '^(−10)m=5.47\\AA λ=(h)/(|p|)'",
+     "certain": true
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "markup_leak",
+     "field": "solution",
+     "quote": "10^(−10)m=5.47\\AA λ=(h)/(|p|)",
+     "detail": "Raw LaTeX appears in solution text",
+     "severity": "low"
+    },
+    {
+     "id": "A3",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "solution_fix",
+     "field": "solution",
+     "quote": "λ=(h)/(|p|)=(h)/(|I|)",
+     "detail": "Incorrect notation and inconsistent wavelength value",
+     "severity": "medium"
+    },
+    {
+     "id": "A4",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "noise",
+     "field": "solution",
+     "quote": "=5.469×10^(−10)m",
+     "detail": "Stray leading '=' and unrelated number",
+     "severity": "low"
+    }
+   ]
+  },
+  "68c8153cfb6b2f16e2d3ceaf": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = A (parallel to the uniform electrostatic field is a straight line.), B (perpendicular to the uniform electrostatic field is a parabola.), D (perpendicular to the uniform magnetic field is a circle in a plane normal to the field.) [value: A, B, D]; solve 2 = A (parallel to the uniform electrostatic field is a straight line.), B (perpendicular to the uniform electrostatic field is a parabola.), D (perpendicular to the uniform magnetic field is a circle in a plane normal to the field.) [value: A, B, D]; solution = no result; stored key = A (parallel to the uniform electrostatic field is a straight line.), B (perpendicular to the uniform electrostatic field is a parabola.), D (perpendicular to the uniform magnetic field is a circle in a plane normal to the field.). KEY CONFIRMED: both blind solves reach the stored key. The stored key is MALFORMED for its type; its letters read as ['A', 'B', 'D'].",
+   "solve_a": {
+    "working": "In a uniform electric field E, force F=qE is constant. If the particle’s initial velocity u is parallel to E, the acceleration is along the same line, so the trajectory remains a straight line → A true. If u is perpendicular to E, the particle experiences constant transverse acceleration, giving a projectile‑type motion, i.e., a parabola → B true. In a uniform magnetic field B, magnetic force F=q(v×B) is zero when v∥B, so the particle moves straight, not helically → C false. When v⊥B, the magnetic force provides a constant centripetal force, producing uniform circular motion in a plane normal to B → D true.",
+    "value": "A, B, D",
+    "letters": [
+     "A",
+     "B",
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Analyze each case based on Lorentz force $\\vec{F} = q(\\vec{E} + \\vec{v} \\times \\vec{B})$.\n(A) $\\vec{u} \\parallel \\vec{E}$: Force is parallel to velocity. Motion is 1D accelerated, path is a straight line. Correct.\n(B) $\\vec{u} \\perp \\vec{E}$: Force is constant and perpendicular to initial velocity. This is analogous to projectile motion under gravity, resulting in a parabolic path. Correct.\n(C) $\\vec{u} \\parallel \\vec{B}$: $\\vec{v} \\times \\vec{B} = 0$, so no magnetic force. The particle moves in a straight line with constant velocity. It does not form a helix (which requires a velocity component perpendicular to B). Incorrect.\n(D) $\\vec{u} \\perp \\vec{B}$: Force is always perpendicular to velocity, providing centripetal acceleration. The path is a circle in the plane normal to the field. Correct.",
+    "value": "A, B, D",
+    "letters": [
+     "A",
+     "B",
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": null,
+     "letters": []
+    },
+    "solution_belongs": "partly",
+    "solution_supports_key": null,
+    "issues": [
+     {
+      "repair": "answer_key",
+      "field": "answer",
+      "quote": "['A, B, D']",
+      "why": "Key not a proper MCQ format; should list letters separately",
+      "severity": "high"
+     },
+     {
+      "repair": "solution_missing",
+      "field": "solution",
+      "quote": "conceptual Based of field force",
+      "why": "Solution provides no conclusion or answer to the question",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "key_malformed",
+     "repair": "answer_key",
+     "field": "answer",
+     "detail": "stored key ['A, B, D'] is not a well-formed mcq answer",
+     "certain": true
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "answer_key",
+     "field": "answer",
+     "quote": "['A, B, D']",
+     "detail": "Key not a proper MCQ format; should list letters separately",
+     "severity": "high"
+    },
+    {
+     "id": "A3",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "solution_missing",
+     "field": "solution",
+     "quote": "conceptual Based of field force",
+     "detail": "Solution provides no conclusion or answer to the question",
+     "severity": "high"
+    }
+   ]
+  },
+  "68f21caf941cda588bc04365": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = B (1.44 min) [value: 1.44 min]; solve 2 = B (1.44 min) [value: 1.44 min]; solution = B (1.44 min); stored key = B (1.44 min). KEY CONFIRMED: both blind solves reach the stored key. The stored key is MALFORMED for its type; its letters read as ['B'].",
+   "solve_a": {
+    "working": "Decay law N=N0 e^{-t/τ}. Ratio N/N0=6/48=1/8=0.125. ln(0.125)= -ln8 = -2.07944. τ = -t/ln(N/N0)=3 / 2.07944 ≈1.44 min.",
+    "value": "1.44 min",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Given $N_0 = 48 \\times 10^{23}$ and $N = 6 \\times 10^{23}$ at $t = 3$ min.\nRatio $N/N_0 = 6/48 = 1/8 = (1/2)^3$.\nThis implies 3 half-lives have passed: $3 T_{1/2} = 3 \\text{ min} \\Rightarrow T_{1/2} = 1 \\text{ min}$.\nMean life $\\tau = T_{1/2} / \\ln(2) \\approx 1 / 0.693 \\approx 1.443 \\text{ min}$.\nComparing with options: (A) 0.693, (B) 1.44, (C) 2.079, (D) 4.329.\nOption (B) matches the calculated mean life.",
+    "value": "1.44 min",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "1.44",
+     "letters": [
+      "B"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "answer_key",
+      "field": "answer",
+      "quote": "['', 'B']",
+      "why": "Answer key contains an empty entry, not a valid MCQ format",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "key_malformed",
+     "repair": "answer_key",
+     "field": "answer",
+     "detail": "stored key ['', 'B'] is not a well-formed mcq answer",
+     "certain": true
+    },
+    {
+     "id": "L2",
+     "source": "lint",
+     "code": "mcq_single_answer",
+     "repair": "type_mismatch",
+     "field": "questionType",
+     "detail": "stored as mcq but the key has a single option ['B']",
+     "certain": false
+    },
+    {
+     "id": "A3",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "answer_key",
+     "field": "answer",
+     "quote": "['', 'B']",
+     "detail": "Answer key contains an empty entry, not a valid MCQ format",
+     "severity": "high"
+    }
+   ]
+  },
+  "61ee6c9d90a1a968a168686b": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = B (Peyer’s patches) [value: Peyer's patches]; solve 2 = B (Peyer’s patches) [value: Peyer’s patches]; solution = B (Peyer’s patches); stored key = B (Peyer’s patches). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Peyer's patches are aggregates of lymphoid tissue located in the distal ileum (the distal part of the small intestine). Villi are finger‑like projections for absorption, rugae are folds in stomach, and choroid plexus is in brain ventricles. Hence the correct term is Peyer’s patches.",
+    "value": "Peyer's patches",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "The small intestine contains specialized lymphoid tissue. Villi are finger-like projections increasing surface area for absorption. Rugae are folds in the stomach or large intestine. Choroid plexus is found in the brain ventricles. Peyer's patches are aggregates of lymphoid tissue located in the submucosa of the ileum (distal small intestine), playing a key role in immune surveillance of the gut.",
+    "value": "Peyer’s patches",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "Peyer’s patches",
+     "letters": [
+      "B"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "spelling",
+      "field": "question",
+      "quote": "Choroid plexux",
+      "why": "Typo in option text",
+      "severity": "low"
+     },
+     {
+      "repair": "spelling",
+      "field": "solution",
+      "quote": "Maceus membrane",
+      "why": "Misspelled term in solution",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "spelling",
+     "field": "question",
+     "quote": "Choroid plexux",
+     "detail": "Typo in option text",
+     "severity": "low"
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "spelling",
+     "field": "solution",
+     "quote": "Maceus membrane",
+     "detail": "Misspelled term in solution",
+     "severity": "low"
+    }
+   ]
+  },
+  "68ecbacb2ec87a18deba1ad7": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = B (Inactivation of voltage-gated Na^(+)channels.) [value: ]; solve 2 = B (Inactivation of voltage-gated Na^(+)channels.) [value: Inactivation of voltage-gated Na+ channels]; solution = B (Inactivation of voltage-gated Na^(+)channels.); stored key = B (Inactivation of voltage-gated Na^(+)channels.). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "The absolute refractory period occurs when voltage‑gated Na⁺ channels are inactivated and cannot reopen, regardless of stimulus strength. This inactivation, not K⁺ channel closure, Cl⁻ permeability, or Na⁺/K⁺‑pump activity, defines the absolute refractory phase. Hence only option B is correct.",
+    "value": "",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "The absolute refractory period is the phase during which a second action potential cannot be initiated, regardless of stimulus strength. This occurs because the voltage-gated Na+ channels, which are responsible for the rapid depolarization phase, transition from an open state to an inactivated state. In the inactivated state, these channels cannot be re-opened by further depolarization until they return to the closed (resting) state. Voltage-gated K+ channels open during repolarization, contributing to the relative refractory period (hyperpolarization), but the absolute period is strictly defined by the inactivation of Na+ channels. The Na+/K+ pump maintains resting potential but is not the primary cause of the refractory period. Cl- permeability is not the primary mechanism here.",
+    "value": "Inactivation of voltage-gated Na+ channels",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": null,
+     "letters": [
+      "B"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "wrong_chapter",
+      "field": "meta",
+      "quote": "Chapter: The Living World",
+      "why": "Question concerns neuronal action potentials, not botany content",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "wrong_chapter",
+     "field": "meta",
+     "quote": "Chapter: The Living World",
+     "detail": "Question concerns neuronal action potentials, not botany content",
+     "severity": "high"
+    }
+   ]
+  },
+  "5fc60508028950133eac8963": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = 20 [value: 20 N]; solve 2 = 20 [value: 20 N]; solution = 20; stored key = 20. KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Normal force N equals the horizontal pressing force =100 N. Maximum static friction f_max=μN=0.3×100=30 N. Weight of the body W=mg=2 kg×10 m/s²=20 N. Since W < f_max, static friction adjusts to balance the weight, so frictional force =20 N.",
+    "value": "20 N",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "The body is pressed against a vertical wall with a normal force N = 100 N. The weight of the body is W = mg = 2 kg * 9.8 m/s² = 19.6 N. The maximum static friction force is f_max = μN = 0.3 * 100 N = 30 N. Since the body is kept at rest (implied by 'kept by pressing'), the static friction force must balance the weight to prevent sliding. Therefore, the actual frictional force f = W = 19.6 N. This is less than f_max (19.6 N < 30 N), so the body remains stationary and the friction is equal to the weight. Using g = 10 m/s² (common in JEE/NEET unless specified), W = 2 * 10 = 20 N. f = 20 N.",
+    "value": "20 N",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.95
+   },
+   "audit": {
+    "solution_final": {
+     "value": "20",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "solution_final_differs",
+     "repair": "answer_key",
+     "field": "answer",
+     "detail": "last number in solution is 30; key is 20",
+     "certain": false
+    }
+   ]
+  },
+  "622df25ab70e4b50e44ff837": {
+   "key_state": "single_confirmed",
+   "key_check": "solve 1 = B (air from end 1 flows towards end 2. Volume of the soap bubble at end 1 decreases) [value: Option B only]; solve 2 = skipped (lint already proves a key-independent defect); solution = no result; stored key = B (air from end 1 flows towards end 2. Volume of the soap bubble at end 1 decreases). The one blind solve that was run reaches the stored key.",
+   "solve_a": {
+    "working": "The pressure inside a soap bubble is higher than the outside by ΔP=4γ/R (γ=surface tension, R=radius of curvature). End 1 has a hemispherical bubble of radius r, so its curvature radius is r and its internal pressure is P1=P_atm+4γ/r. End 2 has a sub‑hemispherical bubble; to fit the same tube radius r its curvature radius must be larger than r, giving a lower Laplace pressure P2=P_atm+4γ/R2 with R2>r, so P2<P1. When the valve opens air moves from the higher‑pressure side (end 1) to the lower‑pressure side (end 2). The loss of air from the hemispherical bubble reduces its volume, so the bubble at end 1 shrinks. Hence option B is correct.",
+    "value": "Option B only",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 0.97
+   },
+   "solve_b": null,
+   "audit": {
+    "solution_final": {
+     "value": "air flows from end 1 to end 2",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": false,
+    "issues": [
+     {
+      "repair": "diagram",
+      "field": "question",
+      "quote": "as shown in figure",
+      "why": "Figure referenced but not provided",
+      "severity": "medium"
+     },
+     {
+      "repair": "spelling",
+      "field": "question",
+      "quote": "hemispherial",
+      "why": "Misspelled word",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "figure_missing",
+     "repair": "diagram",
+     "field": "question",
+     "detail": "text refers to a figure but no image is stored",
+     "certain": true
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "diagram",
+     "field": "question",
+     "quote": "as shown in figure",
+     "detail": "Figure referenced but not provided",
+     "severity": "medium"
+    },
+    {
+     "id": "A3",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "spelling",
+     "field": "question",
+     "quote": "hemispherial",
+     "detail": "Misspelled word",
+     "severity": "low"
+    }
+   ]
+  },
+  "620e23cecc50543bc7db9186": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = B (She locates a specimen of a more distantly related snake to see if it has a forked tongue) [value: ]; solve 2 = B (She locates a specimen of a more distantly related snake to see if it has a forked tongue) [value: B]; solution = B (She locates a specimen of a more distantly related snake to see if it has a forked tongue); stored key = B (She locates a specimen of a more distantly related snake to see if it has a forked tongue). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "To infer the ancestral character state, one uses an outgroup – a species outside the group of interest but closely related. Observing the trait in a more distantly related snake (option B) provides the needed outgroup comparison. Fossil evidence absent (A) gives no information. A mammal (C) is too distant to be a useful outgroup for snakes. Flipping a coin (D) is irrelevant.",
+    "value": "",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "To determine the ancestral state (polarity) of a character (forked tongue), biologists use outgroup comparison. An outgroup is a taxon closely related to the group of interest (ingroup) but not part of it. By comparing the ingroup to the outgroup, one can infer whether a trait is ancestral (present in both) or derived (present only in the ingroup). Option (B) describes using a distantly related snake as an outgroup, which is the correct method. Option (A) is incorrect because the absence of fossils does not determine polarity. Option (C) is incorrect because mammals are too distantly related to snakes to provide useful information on snake-specific traits. Option (D) is random and scientifically invalid.",
+    "value": "B",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": null,
+     "letters": [
+      "B"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "spelling",
+      "field": "solution",
+      "quote": "Forked tongue snakes may represents the origin",
+      "why": "Incorrect verb form 'represents'",
+      "severity": "low"
+     },
+     {
+      "repair": "spelling",
+      "field": "solution",
+      "quote": "wheater, it has a forked tongue or not",
+      "why": "Misspelled word 'wheater' should be 'whether'",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "spelling",
+     "field": "solution",
+     "quote": "Forked tongue snakes may represents the origin",
+     "detail": "Incorrect verb form 'represents'",
+     "severity": "low"
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "spelling",
+     "field": "solution",
+     "quote": "wheater, it has a forked tongue or not",
+     "detail": "Misspelled word 'wheater' should be 'whether'",
+     "severity": "low"
+    }
+   ]
+  },
+  "6062ec84518e9535e120c422": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = A (5.7 x 10^(-5)/^(o)C) [value: 5.7 x 10^(-5) /°C]; solve 2 = A (5.7 x 10^(-5)/^(o)C) [value: 5.7 x 10^(-5)/^oC]; solution = A (5.7 x 10^(-5)/^(o)C); stored key = A (5.7 x 10^(-5)/^(o)C). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "ΔL=0.19 cm, L0=100 cm, ΔT=100 °C. Linear coeff α=ΔL/(L0ΔT)=0.19/(100×100)=1.9×10⁻⁵ °C⁻¹. Cubic (volumetric) coeff β=3α=5.7×10⁻⁵ °C⁻¹.",
+    "value": "5.7 x 10^(-5) /°C",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Given: Initial length $L_0 = 100$ cm, temperature change $Delta T = 100 - 0 = 100^circ\text{C}$, change in length $Delta L = 0.19$ cm.\n\n1. Calculate the coefficient of linear expansion ($\\alpha$):\n   $$\\alpha = \\frac{\\Delta L}{L_0 \\Delta T} = \\frac{0.19}{100 \\times 100} = \\frac{0.19}{10000} = 1.9 \\times 10^{-5} / ^\\circ\\text{C}$$\n\n2. Calculate the coefficient of cubical expansion ($\\gamma$):\n   For isotropic solids, $\\gamma \\approx 3\\alpha$.\n   $$\\gamma = 3 \\times (1.9 \\times 10^{-5}) = 5.7 \\times 10^{-5} / ^\\circ\\text{C}$$\n\n3. Check options:\n   (A) $5.7 \\times 10^{-5} / ^\\circ\\text{C}$ - Matches.\n   (B) $0.63 \\times 10^{-5} / ^\\circ\\text{C}$ - Incorrect.\n   (C) $1.9 \\times 10^{-5} / ^\\circ\\text{C}$ - This is $\\alpha$, not $\\gamma$.\n   (D) $16.1 \\times 10^{-5} / ^\\circ\\text{C}$ - Incorrect.",
+    "value": "5.7 x 10^(-5)/^oC",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "5.7×10^(-5)/°C",
+     "letters": [
+      "A"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "noise",
+      "field": "solution",
+      "quote": "=1.9×10^(−5)/AC",
+      "why": "Stray characters after value",
+      "severity": "low"
+     },
+     {
+      "repair": "markup_leak",
+      "field": "solution",
+      "quote": "10^(−5)",
+      "why": "Raw LaTeX exponent shown as text",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "noise",
+     "field": "solution",
+     "quote": "=1.9×10^(−5)/AC",
+     "detail": "Stray characters after value",
+     "severity": "low"
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "markup_leak",
+     "field": "solution",
+     "quote": "10^(−5)",
+     "detail": "Raw LaTeX exponent shown as text",
+     "severity": "low"
+    }
+   ]
+  },
+  "6956d7bb23cb221e570d6013": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = B (tan^(− 1)( 4 )) [value: tan⁻¹(4)]; solve 2 = B (tan^(− 1)( 4 )) [value: tan^{-1}(4)]; solution = B (tan^(− 1)( 4 )); stored key = B (tan^(− 1)( 4 )). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "For projectile from same level: Range R = u^2 sin2θ / g, max height H = u^2 sin^2θ /(2g). Set R = H: sin2θ = (1/2) sin^2θ. Using sin2θ = 2 sinθ cosθ gives 2 sinθ cosθ = (1/2) sin^2θ → multiply 2: 4 sinθ cosθ = sin^2θ. For sinθ≠0, divide by sinθ: 4 cosθ = sinθ → tanθ = 4. Hence θ = tan⁻¹4.",
+    "value": "tan⁻¹(4)",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 1
+   },
+   "solve_b": {
+    "working": "For a projectile, Horizontal Range $R = \\frac{u^2 \\sin 2\\theta}{g}$ and Maximum Height $H = \\frac{u^2 \\sin^2 \\theta}{2g}$. The condition is $R = H$. Substituting the formulas: $\\frac{u^2 (2 \\sin \\theta \\cos \\theta)}{g} = \\frac{u^2 \\sin^2 \\theta}{2g}$. Assuming $\\theta \\neq 0$, we can cancel $\\frac{u^2 \\sin \\theta}{g}$ from both sides to get $2 \\cos \\theta = \\frac{\\sin \\theta}{2}$. Rearranging gives $\\tan \\theta = 4$. Therefore, $\\theta = \\tan^{-1}(4)$. This matches option (B).",
+    "value": "tan^{-1}(4)",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "tan^{-1}(4)",
+     "letters": [
+      "B"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "noise",
+      "field": "solution",
+      "quote": "(b) Here, H=R",
+      "why": "Stray label not part of solution",
+      "severity": "low"
+     },
+     {
+      "repair": "markup_leak",
+      "field": "solution",
+      "quote": "u^(2)sin^(2)θ",
+      "why": "Raw LaTeX visible as text",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "noise",
+     "field": "solution",
+     "quote": "(b) Here, H=R",
+     "detail": "Stray label not part of solution",
+     "severity": "low"
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "markup_leak",
+     "field": "solution",
+     "quote": "u^(2)sin^(2)θ",
+     "detail": "Raw LaTeX visible as text",
+     "severity": "low"
+    }
+   ]
+  },
+  "68e8734442c06737d6e56da4": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = A (0.8) [value: 0.8]; solve 2 = A (0.8) [value: 0.8]; solution = A (0.8); stored key = A (0.8). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Weight=100N ⇒ mass m=100/10=10kg. Let friction=μ·100N. (1) F−μ·100 = m·1 =10 ⇒ F=10+100μ. (2) When force doubled: 2F−μ·100 = m·10 =100. Substitute F: 2(10+100μ)−100μ=100 ⇒20+200μ−100μ=100 ⇒20+100μ=100 ⇒100μ=80 ⇒μ=0.8.",
+    "value": "0.8",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 1
+   },
+   "solve_b": {
+    "working": "Given: Weight $W = 100$ N, $g = 10$ m/s$^2$. Mass $m = W/g = 10$ kg. Normal force $N = W = 100$ N. Friction force $f = \\mu N = 100\\mu$.\n\nCase 1: Force $F$, acceleration $a_1 = 1$ m/s$^2$.\nEquation: $F - f = m a_1 \\Rightarrow F - 100\\mu = 10(1) = 10$.\n\nCase 2: Force $2F$, acceleration $a_2 = 10$ m/s$^2$.\nEquation: $2F - f = m a_2 \\Rightarrow 2F - 100\\mu = 10(10) = 100$.\n\nSubtract Case 1 from Case 2:\n$(2F - 100\\mu) - (F - 100\\mu) = 100 - 10$\n$F = 90$ N.\n\nSubstitute $F = 90$ into Case 1 equation:\n$90 - 100\\mu = 10$\n$100\\mu = 80$\n$\\mu = 0.8$.\n\nCheck options: (A) 0.8 matches.",
+    "value": "0.8",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "0.8",
+     "letters": [
+      "A"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": []
+  },
+  "6956d7e988d7701e5617bd3e": {
+   "key_state": "single_confirmed",
+   "key_check": "solve 1 = D (8 sqrt(2 m)) [value: 8 sqrt(2) m]; solve 2 = skipped (lint already proves a key-independent defect); solution = D (8 sqrt(2 m)); stored key = D (8 sqrt(2 m)). The one blind solve that was run reaches the stored key.",
+   "solve_a": {
+    "working": "T=16 s ⇒ ω=2π/T=π/8 rad s⁻¹. For SHM starting from equilibrium with positive velocity, x=A sin(ωt) and v=ωA cos(ωt). At t=2 s, v=π m s⁻¹ ⇒ ωA cos(2ω)=π. 2ω=π/4, cos(π/4)=√2/2. So (π/8)·A·(√2/2)=π ⇒ A√2/16=1 ⇒ A=16/√2=8√2 m.",
+    "value": "8 sqrt(2) m",
+    "letters": [
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 1
+   },
+   "solve_b": null,
+   "audit": {
+    "solution_final": {
+     "value": "8 sqrt(2) m",
+     "letters": [
+      "D"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "notation",
+      "field": "question",
+      "quote": "2 sqrt(2 m)",
+      "why": "unit placed inside square root, should be 2√2 m",
+      "severity": "medium"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "unit_inside_root",
+     "repair": "notation",
+     "field": "question",
+     "detail": "a unit sits inside a square root, e.g. sqrt(2 m) instead of sqrt(2) m",
+     "certain": true
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "notation",
+     "field": "question",
+     "quote": "2 sqrt(2 m)",
+     "detail": "unit placed inside square root, should be 2√2 m",
+     "severity": "medium"
+    }
+   ]
+  },
+  "68dea619d0cda73d07e93aee": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = 4 [value: 4 s]; solve 2 = 4 [value: 4]; solution = 4; stored key = 4. KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Angular displacements: θ1=½α1t^2, θ2=½α2t^2. Alignment when θ1−θ2=2πk. α1=π/2, α2=π/4 ⇒Δα=π/4. So ½·Δα·t^2=2πk ⇒(π/8)t^2=2πk ⇒t^2=16k ⇒t=4√k. Smallest positive k=1 gives t=4 s.",
+    "value": "4 s",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Let the angular accelerations be $\\alpha_1 = \\frac{\\pi}{2}$ rad/s$^2$ and $\\alpha_2 = \\frac{\\pi}{4}$ rad/s$^2$. The wheels start from rest, so their angular positions at time $t$ are $\\theta_1 = \\frac{1}{2}\\alpha_1 t^2$ and $\\theta_2 = \\frac{1}{2}\\alpha_2 t^2$. The dots align again when the difference in their angular positions is an integer multiple of $2\\pi$ radians. For the first time, this difference is $2\\pi$. \n\n$\\Delta\\theta = \\theta_1 - \\theta_2 = \\frac{1}{2}t^2(\\alpha_1 - \\alpha_2) = 2\\pi$\n\nSubstitute the values:\n$\\frac{1}{2}t^2(\\frac{\\pi}{2} - \\frac{\\pi}{4}) = 2\\pi$\n$\\frac{1}{2}t^2(\\frac{\\pi}{4}) = 2\\pi$\n$\\frac{\\pi}{8}t^2 = 2\\pi$\n$t^2 = 16$\n$t = 4$ s.\n\nSanity check: At $t=4$, $\\theta_1 = \\frac{1}{2}(\\frac{\\pi}{2})(16) = 4\\pi$ and $\\theta_2 = \\frac{1}{2}(\\frac{\\pi}{4})(16) = 2\\pi$. The difference is $2\\pi$, which corresponds to one full rotation relative to each other, aligning the dots.",
+    "value": "4",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "4",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "notation",
+      "field": "question",
+      "quote": "(π)/(2) r a d /s e c^(2)",
+      "why": "unit rad/s^2 broken into spaced letters",
+      "severity": "medium"
+     },
+     {
+      "repair": "notation",
+      "field": "solution",
+      "quote": "t = 4 s e c",
+      "why": "unit \"sec\" spaced, unclear formatting",
+      "severity": "medium"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "notation",
+     "field": "question",
+     "quote": "(π)/(2) r a d /s e c^(2)",
+     "detail": "unit rad/s^2 broken into spaced letters",
+     "severity": "medium"
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "notation",
+     "field": "solution",
+     "quote": "t = 4 s e c",
+     "detail": "unit \"sec\" spaced, unclear formatting",
+     "severity": "medium"
+    }
+   ]
+  },
+  "68dea7c2387eea3d0d95f9bb": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = 8 [value: 8 cm]; solve 2 = 8 [value: 8]; solution = 8; stored key = 8. KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Compute extra optical path: Δ=(n1‑1)t1‑(n2‑1)t2. (n1‑1)=0.5, t1=2 mm→0.5×2×10⁻³=1×10⁻³ m. (n2‑1)=0.4, t2=1.5 mm→0.4×1.5×10⁻³=0.6×10⁻³ m. Δ=1×10⁻³‑0.6×10⁻³=0.4×10⁻³ m. Shift of central maximum y=Δ L/d (small‑angle). L=1 m, d=5 mm=5×10⁻³ m. y=0.4×10⁻³×1 /5×10⁻³=0.08 m=8 cm.",
+    "value": "8 cm",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "The shift of the central maximum in Young's Double Slit Experiment (YDSE) due to thin films is given by the formula: \n$$ \\Delta y = \\frac{D}{d} \\Delta \\delta $$\nwhere $\\Delta \\delta$ is the difference in optical path lengths introduced by the slabs.\n\nGiven:\n- Distance to screen, $D = 1 \\text{ m} = 100 \\text{ cm}$\n- Slit separation, $d = 5 \\text{ mm} = 0.5 \\text{ cm}$\n- Slab 1: Thickness $t_1 = 2 \\text{ mm} = 0.2 \\text{ cm}$, Refractive index $\\mu_1 = 1.5$\n- Slab 2: Thickness $t_2 = 1.5 \\text{ mm} = 0.15 \\text{ cm}$, Refractive index $\\mu_2 = 1.4$\n\nThe optical path difference introduced by a slab is $(\\mu - 1)t$.\n$$ \\Delta \\delta = (\\mu_1 - 1)t_1 - (\\mu_2 - 1)t_2 $$\n$$ \\Delta \\delta = (1.5 - 1)(0.2) - (1.4 - 1)(0.15) $$\n$$ \\Delta \\delta = (0.5)(0.2) - (0.4)(0.15) $$\n$$ \\Delta \\delta = 0.10 - 0.06 = 0.04 \\text{ cm} $$\n\nNow, calculate the shift $\\Delta y$:\n$$ \\Delta y = \\frac{100}{0.5} \\times 0.04 $$\n$$ \\Delta y = 200 \\times 0.04 = 8 \\text{ cm} $$\n\nSanity check: Units are consistent (cm). The magnitude is reasonable for the given parameters.",
+    "value": "8",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "8",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "solution_final_differs",
+     "repair": "answer_key",
+     "field": "answer",
+     "detail": "last number in solution is 0.08; key is 8",
+     "certain": false
+    }
+   ]
+  },
+  "68dea715387eea3d0d95f790": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = 3113 [value: 3113]; solve 2 = 3113 [value: 3113]; solution = 311.3; stored key = 3113. KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Side s=7.203 m (4 sf). Surface area A=6s²=6×(7.203)²=6×51.883209≈311.299254 m². With 4 sf, A=311.3 m². Required value 10 A=10×311.3=3113.",
+    "value": "3113",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.97
+   },
+   "solve_b": {
+    "working": "The side length of the cube is $L = 7.203$ m, which has 4 significant figures. The total surface area of a cube is given by $A = 6L^2$. Calculating the value: $A = 6 \\times (7.203)^2 = 6 \\times 51.883209 = 311.299254$ m$^2$. According to the rules of significant figures for multiplication, the result must be rounded to the same number of significant figures as the measurement with the fewest significant figures (which is 4). Rounding $311.299254$ to 4 significant figures gives $A = 311.3$ m$^2$. The question asks for the value of $10A$. Therefore, $10A = 10 \\times 311.3 = 3113$.",
+    "value": "3113",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "311.3",
+     "letters": []
+    },
+    "solution_belongs": "partly",
+    "solution_supports_key": false,
+    "issues": [
+     {
+      "repair": "stem_data",
+      "field": "question",
+      "quote": "find the value of 10 A",
+      "why": "operator between 10 and A missing",
+      "severity": "medium"
+     },
+     {
+      "repair": "solution_fix",
+      "field": "solution",
+      "quote": "Total surface area = 6 ( 7.203 )^(2)= 311.299 = 311.3 m^(2)",
+      "why": "solution does not compute 10*A as required",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "solution_final_differs",
+     "repair": "answer_key",
+     "field": "answer",
+     "detail": "last number in solution is 311.3; key is 3113",
+     "certain": false
+    },
+    {
+     "id": "A2",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "stem_data",
+     "field": "question",
+     "quote": "find the value of 10 A",
+     "detail": "operator between 10 and A missing",
+     "severity": "medium"
+    },
+    {
+     "id": "A3",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "solution_fix",
+     "field": "solution",
+     "quote": "Total surface area = 6 ( 7.203 )^(2)= 311.299 = 311.3 m^(2)",
+     "detail": "solution does not compute 10*A as required",
+     "severity": "high"
+    }
+   ]
+  },
+  "695ee00b88d7701e561aabc5": {
+   "key_state": "solves_only_disagree",
+   "key_check": "solve 1 = none of the listed options [value: Both A and R are false]; solve 2 = none of the listed options [value: Both A and R are false]; solution = D (A is false, but R is true.); stored key = D (A is false, but R is true.). Both blind solves agree with each other and differ from the stored key; the stored solution does not back them.",
+   "solve_a": {
+    "working": "For equal amplitudes A, resultant amplitude = 2A cos(Δφ/2). With Δφ=π/2, cos(π/4)=√2/2, so amplitude=√2 A. Intensity ∝ amplitude² ⇒ I=2A², i.e., twice the intensity of one wave. Hence Assertion A (resultant intensity equals intensity of one wave) is false. Reason R claims intensity always equals sum of individual intensities for any non‑zero phase difference, which is false (only when cosΔφ=0). Thus both A and R are false. No option matches this.",
+    "value": "Both A and R are false",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Let amplitude of each wave be $A$. Resultant amplitude $A_{res} = \\sqrt{A^2 + A^2 + 2A^2 \\cos(\\pi/2)} = \\sqrt{2A^2} = A\\sqrt{2}$. Intensity $I \\propto A^2$, so $I_{res} \\propto (A\\sqrt{2})^2 = 2A^2$. Since $I_{single} \\propto A^2$, $I_{res} = 2 I_{single}$. Thus, Assertion (A) is False. Reason (R) states resultant intensity is sum of individual intensities if phase difference is non-zero. This is false; $I_{res} = I_1 + I_2 + 2\\sqrt{I_1 I_2}\\cos\\phi$. The sum holds only for incoherent sources or average over time for random phases, not for a fixed non-zero phase difference. Thus, Reason (R) is False. Since both are false, none of the options (A)-(D) which assume at least one is true are correct.",
+    "value": "Both A and R are false",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": null,
+     "letters": [
+      "D"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "solution_fix",
+      "field": "solution",
+      "quote": "Thus, the intensity is equal to the intensity of one wave. Therefore, assertion (A) is true.",
+      "why": "Solution contradicts earlier statement and uses incorrect intensity formula, making reasoning invalid.",
+      "severity": "high"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "solution_fix",
+     "field": "solution",
+     "quote": "Thus, the intensity is equal to the intensity of one wave. Therefore, assertion (A) is true.",
+     "detail": "Solution contradicts earlier statement and uses incorrect intensity formula, making reasoning invalid.",
+     "severity": "high"
+    }
+   ]
+  },
+  "66fe9dbe22132e5a70a3e579": {
+   "key_state": "single_confirmed",
+   "key_check": "solve 1 = D (Relaxin - Inhibin) [value: D]; solve 2 = skipped (lint already proves a key-independent defect); solution = no result; stored key = D (Relaxin - Inhibin). The one blind solve that was run reaches the stored key.",
+   "solve_a": {
+    "working": "Parathormone raises Ca2+ while calcitonin lowers it → antagonistic. Insulin lowers blood glucose, glucagon raises it → antagonistic. Aldosterone promotes Na+ retention, ANF promotes Na+ excretion → antagonistic. Relaxin (pregnancy‑related tissue remodeling) and inhibin (inhibits FSH) have unrelated actions, not opposite → not antagonistic.",
+    "value": "D",
+    "letters": [
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": null,
+   "audit": {
+    "solution_final": {
+     "value": null,
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": null,
+    "issues": [
+     {
+      "repair": "noise",
+      "field": "question",
+      "quote": "1. Which of the following pairs",
+      "why": "Stray list number appears before question text",
+      "severity": "low"
+     },
+     {
+      "repair": "solution_fix",
+      "field": "solution",
+      "quote": "Insulin and glucagon work synergistically to keep blood glucose concentrations normal",
+      "why": "Incorrectly describes antagonistic hormones as synergistic",
+      "severity": "medium"
+     },
+     {
+      "repair": "solution_fix",
+      "field": "solution",
+      "quote": "widens the cervix.",
+      "why": "Solution does not state an explicit final answer",
+      "severity": "low"
+     },
+     {
+      "repair": "notation",
+      "field": "question",
+      "quote": "C) Aldosterone Atrial Natriuretic Factor",
+      "why": "Missing hyphen between hormone names",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "L1",
+     "source": "lint",
+     "code": "stray_list_number",
+     "repair": "noise",
+     "field": "question",
+     "detail": "single <ol><li> wrapper renders a stray '1.' before the text",
+     "certain": true
+    },
+    {
+     "id": "L2",
+     "source": "lint",
+     "code": "stray_list_number",
+     "repair": "noise",
+     "field": "solution",
+     "detail": "single <ol><li> wrapper renders a stray '1.' before the text",
+     "certain": true
+    },
+    {
+     "id": "A3",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "noise",
+     "field": "question",
+     "quote": "1. Which of the following pairs",
+     "detail": "Stray list number appears before question text",
+     "severity": "low"
+    },
+    {
+     "id": "A4",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "solution_fix",
+     "field": "solution",
+     "quote": "Insulin and glucagon work synergistically to keep blood glucose concentrations normal",
+     "detail": "Incorrectly describes antagonistic hormones as synergistic",
+     "severity": "medium"
+    },
+    {
+     "id": "A5",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "solution_fix",
+     "field": "solution",
+     "quote": "widens the cervix.",
+     "detail": "Solution does not state an explicit final answer",
+     "severity": "low"
+    },
+    {
+     "id": "A6",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "notation",
+     "field": "question",
+     "quote": "C) Aldosterone Atrial Natriuretic Factor",
+     "detail": "Missing hyphen between hormone names",
+     "severity": "low"
+    }
+   ]
+  },
+  "60ca4feb6420652745f55522": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = C (99 N) [value: 99 N]; solve 2 = C (99 N) [value: 99 N]; solution = C (99 N); stored key = C (99 N). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Coulomb force ∝ q1·q2. Original F=100 N. New charges: q1' =1.10 q1, q2' =0.90 q2. New force F' =1.10×0.90×F =0.99×100 N =99 N.",
+    "value": "99 N",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 1
+   },
+   "solve_b": {
+    "working": "Coulomb's Law states $F = k \frac{q_1 q_2}{r^2}$. The initial force is $F_0 = 100$ N. The new charges are $q_1' = 1.10 q_1$ and $q_2' = 0.90 q_2$. The new force is $F' = k \frac{(1.10 q_1)(0.90 q_2)}{r^2} = (1.10 \times 0.90) F_0$. Calculating the factor: $1.1 \times 0.9 = 0.99$. Thus, $F' = 0.99 \times 100 \text{ N} = 99 \text{ N}$. This matches option (C).",
+    "value": "99 N",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "99 N",
+     "letters": [
+      "C"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": []
+  },
+  "68c9ae5afb6b2f16e2d43b1c": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = D (1.1 V) [value: 1.1 V]; solve 2 = D (1.1 V) [value: 1.1 V]; solution = D (1.1 V); stored key = D (1.1 V). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Photon energy E=hc/λ. λ=4000 Å=4×10⁻⁷ m. hc≈1.986×10⁻²⁵ J·m. E=1.986×10⁻²⁵/4×10⁻⁷≈4.97×10⁻¹⁹ J≈4.97×10⁻¹⁹/1.602×10⁻¹⁹≈3.10 eV. Max kinetic energy K_max=E−φ=3.10 eV−2.0 eV=1.10 eV. Stopping potential V₀=K_max/e=1.10 V.",
+    "value": "1.1 V",
+    "letters": [
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Using the photoelectric equation: $eV_s = \\frac{hc}{\\lambda} - \\phi$. Given $\\lambda = 4000 \\, \\text{\\AA} = 400 \\, \\text{nm}$ and $\\phi = 2.0 \\, \\text{eV}$. The photon energy is $E = \\frac{1240 \\, \\text{eV}\\cdot\\text{nm}}{400 \\, \\text{nm}} = 3.1 \\, \\text{eV}$. The stopping potential is $V_s = \\frac{3.1 \\, \\text{eV} - 2.0 \\, \\text{eV}}{e} = 1.1 \\, \\text{V}$. This matches option (D).",
+    "value": "1.1 V",
+    "letters": [
+     "D"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "1.1",
+     "letters": [
+      "D"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": []
+  },
+  "68f21df0941cda588bc0470b": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = A (Become twice its initial value) [value: new momentum becomes twice its initial value]; solve 2 = A (Become twice its initial value) [value: Twice its initial value]; solution = A (Become twice its initial value); stored key = A (Become twice its initial value). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Kinetic energy KE = p^2/(2m). If KE becomes 4 times, then p^2/(2m)=4·(p0^2/(2m)) ⇒ p^2=4p0^2 ⇒ p=2p0 (magnitude). Thus momentum doubles. Option A is correct; others are false.",
+    "value": "new momentum becomes twice its initial value",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "The relationship between kinetic energy ($K$) and momentum ($p$) for a non-relativistic body of mass $m$ is given by $K = \\frac{p^2}{2m}$. This implies that momentum is proportional to the square root of kinetic energy: $p \\propto \\sqrt{K}$. Let the initial kinetic energy be $K_1$ and initial momentum be $p_1$. The new kinetic energy is $K_2 = 4K_1$. The new momentum $p_2$ is proportional to $\\sqrt{K_2} = \\sqrt{4K_1} = 2\\sqrt{K_1}$. Therefore, $p_2 = 2p_1$. The new momentum becomes twice its initial value. This matches option (A).",
+    "value": "Twice its initial value",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "twice its initial value",
+     "letters": [
+      "A"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "markup_leak",
+      "field": "solution",
+      "quote": "(p_(2))/(p_(1))=sqrt((KE_(2))/(KE_(1)))",
+      "why": "Raw LaTeX-like notation shown as plain text",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "markup_leak",
+     "field": "solution",
+     "quote": "(p_(2))/(p_(1))=sqrt((KE_(2))/(KE_(1)))",
+     "detail": "Raw LaTeX-like notation shown as plain text",
+     "severity": "low"
+    }
+   ]
+  },
+  "68c801bc1b1dbc16dc93bf2b": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = A (600 eV) [value: 600 eV]; solve 2 = A (600 eV) [value: 600 eV]; solution = A (600 eV); stored key = A (600 eV). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Maximum photon energy = eV = 24800 eV = 3.97×10⁻¹⁵ J. λ_X‑ray = hc/E = (6.6×10⁻³⁴·3×10⁸)/3.97×10⁻¹⁵ ≈ 5.0×10⁻¹¹ m. For an electron λ = h/√(2mK) ⇒ K = h²/(2mλ²). Using h=6.6×10⁻³⁴ J·s, m=9.1×10⁻³¹ kg, λ=5.0×10⁻¹¹ m gives K≈9.6×10⁻¹⁷ J = 9.6×10⁻¹⁷/1.6×10⁻¹⁹ eV ≈ 6.0×10² eV ≈ 600 eV.",
+    "value": "600 eV",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "1. **X-ray Wavelength**: The maximum energy of X-rays produced in a tube is given by $E_{max} = eV$. The corresponding wavelength is $lambda = \frac{hc}{eV}$. Using the approximation $hc \\approx 12400 \\text{ eV}\\cdot\\text{\\AA}$, we have $lambda = \frac{12400}{24800} \\text{ \\AA} = 0.5 \\text{ \\AA} = 0.5 \\times 10^{-10} \\text{ m}$.\n\n2. **Electron Kinetic Energy**: For an electron with de-Broglie wavelength $lambda$, the kinetic energy $K$ is given by $K = \\frac{h^2}{2m\\lambda^2}$. In electron-volts, this is approximated by $K (\\text{eV}) = \\frac{150}{\\lambda (\\text{\\AA})^2}$.\n\n3. **Calculation**: Substituting $lambda = 0.5 \\text{ \\AA}$:\n   $K = \\frac{150}{(0.5)^2} = \\frac{150}{0.25} = 600 \\text{ eV}$.\n\n4. **Verification**: Using SI units directly:\n   $K = \\frac{(6.6 \\times 10^{-34})^2}{2(9.1 \\times 10^{-31})(0.5 \\times 10^{-10})^2} \\approx \\frac{43.56 \\times 10^{-68}}{4.55 \\times 10^{-51}} \\approx 9.57 \\times 10^{-18} \\text{ J}$. \n   Converting to eV: $\\frac{9.57 \\times 10^{-18}}{1.6 \\times 10^{-19}} \\approx 598 \\text{ eV}$, which is approximately 600 eV.",
+    "value": "600 eV",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "600 eV",
+     "letters": [
+      "A"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "notation",
+      "field": "solution",
+      "quote": "K&=(1.574×10^(−29))/(1.638×10^(−13)) K&≈9.6×10^(−17) J",
+      "why": "Ampersand appears, confusing variable notation",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "notation",
+     "field": "solution",
+     "quote": "K&=(1.574×10^(−29))/(1.638×10^(−13)) K&≈9.6×10^(−17) J",
+     "detail": "Ampersand appears, confusing variable notation",
+     "severity": "low"
+    }
+   ]
+  },
+  "6264197209f4fd65f58f5707": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = C (Golden rice) [value: ]; solve 2 = C (Golden rice) [value: Golden rice]; solution = C (Golden rice); stored key = C (Golden rice). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Vitamin A deficiency causes night blindness and xerophthalmia. Foods rich in provitamin A (β‑carotene) can prevent this. Golden rice is genetically engineered to accumulate β‑carotene, providing vitamin A activity. Flavr Savr tomato, canola and Bt‑brinjal are not significant sources of provitamin A. Hence only Golden rice can prevent the blindness associated with vitamin A deficiency.",
+    "value": "",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Vitamin A deficiency causes night blindness. Golden rice is a genetically modified variety of rice engineered to produce beta-carotene (a precursor to Vitamin A) in the edible endosperm. This was specifically developed to combat Vitamin A deficiency in populations relying on rice as a staple food. 'Flavr Savr' tomatoes are modified for delayed ripening, Canola is a rapeseed variety, and Bt-Brinjal is modified for insect resistance. Therefore, Golden rice is the correct food source to prevent this specific type of blindness.",
+    "value": "Golden rice",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "Golden rice",
+     "letters": [
+      "C"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": []
+  },
+  "6208e298fa399567e0878700": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = A (Julius von Sachs) [value: ]; solve 2 = A (Julius von Sachs) [value: Julius von Sachs]; solution = A (Julius von Sachs); stored key = A (Julius von Sachs). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Julius von Sachs performed experiments showing that leaves exposed to light accumulate starch, indicating that photosynthesis produces glucose (as starch). This provided direct evidence of glucose formation during plant growth. The other scientists studied water uptake (von Helmont), plant pressure and transpiration (Hales), or combustion/O2 (Lavoisier) and did not give such evidence.",
+    "value": "",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 0.97
+   },
+   "solve_b": {
+    "working": "The question asks for the scientist who provided evidence for the production of glucose (or starch, the storage form of glucose) in growing plants. \n\n1. **Stephen Hales** (1720s) demonstrated that plants take in air and release it, and that roots absorb water, but did not identify the chemical nature of the food produced.\n2. **Jan Baptist van Helmont** (1600s) conducted the willow tree experiment, concluding that plants gain mass from water, not soil. He did not identify glucose/starch production.\n3. **Antoine Lavoisier** (1700s) identified the role of oxygen in respiration and combustion, clarifying that plants release oxygen, but did not focus on the synthesis of glucose.\n4. **Julius von Sachs** (1864) performed the classic experiment where he exposed a destarched plant leaf to light and then tested it for starch using iodine. He demonstrated that light is necessary for the production of starch (glucose polymer) in leaves. This is the standard answer for the discovery of photosynthesis producing carbohydrates/glucose.\n\nTherefore, Julius von Sachs is the correct scientist associated with providing evidence for the production of glucose/starch in plants.",
+    "value": "Julius von Sachs",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "Julius von Sachs",
+     "letters": [
+      "A"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": []
+  },
+  "63c7cce12981ed154ee92c94": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = C (2.2μ A) [value: 2.2 μA]; solve 2 = C (2.2μ A) [value: 2.2 μA]; solution = C (2.2μ A); stored key = C (2.2μ A). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "dV/dt=25 V/s, plate separation d=1 mm=1×10⁻³ m ⇒ dE/dt=(dV/dt)/d=25/(1×10⁻³)=2.5×10⁴ V m⁻¹ s⁻¹. Displacement current Id=ε₀ε_r A dE/dt=8.85×10⁻¹² F/m×10×1 m²×2.5×10⁴=2.21×10⁻⁶ A≈2.2 μA.",
+    "value": "2.2 μA",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "The displacement current $I_d$ in a parallel plate capacitor is equal to the conduction current $I$ charging it. The formula is $I_d = C \\frac{dV}{dt}$. \n\n1. Calculate Capacitance $C$: \n   $C = \\frac{\\kappa \\epsilon_0 A}{d}$ \n   Given: $\\kappa = 10$, $\\epsilon_0 \\approx 8.854 \\times 10^{-12} \\, \\text{F/m}$, $A = 1 \\, \\text{m}^2$, $d = 1 \\, \\text{mm} = 10^{-3} \\, \\text{m}$. \n   $C = \\frac{10 \\times 8.854 \\times 10^{-12} \\times 1}{10^{-3}} = 88.54 \\times 10^{-9} \\, \\text{F} = 88.54 \\, \\text{nF}$. \n\n2. Calculate Displacement Current $I_d$: \n   Given rate of change of voltage $\\frac{dV}{dt} = 25 \\, \\text{V/s}$. \n   $I_d = 88.54 \\times 10^{-9} \\, \\text{F} \\times 25 \\, \\text{V/s}$ \n   $I_d = 2213.5 \\times 10^{-9} \\, \\text{A} \\approx 2.21 \\times 10^{-6} \\, \\text{A} = 2.21 \\, \\mu\\text{A}$. \n\nComparing with options: \n(A) 1.1 μA \n(B) 11 μA \n(C) 2.2 μA \n(D) 0.22 μA \n\nThe calculated value matches option (C).",
+    "value": "2.2 μA",
+    "letters": [
+     "C"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "2.2μ A",
+     "letters": [
+      "C"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "markup_leak",
+      "field": "solution",
+      "quote": "C=kε_(0)(A)/(d)=8.85×10^(−8)F i_(d)=(d)/(dt)(CV)=2.2μ A",
+      "why": "Raw LaTeX/markup appears in solution text",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "markup_leak",
+     "field": "solution",
+     "quote": "C=kε_(0)(A)/(d)=8.85×10^(−8)F i_(d)=(d)/(dt)(CV)=2.2μ A",
+     "detail": "Raw LaTeX/markup appears in solution text",
+     "severity": "low"
+    }
+   ]
+  },
+  "636283dbe3770c24f866e6d6": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = B (4:1) [value: 4:1]; solve 2 = B (4:1) [value: 4:1]; solution = B (4:1); stored key = B (4:1). KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Each small drop: r=0.02 m, q=5 µC, σ_s=q/(4πr^2). Combine 64 drops: total charge Q=64·5 µC=320 µC. Volumes add: V_total=64·(4/3)πr^3 ⇒ radius of big drop r_b=4r=0.08 m. Surface area ratio A_b/A_s=(r_b/r)^2=4^2=16. σ_b/σ_s=(Q/q)*(A_s/A_b)=64*(1/16)=4. Hence σ_b:σ_s=4:1.",
+    "value": "4:1",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Let $n=64$ small drops of radius $r$ and charge $q$ combine to form one big drop of radius $R$ and charge $Q$.\n1. **Volume Conservation**: $\\frac{4}{3}\\pi R^3 = n \\times \\frac{4}{3}\\pi r^3 \\implies R^3 = n r^3 \\implies R = n^{1/3} r$. For $n=64$, $R = 4r$.\n2. **Charge Conservation**: $Q = n q = 64q$.\n3. **Surface Charge Density ($\\sigma$)**: $\\sigma = \\frac{\\text{Charge}}{\\text{Surface Area}} = \\frac{Q}{4\\pi R^2}$.\n   - For small drop: $\\sigma_s = \\frac{q}{4\\pi r^2}$.\n   - For big drop: $\\sigma_b = \\frac{64q}{4\\pi (4r)^2} = \\frac{64q}{4\\pi (16r^2)} = \\frac{4q}{4\\pi r^2}$.\n4. **Ratio**: $\\frac{\\sigma_b}{\\sigma_s} = \\frac{\\frac{4q}{4\\pi r^2}}{\\frac{q}{4\\pi r^2}} = 4$. Thus, the ratio is $4:1$.\nSanity check: Generally $\\sigma_b/\\sigma_s = n^{1/3}$. Here $64^{1/3} = 4$. Matches.",
+    "value": "4:1",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "4:1",
+     "letters": [
+      "B"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": []
+  },
+  "68dea577d0cda73d07e9391c": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = 14 [value: 14 V]; solve 2 = 14 [value: 14]; solution = 14; stored key = 14. KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "For a uniformly charged solid sphere, V(R)=kQ/R. Given V(R)=16 V, so kQ/R=16 V. Outside (r≥R): V(r)=kQ/r. Hence V_S at r=2R is (kQ)/(2R)=½·16=8 V. Inside (r≤R): V(r)=kQ/(2R)·(3−r²/R²). At r=R/2, V_P = (kQ)/(2R)·(3−¼)= (kQ)/(2R)·(11/4)=11/8·(kQ/R)=11/8·16=22 V. Potential difference V_P−V_S = 22 V−8 V = 14 V.",
+    "value": "14 V",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Let $R$ be the radius and $V$ the potential at the surface relative to infinity. For a uniformly charged sphere, $V_{surface} = \\frac{kQ}{R} = 16$ V.\n\n1. Potential at point P ($r = R/2$, inside): \n   $V_P = \\frac{kQ}{2R} \\left[ 3 - \\left(\\frac{R/2}{R}\\right)^2 \\right] = \\frac{kQ}{2R} \\left( 3 - \\frac{1}{4} \\right) = \\frac{kQ}{2R} \\cdot \\frac{11}{4} = \\frac{11}{8} \\frac{kQ}{R}$. \n   Substituting $\\frac{kQ}{R} = 16$: $V_P = \\frac{11}{8}(16) = 22$ V.\n\n2. Potential at point S ($r = 2R$, outside): \n   $V_S = \\frac{kQ}{2R} = \\frac{1}{2} \\frac{kQ}{R}$. \n   Substituting $\\frac{kQ}{R} = 16$: $V_S = \\frac{1}{2}(16) = 8$ V.\n\n3. Potential difference $V_P - V_S = 22 - 8 = 14$ V.",
+    "value": "14",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "14",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": []
+  },
+  "68dea87d387eea3d0d95fbe3": {
+   "key_state": "partly_confirmed",
+   "key_check": "solve 1 = A (5 V) [value: 5 V]; solve 2 = none of the listed options [value: 6.81 V]; solution = A (5 V); stored key = A (5 V). One blind solve reaches the stored key, the other does not.",
+   "solve_a": {
+    "working": "Initial charge: Q_total = C0*30. After connection both have same voltage V_f. Capacitor without dielectric: C0, charge = C0 V_f. Capacitor with dielectric: K=V_f, so C=V_f C0, charge = C*V_f = C0 V_f^2. Conservation: C0*30 = C0(V_f+V_f^2) → V_f^2+V_f-30=0. Solve: V_f =[-1+√121]/2 =5 V (positive root).",
+    "value": "5 V",
+    "letters": [
+     "A"
+    ],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Let $C_0$ be the capacitance of the empty capacitor. The dielectric capacitor has $C(V) = K C_0 = \\alpha V C_0$. Given $\\alpha = 1 \\text{ V}^{-1}$, $C(V) = V C_0$. The initial charge on the empty capacitor is $Q_0 = C_0 V_0 = 30 C_0$. The dielectric capacitor is initially uncharged. When connected in parallel, they reach a common final potential $V$. Charge is conserved: $Q_{total} = Q_{empty} + Q_{dielectric}$. $Q_{empty} = C_0 V$. $Q_{dielectric} = \\int_0^V C(v) dv = \\int_0^V v C_0 dv = \\frac{1}{2} C_0 V^2$. Total charge equation: $30 C_0 = C_0 V + \\frac{1}{2} C_0 V^2$. Dividing by $C_0$: $30 = V + \\frac{1}{2} V^2$. Rearranging: $V^2 + 2V - 60 = 0$. Solving for $V$: $V = \\frac{-2 \\pm \\sqrt{4 - 4(1)(-60)}}{2} = \\frac{-2 \\pm \\sqrt{244}}{2}$. Since $V > 0$, $V = \\frac{-2 + 15.62}{2} \\approx 6.81$ V. This value does not match any of the options (5, 10, 15, 20).",
+    "value": "6.81 V",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.95
+   },
+   "audit": {
+    "solution_final": {
+     "value": "5",
+     "letters": [
+      "A"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": []
+   },
+   "findings": []
+  },
+  "68dea657387eea3d0d95f54a": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = 5 [value: 5 dioptres]; solve 2 = 5 [value: 5]; solution = 5; stored key = 5. KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Object distance u=12.5 cm. Real image is 4× enlarged ⇒ v=4u=50 cm. Lens formula for the combined lens: 1/f_eq=1/v+1/u=1/50+1/12.5=0.02+0.08=0.10 cm⁻¹ ⇒ f_eq=10 cm=0.10 m. Two identical lenses in contact give 1/f_eq=2/f ⇒ f=2·f_eq=20 cm=0.20 m. Power of each lens P=1/f=1/0.20=5 D.",
+    "value": "5 dioptres",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "Let $f$ be the focal length of each lens. For two identical lenses in contact, the equivalent focal length $F$ is given by $1/F = 1/f + 1/f = 2/f$, so $F = f/2$. The object distance is $u = -12.5$ cm. The magnification is $m = -4$ (real image implies inversion). Using the magnification formula $m = v/u$, we get $-4 = v/(-12.5)$, which yields $v = 50$ cm. Applying the lens formula $1/F = 1/v - 1/u$: $1/F = 1/50 - 1/(-12.5) = 1/50 + 4/50 = 5/50 = 1/10$. Thus, $F = 10$ cm. Since $F = f/2$, we have $f/2 = 10$ cm, so $f = 20$ cm. The optical power of each lens is $P = 1/f$ (in meters). $f = 0.20$ m, so $P = 1/0.20 = 5$ D.",
+    "value": "5",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "5",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "markup_leak",
+      "field": "solution",
+      "quote": "f_(eq)",
+      "why": "Raw LaTeX symbols appear as plain text",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "markup_leak",
+     "field": "solution",
+     "quote": "f_(eq)",
+     "detail": "Raw LaTeX symbols appear as plain text",
+     "severity": "low"
+    }
+   ]
+  },
+  "695ede2a88d7701e561aa9d9": {
+   "key_state": "solves_only_disagree",
+   "key_check": "solve 1 = B (Both Statement-I and Statement-II are correct.) [value: ]; solve 2 = B (Both Statement-I and Statement-II are correct.) [value: Both Statement-I and Statement-II are correct.]; solution = D (Statement-I is correct but Statement-II is incorrect.); stored key = D (Statement-I is correct but Statement-II is incorrect.). Both blind solves agree with each other and differ from the stored key; the stored solution does not back them.",
+   "solve_a": {
+    "working": "Dialysis is commonly used as a bridge or temporary ('holding') therapy until a renal transplant can be performed, so Statement‑I is correct. In patients who are not transplant candidates, dialysis may still be offered, but in some such patients (e.g., severe comorbidities, limited life expectancy) it does not provide a supportive benefit, making Statement‑II also correct. Hence both statements are correct, matching option B.",
+    "value": "",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 0.97
+   },
+   "solve_b": {
+    "working": "Statement-I is correct: In clinical practice, dialysis is primarily a life-sustaining 'holding measure' to maintain homeostasis while a patient waits for a kidney transplant, which is the definitive cure. Statement-II is also correct: For patients who are not candidates for transplantation (due to age, comorbidities, or other medical reasons), dialysis serves as a long-term supportive therapy to manage end-stage renal disease, rather than just a bridge to transplant. Since both statements accurately describe the role of dialysis in different clinical contexts, both are correct.",
+    "value": "Both Statement-I and Statement-II are correct.",
+    "letters": [
+     "B"
+    ],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "D",
+     "letters": [
+      "D"
+     ]
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "solution_fix",
+      "field": "solution",
+      "quote": "making it a supportive measure when transplant isn't feasible (Statement-II)",
+      "why": "Explanation contradicts the chosen answer, misleading reasoning",
+      "severity": "medium"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "solution_fix",
+     "field": "solution",
+     "quote": "making it a supportive measure when transplant isn't feasible (Statement-II)",
+     "detail": "Explanation contradicts the chosen answer, misleading reasoning",
+     "severity": "medium"
+    }
+   ]
+  },
+  "68dea6e6387eea3d0d95f6f8": {
+   "key_state": "confirmed",
+   "key_check": "solve 1 = 16 [value: 16]; solve 2 = 16 [value: 16]; solution = 16; stored key = 16. KEY CONFIRMED: both blind solves reach the stored key.",
+   "solve_a": {
+    "working": "Using lens formula 1/f=1/u+1/v with u+v=150 cm. Solve u(D‑u)=fD => u^2‑150u+24·150=0. Discriminant sqrt(150^2‑4·24·150)=sqrt(22500‑14400)=sqrt(8100)=90. Hence u=(150±90)/2 → u1=30 cm, v1=120 cm; u2=120 cm, v2=30 cm. Magnifications m1=v1/u1=120/30=4, m2=v2/u2=30/120=0.25. Ratio of image sizes = m1/m2=4/0.25=16.",
+    "value": "16",
+    "letters": [],
+    "blocker": null,
+    "confidence": 0.99
+   },
+   "solve_b": {
+    "working": "In the displacement method, the distance between object and screen is $D = 150$ cm and focal length $f = 24$ cm. The two lens positions correspond to object distances $u_1$ and $u_2$ which are roots of $u^2 - Du + Df = 0$. The magnifications are $m_1 = v_1/u_1$ and $m_2 = v_2/u_2$. Since $v_1 = D - u_1$ and $v_2 = D - u_2$, the ratio of image sizes is $m_1/m_2 = (v_1 u_2) / (v_2 u_1)$. Using the property that $u_1 u_2 = Df$ and $v_1 v_2 = Df$, we have $u_1 v_2 = u_2 v_1$ is false; actually $u_1 + u_2 = D$ and $u_1 u_2 = Df$. The ratio of magnifications is $m_1/m_2 = (D-u_1)u_2 / ((D-u_2)u_1)$. Since $u_1, u_2$ are roots, let $u_1 < u_2$. Then $m_1 > 1$ and $m_2 < 1$. The ratio of sizes is $m_1/m_2$. We know $m_1 m_2 = 1$ is incorrect. Actually $m_1 = v_1/u_1$ and $m_2 = v_2/u_2$. Note $v_1 = u_2$ and $v_2 = u_1$ is only true if $u_1+u_2=D$ and $v_1+u_1=D \\implies v_1 = D-u_1 = u_2$. Yes, $v_1 = u_2$ and $v_2 = u_1$. Thus $m_1 = u_2/u_1$ and $m_2 = u_1/u_2$. The ratio of sizes is $m_1/m_2 = (u_2/u_1)^2$. We need $u_1, u_2$. $u^2 - 150u + 150(24) = 0 \\implies u^2 - 150u + 3600 = 0$. Roots: $u = \\frac{150 \\pm \\sqrt{22500 - 14400}}{2} = \\frac{150 \\pm 90}{2}$. $u_1 = 30, u_2 = 120$. Ratio $m_1/m_2 = (120/30)^2 = 4^2 = 16$.",
+    "value": "16",
+    "letters": [],
+    "blocker": null,
+    "confidence": 1.0
+   },
+   "audit": {
+    "solution_final": {
+     "value": "16",
+     "letters": []
+    },
+    "solution_belongs": "yes",
+    "solution_supports_key": true,
+    "issues": [
+     {
+      "repair": "markup_leak",
+      "field": "solution",
+      "quote": "f =((D^(2)−x^(2))/(4 D))",
+      "why": "Raw LaTeX syntax appears as plain text",
+      "severity": "low"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "id": "A1",
+     "source": "audit",
+     "code": "audit_issue",
+     "certain": false,
+     "repair": "markup_leak",
+     "field": "solution",
+     "quote": "f =((D^(2)−x^(2))/(4 D))",
+     "detail": "Raw LaTeX syntax appears as plain text",
+     "severity": "low"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "636283dbe3770c24f866e6d6#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Options question. One or more options may be correct.\n\nQuestion:\nSixty four conducting drops each of radius 0.02 m and each carrying a charge of 5μC are combined to form a bigger drop. The ratio of surface density of bigger drop to the smaller drop will be :\n(A) 1:4\n(B) 4:1\n(C) 1:8\n(D) 8:1"
+  }
+ ],
+ "content": "{\"working\":\"Each small drop: r=0.02 m, q=5 µC, σ_s=q/(4πr^2). Combine 64 drops: total charge Q=64·5 µC=320 µC. Volumes add: V_total=64·(4/3)πr^3 ⇒ radius of big drop r_b=4r=0.08 m. Surface area ratio A_b/A_s=(r_b/r)^2=4^2=16. σ_b/σ_s=(Q/q)*(A_s/A_b)=64*(1/16)=4. Hence σ_b:σ_s=4:1.\", \"value\":\"4:1\", \"letters\":[\"B\"], \"blocker\":null, \"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.318195706,
+  "prompt_tokens": 511,
+  "prompt_time": 0.05534371,
+  "completion_tokens": 771,
+  "completion_time": 1.977472315,
+  "total_tokens": 1282,
+  "total_time": 2.032816025,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 596
+  }
+ }
+}

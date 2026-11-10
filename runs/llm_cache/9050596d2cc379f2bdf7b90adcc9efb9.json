@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "68dea577d0cda73d07e9391c#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Numeric answer (no options).\n\nQuestion:\nA total charge Q is uniformly distributed throughout the volume of a sphere. Electric potential at a point on the surface of the sphere is greater than the potential at infinity by 16 V . Find the potential difference (in volt) between point 𝐏 at a distance half of the radius of the sphere from the centre and the point 𝐒 at a distance double the radius of the sphere from the centre of the sphere.\n"
+  }
+ ],
+ "content": "{\"working\":\"For a uniformly charged solid sphere, V(R)=kQ/R. Given V(R)=16 V, so kQ/R=16 V. Outside (r≥R): V(r)=kQ/r. Hence V_S at r=2R is (kQ)/(2R)=½·16=8 V. Inside (r≤R): V(r)=kQ/(2R)·(3−r²/R²). At r=R/2, V_P = (kQ)/(2R)·(3−¼)= (kQ)/(2R)·(11/4)=11/8·(kQ/R)=11/8·16=22 V. Potential difference V_P−V_S = 22 V−8 V = 14 V.\",\"value\":\"14 V\",\"letters\":[],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.158039479,
+  "prompt_tokens": 518,
+  "prompt_time": 0.593753463,
+  "completion_tokens": 912,
+  "completion_time": 2.465847065,
+  "total_tokens": 1430,
+  "total_time": 3.059600528,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 712
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "68c9ae5afb6b2f16e2d43b1c#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Options question. One or more options may be correct.\n\nQuestion:\nLight of wavelength 4000 A falls on a metal surface having work function of 2.0 eV. What is the stopping potential?\n(A) 3.1 V\n(B) 2.0 V\n(C) 5.1 V\n(D) 1.1 V"
+  }
+ ],
+ "content": "{\"working\":\"Photon energy E=hc/λ. λ=4000 Å=4×10⁻⁷ m. hc≈1.986×10⁻²⁵ J·m. E=1.986×10⁻²⁵/4×10⁻⁷≈4.97×10⁻¹⁹ J≈4.97×10⁻¹⁹/1.602×10⁻¹⁹≈3.10 eV. Max kinetic energy K_max=E−φ=3.10 eV−2.0 eV=1.10 eV. Stopping potential V₀=K_max/e=1.10 V.\",\"value\":\"1.1 V\",\"letters\":[\"D\"],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.156379966,
+  "prompt_tokens": 498,
+  "prompt_time": 0.2996024,
+  "completion_tokens": 553,
+  "completion_time": 1.176059633,
+  "total_tokens": 1051,
+  "total_time": 1.4756620329999999,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 366
+  }
+ }
+}

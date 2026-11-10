@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "6263d75bdd44e265ef926d97#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Numeric answer (no options).\n\nQuestion:\nA wooden cube just floats inside water when a 800 g mass is placed on it. When the mass is removed, the cube is 2 cm above the water level. What is the size of the side of the cube (in cm) ?\n"
+  }
+ ],
+ "content": "{\"working\":\"Let side = a cm. Volume = a^3 cm^3. With 800 g on cube, it is fully submerged: m_c+800 = a^3 (g). So cube mass m_c = a^3‑800. Without mass, 2 cm of cube is above water, so submerged depth = a‑2. Submerged volume = a^2(a‑2). Buoyancy = a^2(a‑2) = m_c. Equate: a^2(a‑2)=a^3‑800 ⇒ a^3‑2a^2 = a^3‑800 ⇒ -2a^2 = -800 ⇒ a^2 = 400 ⇒ a = 20 cm.\",\"value\":\"20 cm\",\"letters\":[],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.172038866,
+  "prompt_tokens": 483,
+  "prompt_time": 0.070630197,
+  "completion_tokens": 710,
+  "completion_time": 1.496393774,
+  "total_tokens": 1193,
+  "total_time": 1.567023971,
+  "completion_tokens_details": {
+   "reasoning_tokens": 527
+  }
+ }
+}

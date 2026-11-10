@@ -1,0 +1,37 @@
+{
+ "provider": "groq",
+ "fallback": "gemini",
+ "calls": 219,
+ "cached_calls": 219,
+ "fallback_calls": 18,
+ "prompt_tokens": 247294,
+ "completion_tokens": 76117,
+ "by_model": {
+  "openai/gpt-oss-120b": {
+   "provider": "groq",
+   "calls": 96,
+   "cached": 96,
+   "prompt_tokens": 91124,
+   "completion_tokens": 56651,
+   "list_cost_usd": 0.04766
+  },
+  "qwen/qwen3.8-27b": {
+   "provider": "groq",
+   "calls": 105,
+   "cached": 105,
+   "prompt_tokens": 121333,
+   "completion_tokens": 16016,
+   "list_cost_usd": 0.16113
+  },
+  "gemini-2.5-flash": {
+   "provider": "gemini",
+   "calls": 18,
+   "cached": 18,
+   "prompt_tokens": 34837,
+   "completion_tokens": 3450,
+   "list_cost_usd": null
+  }
+ },
+ "list_cost_usd": null,
+ "note": "Tokens include cached calls, i.e. what a cold run uses. list_cost is at paid list price; the actual run used free tiers."
+}

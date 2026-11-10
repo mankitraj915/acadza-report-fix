@@ -1,0 +1,26 @@
+{
+ "provider": "groq",
+ "model": "qwen/qwen3.8-27b",
+ "role": "edit",
+ "tag": "R022-spelling-1#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You write ONE surgical find/replace edit on the raw stored markup (HTML with inline MathML) of a question record. A separate program checks your edit and rejects it if it breaks any rule below.\n\nRules:\n- \"field\" must be one of: [\"question\", \"solution\"].\n- \"find\" must be copied character for character from the raw markup of that field, and must occur exactly once in it. Include only as much surrounding text as is needed to make it unique. Keep it short.\n- \"replace\" is what \"find\" becomes. Change only what this repair needs. Keep every existing tag, entity and MathML element intact and well formed. If you add maths, write MathML in the same style as the markup around it.\n- This repair is \"spelling\": Spelling or grammar. Words only; no value, symbol or image moves.\n  Change letters inside words only. No digit, symbol, tag or spacing may change.\n- Never touch the answer key, never rewrite a whole question, never add content that the facts below do not support.\n- If no safe edit is possible, return nulls and say why in \"reason\".\n\nReturn ONLY a JSON object:\n{\"field\": string or null, \"find\": string or null, \"replace\": string or null, \"reason\": string}"
+  },
+  {
+   "role": "user",
+   "content": "What to fix: Option D has a spelling error: 'plexux' should be 'plexus'.. Typo in option text Choroid plexux\n\nFacts:\nStored key: \"B\". Checks: solve 1 = B (Peyer’s patches) [value: Peyer's patches]; solve 2 = B (Peyer’s patches) [value: Peyer’s patches]; solution = B (Peyer’s patches); stored key = B (Peyer’s patches). KEY CONFIRMED: both blind solves reach the stored key.\nClassifier evidence: Stored option D reads 'Choroid plexux'; finding A1 confirms typo; student complaint matches stored text.\n\nRAW MARKUP of field \"question\":\n<<<RAW\n<h3><span style=\"color:#000000\">Aggregates of lymphoid tissue present in the distal portion of the small intestine are known as</h3><h3>(A)<span style=\"color:#000000\"> <span style=\"color:#000000\">Villi<br />(B)<span style=\"color:#000000\"> <span style=\"color:#000000\">Peyer&rsquo;s patches<br />(C)<span style=\"color:#000000\"> <span style=\"color:#000000\">Rugae<br />(D)</span></span></span><span style=\"color:#000000\"> </span></span></span><span style=\"color:#000000\">Choroid plexux</span></span></span></h3>\nRAW>>>\n\nRAW MARKUP of field \"solution\":\n<<<RAW\n<h3><span style=\"color:#000000\">In the wall of small intestine, lymphatic tissues are present called Peyer&rsquo;s patches. These are groups of lymph nodules that are most numerous in the ileum. They produce lymphocytes.<br />\r\n<span style=\"color:#000000\">Rugae are prominant folds found in empty stomach. Maceus membrane of small intestine is grown into many finger-like projections known as villi.</span></span>​​​​​​​</h3>\nRAW>>>\n"
+  }
+ ],
+ "content": "{\n\"field\": \"question\",\n\"find\": \"Choroid plexux\",\n\"replace\": \"Choroid plexus\",\n\"reason\": \"Corrected spelling error in option D from 'plexux' to 'plexus'.\"\n}",
+ "usage": {
+  "queue_time": 0.048516316,
+  "prompt_tokens": 785,
+  "prompt_time": 0.055645593,
+  "completion_tokens": 58,
+  "completion_time": 0.11026787,
+  "total_tokens": 843,
+  "total_time": 0.165913463
+ }
+}

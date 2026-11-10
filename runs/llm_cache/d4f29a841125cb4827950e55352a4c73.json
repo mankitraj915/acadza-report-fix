@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "68dea619d0cda73d07e93aee#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Numeric answer (no options).\n\nQuestion:\nTwo wheels each marked with a dot on its rim are mounted side by side. When the wheels are at rest, the dots are aligned. One wheel is given a constant angular acceleration of (π)/(2) r a d /s e c^(2) and the other is given a constant angular acceleration of (π)/(4) r a d /s e c^(2) . The time after which the two dots will be aligned again for the first time (in seconds) is\n"
+  }
+ ],
+ "content": "{\"working\":\"Angular displacements: θ1=½α1t^2, θ2=½α2t^2. Alignment when θ1−θ2=2πk. α1=π/2, α2=π/4 ⇒Δα=π/4. So ½·Δα·t^2=2πk ⇒(π/8)t^2=2πk ⇒t^2=16k ⇒t=4√k. Smallest positive k=1 gives t=4 s.\",\"value\":\"4 s\",\"letters\":[],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.315245667,
+  "prompt_tokens": 532,
+  "prompt_time": 0.029141991,
+  "completion_tokens": 545,
+  "completion_time": 1.164418243,
+  "total_tokens": 1077,
+  "total_time": 1.193560234,
+  "completion_tokens_details": {
+   "reasoning_tokens": 404
+  }
+ }
+}

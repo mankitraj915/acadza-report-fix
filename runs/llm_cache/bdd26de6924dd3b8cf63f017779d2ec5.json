@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "6208e298fa399567e0878700#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Botany\nType: Options question. One or more options may be correct.\n\nQuestion:\nWho provided the evidence for the production of glucose when plant grows?\n(A) Julius von Sachs\n(B) Stephen Hales\n(C) Lavoisier\n(D) Von Helmont"
+  }
+ ],
+ "content": "{\"working\":\"Julius von Sachs performed experiments showing that leaves exposed to light accumulate starch, indicating that photosynthesis produces glucose (as starch). This provided direct evidence of glucose formation during plant growth. The other scientists studied water uptake (von Helmont), plant pressure and transpiration (Hales), or combustion/O2 (Lavoisier) and did not give such evidence.\",\"value\":\"\",\"letters\":[\"A\"],\"blocker\":null,\"confidence\":0.97}",
+ "usage": {
+  "queue_time": 0.156250809,
+  "prompt_tokens": 476,
+  "prompt_time": 1.0333668010000001,
+  "completion_tokens": 374,
+  "completion_time": 0.872961466,
+  "total_tokens": 850,
+  "total_time": 1.9063282670000001,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 270
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "695ede2a88d7701e561aa9d9#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Zoology\nType: Options question. One or more options may be correct.\n\nQuestion:\nBased on the statements regarding dialysis choose the correct answer from options given below.\nStatement-I: Dialysis is regarded as a 'holding measure' until a renal transplant is performed.\nStatement-II: Sometimes dialysis is not a supportive measure in those for whom transplant is inappropriate.\n(A) Statement-I is incorrect but Statement-II is correct.\n(B) Both Statement-I and Statement-II are correct.\n(C) Both Statement-I and Statement-II are incorrect.\n(D) Statement-I is correct but Statement-II is incorrect."
+  }
+ ],
+ "content": "{\"working\":\"Dialysis is commonly used as a bridge or temporary ('holding') therapy until a renal transplant can be performed, so Statement‑I is correct. In patients who are not transplant candidates, dialysis may still be offered, but in some such patients (e.g., severe comorbidities, limited life expectancy) it does not provide a supportive benefit, making Statement‑II also correct. Hence both statements are correct, matching option B.\",\"value\":\"\",\"letters\":[\"B\"],\"blocker\":null,\"confidence\":0.97}",
+ "usage": {
+  "queue_time": 0.055823629,
+  "prompt_tokens": 538,
+  "prompt_time": 0.025569628,
+  "completion_tokens": 455,
+  "completion_time": 0.968173373,
+  "total_tokens": 993,
+  "total_time": 0.993743001,
+  "completion_tokens_details": {
+   "reasoning_tokens": 338
+  }
+ }
+}

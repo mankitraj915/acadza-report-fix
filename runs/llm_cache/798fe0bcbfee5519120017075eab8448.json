@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "audit",
+ "tag": "68c9ae5afb6b2f16e2d43b1c#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You audit one stored record from a JEE/NEET question bank for content defects. You see the question, its options, the stored answer key, the stored solution and the chapter it is filed under. You are not told whether anyone complained about it.\n\nDo four things:\n1. solution_final: what the stored solution itself concludes. \"value\" = its final result as written; \"letters\" = the listed option(s) that result corresponds to (empty if none or not applicable). Use null for value if the solution reaches no conclusion. Read this from the solution text alone; never copy the stored key into it. If the question asks for a derived form (\"the value of n\", \"find 10A\", \"in cm\"), first note the solution's last expression, then convert it yourself to the asked form and report that converted value (for example a solution ending at q/(2 e0) for a question asking n in n q/(2 e0) gives value \"1\").\n2. solution_belongs: \"yes\", \"partly\" (it addresses this question but also contains lines from a different problem or garbled fragments) or \"no\" (it solves a different question).\n3. solution_supports_key: true, false or null. Follow the solution's own final result and say whether it lands on the stored key. Allow for unit conversion or the form the question asks for (for example \"in cm\", \"find 10A\", \"value of n\").\n4. issues: concrete defects you can point to. Each issue is\n   {\"repair\": one key from the list below, \"field\": \"question\" | \"solution\" | \"answer\" | \"meta\", \"quote\": the exact snippet where it occurs (at most 12 words, copied from the text), \"why\": at most 25 words, \"severity\": \"high\" | \"medium\" | \"low\"}\n   high = changes the correct answer or makes the question unanswerable; medium = misleads but is answerable; low = cosmetic.\n   Report only what you can point to. No style preferences. Do not re-solve with assumptions the question does not state. An empty list is a good answer when the record is clean.\n\nRepair keys:\n- spelling: Spelling or grammar. Words only; no value, symbol or image moves.\n- noise: Stray text: question numbers, 'Space for rough work', source labels.\n- exam_reference: '(JEE Main 2019)' style tag inside the question text.\n- markup_leak: Raw LaTeX / HTML visible as text.\n- answer_form: Unit / rounding / answer form not stated. Additive only.\n- notation: A symbol, exponent or bracket lost in one expression.\n- stem_data: A value or condition missing/wrong - only when the solution states it without doubt.\n- option_repair: An option missing, cut off or blank. Stem text must not change.\n- solution_fix: The solution has a wrong step, or belongs to another question.\n- solution_missing: Solution missing or unusable; write one ending in the keyed answer.\n- answer_key: Answer key wrong or malformed. Highest stakes - prove it independently.\n- type_mismatch: Stored as the wrong type (scq / mcq / integer).\n- identical_options: Two options repeat. New distractors are authored content.\n- diagram: Figure missing or wrong.\n- wrong_question: Question and solution do not belong together at all.\n- unsound: No valid answer as written (no correct option / two correct in SCQ).\n- wrong_chapter: Filed under the wrong chapter/subject.\n- syllabus: Student says it is outside the syllabus. Faculty confirm; question stays live meanwhile.\n\nReturn ONLY a JSON object:\n{\"solution_final\": {\"value\": string or null, \"letters\": [letters]}, \"solution_belongs\": \"yes\" | \"partly\" | \"no\", \"solution_supports_key\": true | false | null, \"issues\": [ ... ]}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nChapter: Photoelectric effect and matter waves\nConcept: Photoelectric effects / Work Function, Threshold frequency and wavelength\nStored type: scq\n\nQuestion:\nLight of wavelength 4000 A falls on a metal surface having work function of 2.0 eV. What is the stopping potential?\n(A) 3.1 V\n(B) 2.0 V\n(C) 5.1 V\n(D) 1.1 V\n\nStored answer key: \"D\"\n\nStored solution:\nEnergy of incident photon (h c)/(λ) = (12400)/(λ) = (12400)/(4000) eV = 3.1eV k_(m a x) = hν - φ = 3.1eV - 2.0eV = 1.1eV Hence, stopping potential 1.1 V\n\nAutomatic checks already found:\n- nothing"
+  }
+ ],
+ "content": "{\"solution_final\":{\"value\":\"1.1\",\"letters\":[\"D\"]},\"solution_belongs\":\"yes\",\"solution_supports_key\":true,\"issues\":[]}",
+ "usage": {
+  "queue_time": 0.375909879,
+  "prompt_tokens": 1116,
+  "prompt_time": 0.109473255,
+  "completion_tokens": 332,
+  "completion_time": 0.997230084,
+  "total_tokens": 1448,
+  "total_time": 1.106703339,
+  "prompt_tokens_details": {
+   "cached_tokens": 768
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 292
+  }
+ }
+}

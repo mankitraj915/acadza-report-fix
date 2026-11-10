@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "6956d79788d7701e5617bc29#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Options question. One or more options may be correct.\n\nQuestion:\nIn an AC circuit, the current is i= 5 sin ( 100 t−(π)/(2))A and voltage is e= 200 sin ( 100 t) volt. Power consumption in the circuit is ( cos 90^(∘)= 0 )\n(A) 200 W\n(B) 0 W\n(C) 0 W\n(D) 1000 W"
+  }
+ ],
+ "content": "{\"working\":\"Voltage: e=200 sin(100t) → phase 0. Current: i=5 sin(100t-π/2) → phase -π/2. Phase difference φ=0-(-π/2)=π/2 (90°). Real power P=Vrms·Irms·cosφ. Vrms=200/√2, Irms=5/√2, cos90°=0 ⇒ P=0. Hence power consumption is 0 W.\",\"value\":\"0 W\",\"letters\":[\"B\",\"C\"],\"blocker\":null,\"confidence\":1}",
+ "usage": {
+  "queue_time": 0.319154325,
+  "prompt_tokens": 518,
+  "prompt_time": 0.026861844,
+  "completion_tokens": 651,
+  "completion_time": 1.377309536,
+  "total_tokens": 1169,
+  "total_time": 1.40417138,
+  "completion_tokens_details": {
+   "reasoning_tokens": 516
+  }
+ }
+}

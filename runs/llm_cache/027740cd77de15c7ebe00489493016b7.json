@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "617fa18efd53ff1629ed890f#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Botany\nType: Options question. One or more options may be correct.\n\nQuestion:\n(NEET 2019) Which of the following is the green expanded part ofleaf with vein and veinlets?\n(A) Petiole\n(B) Node\n(C) Stipule\n(D) Lamina"
+  }
+ ],
+ "content": "{\"working\":\"The leaf consists of a stalk (petiole) and a broad, flat, green blade that contains the network of veins and veinlets. This blade is called the lamina. Petiole is the stalk, node is a stem region, stipule are small appendages. Hence the green expanded part with veins is the lamina.\",\"value\":\"Lamina\",\"letters\":[\"D\"],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.156041513,
+  "prompt_tokens": 482,
+  "prompt_time": 0.03472596,
+  "completion_tokens": 280,
+  "completion_time": 0.588485213,
+  "total_tokens": 762,
+  "total_time": 0.623211173,
+  "completion_tokens_details": {
+   "reasoning_tokens": 180
+  }
+ }
+}

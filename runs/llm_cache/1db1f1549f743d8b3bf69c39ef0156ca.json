@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "61dffbec08489156b684bd22#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Zoology\nType: Options question. One or more options may be correct.\n\nQuestion:\nWhich tissue is present in the lining of small intestine?\n(A) Epithellial tisue\n(B) Connective tissue\n(C) Nervous tissue\n(D) Muscular tissue"
+  }
+ ],
+ "content": "{\"working\":\"The mucosa (lining) of the small intestine consists of three layers: (1) epithelium (simple columnar with microvilli), (2) lamina propria – connective tissue, and (3) muscularis mucosa – smooth muscle. Nervous tissue lies in the submucosa, not in the lining.\",\"value\":\"Epithelium, connective tissue and muscular tissue\",\"letters\":[\"A\",\"B\",\"D\"],\"blocker\":null,\"confidence\":0.97}",
+ "usage": {
+  "queue_time": 0.319639579,
+  "prompt_tokens": 476,
+  "prompt_time": 0.025560407,
+  "completion_tokens": 479,
+  "completion_time": 0.999737538,
+  "total_tokens": 955,
+  "total_time": 1.025297945,
+  "completion_tokens_details": {
+   "reasoning_tokens": 365
+  }
+ }
+}

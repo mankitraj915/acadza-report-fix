@@ -1,0 +1,576 @@
+[
+ {
+  "questionId": "622f08d7b70e4b50e4500a1b",
+  "subject": "Physics",
+  "chapter": "Centre of mass and momentum conservation (collision)",
+  "reported": true,
+  "reportIds": [
+   "R010",
+   "R009"
+  ],
+  "repair": "markup_leak",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "v_(CM)&=(m_(1)v_(1)+m_(2)v_(2))/(m_(1)+m_(2))",
+  "detail": "LaTeX markup displayed as plain text"
+ },
+ {
+  "questionId": "68e872546e45ba37dcc16bc0",
+  "subject": "Physics",
+  "chapter": "Electrostatics",
+  "reported": true,
+  "reportIds": [
+   "R011"
+  ],
+  "repair": "answer_key",
+  "field": "answer",
+  "source": "audit",
+  "certain": false,
+  "severity": "high",
+  "quote": "Stored answer key: \"C\"",
+  "detail": "Key points to a missing option"
+ },
+ {
+  "questionId": "68e872546e45ba37dcc16bc0",
+  "subject": "Physics",
+  "chapter": "Electrostatics",
+  "reported": true,
+  "reportIds": [
+   "R011"
+  ],
+  "repair": "solution_missing",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "medium",
+  "quote": "vec(F)_(12)+vec(F)_(21)= 0",
+  "detail": "Solution provides no final answer or ratio"
+ },
+ {
+  "questionId": "617fa18efd53ff1629ed890f",
+  "subject": "Botany",
+  "chapter": "Morphology of Flowering Plants",
+  "reported": true,
+  "reportIds": [
+   "R013"
+  ],
+  "repair": "spelling",
+  "field": "question",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "ofleaf",
+  "detail": "Missing space between words"
+ },
+ {
+  "questionId": "612151a6a34397610a9a2e58",
+  "subject": "Physics",
+  "chapter": "Photoelectric effect and matter waves",
+  "reported": true,
+  "reportIds": [
+   "R018",
+   "R019"
+  ],
+  "repair": "markup_leak",
+  "field": "solution",
+  "source": "lint",
+  "certain": true,
+  "severity": null,
+  "quote": null,
+  "detail": "raw LaTeX visible as text: '^(−10)m=5.47\\AA λ=(h)/(|p|)'"
+ },
+ {
+  "questionId": "612151a6a34397610a9a2e58",
+  "subject": "Physics",
+  "chapter": "Photoelectric effect and matter waves",
+  "reported": true,
+  "reportIds": [
+   "R018",
+   "R019"
+  ],
+  "repair": "markup_leak",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "10^(−10)m=5.47\\AA λ=(h)/(|p|)",
+  "detail": "Raw LaTeX appears in solution text"
+ },
+ {
+  "questionId": "612151a6a34397610a9a2e58",
+  "subject": "Physics",
+  "chapter": "Photoelectric effect and matter waves",
+  "reported": true,
+  "reportIds": [
+   "R018",
+   "R019"
+  ],
+  "repair": "noise",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "=5.469×10^(−10)m",
+  "detail": "Stray leading '=' and unrelated number"
+ },
+ {
+  "questionId": "68c8153cfb6b2f16e2d3ceaf",
+  "subject": "Physics",
+  "chapter": "Electrostatics",
+  "reported": true,
+  "reportIds": [
+   "R020"
+  ],
+  "repair": "solution_missing",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "high",
+  "quote": "conceptual Based of field force",
+  "detail": "Solution provides no conclusion or answer to the question"
+ },
+ {
+  "questionId": "68f21caf941cda588bc04365",
+  "subject": "Physics",
+  "chapter": "Mathematics in physics",
+  "reported": true,
+  "reportIds": [
+   "R021"
+  ],
+  "repair": "answer_key",
+  "field": "answer",
+  "source": "lint",
+  "certain": true,
+  "severity": null,
+  "quote": null,
+  "detail": "stored key ['', 'B'] is not a well-formed mcq answer"
+ },
+ {
+  "questionId": "68f21caf941cda588bc04365",
+  "subject": "Physics",
+  "chapter": "Mathematics in physics",
+  "reported": true,
+  "reportIds": [
+   "R021"
+  ],
+  "repair": "answer_key",
+  "field": "answer",
+  "source": "audit",
+  "certain": false,
+  "severity": "high",
+  "quote": "['', 'B']",
+  "detail": "Answer key contains an empty entry, not a valid MCQ format"
+ },
+ {
+  "questionId": "622df25ab70e4b50e44ff837",
+  "subject": "Physics",
+  "chapter": "Properties of matter and fluid mechanics",
+  "reported": true,
+  "reportIds": [
+   "R025"
+  ],
+  "repair": "spelling",
+  "field": "question",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "hemispherial",
+  "detail": "Misspelled word"
+ },
+ {
+  "questionId": "620e23cecc50543bc7db9186",
+  "subject": "Zoology",
+  "chapter": "Evolution",
+  "reported": true,
+  "reportIds": [
+   "R026"
+  ],
+  "repair": "spelling",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "Forked tongue snakes may represents the origin",
+  "detail": "Incorrect verb form 'represents'"
+ },
+ {
+  "questionId": "620e23cecc50543bc7db9186",
+  "subject": "Zoology",
+  "chapter": "Evolution",
+  "reported": true,
+  "reportIds": [
+   "R026"
+  ],
+  "repair": "spelling",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "wheater, it has a forked tongue or not",
+  "detail": "Misspelled word 'wheater' should be 'whether'"
+ },
+ {
+  "questionId": "6062ec84518e9535e120c422",
+  "subject": "Physics",
+  "chapter": "Temperature and thermal properties of matter",
+  "reported": true,
+  "reportIds": [
+   "R027"
+  ],
+  "repair": "noise",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "=1.9×10^(−5)/AC",
+  "detail": "Stray characters after value"
+ },
+ {
+  "questionId": "6062ec84518e9535e120c422",
+  "subject": "Physics",
+  "chapter": "Temperature and thermal properties of matter",
+  "reported": true,
+  "reportIds": [
+   "R027"
+  ],
+  "repair": "markup_leak",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "10^(−5)",
+  "detail": "Raw LaTeX exponent shown as text"
+ },
+ {
+  "questionId": "6956d7bb23cb221e570d6013",
+  "subject": "Physics",
+  "chapter": "Motion in a Plane",
+  "reported": true,
+  "reportIds": [
+   "R028"
+  ],
+  "repair": "noise",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "(b) Here, H=R",
+  "detail": "Stray label not part of solution"
+ },
+ {
+  "questionId": "6956d7bb23cb221e570d6013",
+  "subject": "Physics",
+  "chapter": "Motion in a Plane",
+  "reported": true,
+  "reportIds": [
+   "R028"
+  ],
+  "repair": "markup_leak",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "u^(2)sin^(2)θ",
+  "detail": "Raw LaTeX visible as text"
+ },
+ {
+  "questionId": "6956d7e988d7701e5617bd3e",
+  "subject": "Physics",
+  "chapter": "Oscillations",
+  "reported": true,
+  "reportIds": [
+   "R030"
+  ],
+  "repair": "notation",
+  "field": "question",
+  "source": "lint",
+  "certain": true,
+  "severity": null,
+  "quote": null,
+  "detail": "a unit sits inside a square root, e.g. sqrt(2 m) instead of sqrt(2) m"
+ },
+ {
+  "questionId": "6956d7e988d7701e5617bd3e",
+  "subject": "Physics",
+  "chapter": "Oscillations",
+  "reported": true,
+  "reportIds": [
+   "R030"
+  ],
+  "repair": "notation",
+  "field": "question",
+  "source": "audit",
+  "certain": false,
+  "severity": "medium",
+  "quote": "2 sqrt(2 m)",
+  "detail": "unit placed inside square root, should be 2√2 m"
+ },
+ {
+  "questionId": "68dea619d0cda73d07e93aee",
+  "subject": "Physics",
+  "chapter": "Rotational Motion",
+  "reported": true,
+  "reportIds": [
+   "R031"
+  ],
+  "repair": "notation",
+  "field": "question",
+  "source": "audit",
+  "certain": false,
+  "severity": "medium",
+  "quote": "(π)/(2) r a d /s e c^(2)",
+  "detail": "unit rad/s^2 broken into spaced letters"
+ },
+ {
+  "questionId": "68dea619d0cda73d07e93aee",
+  "subject": "Physics",
+  "chapter": "Rotational Motion",
+  "reported": true,
+  "reportIds": [
+   "R031"
+  ],
+  "repair": "notation",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "medium",
+  "quote": "t = 4 s e c",
+  "detail": "unit \"sec\" spaced, unclear formatting"
+ },
+ {
+  "questionId": "68dea715387eea3d0d95f790",
+  "subject": "Physics",
+  "chapter": "Units and dimensions",
+  "reported": true,
+  "reportIds": [
+   "R033"
+  ],
+  "repair": "stem_data",
+  "field": "question",
+  "source": "audit",
+  "certain": false,
+  "severity": "medium",
+  "quote": "find the value of 10 A",
+  "detail": "operator between 10 and A missing"
+ },
+ {
+  "questionId": "68dea715387eea3d0d95f790",
+  "subject": "Physics",
+  "chapter": "Units and dimensions",
+  "reported": true,
+  "reportIds": [
+   "R033"
+  ],
+  "repair": "solution_fix",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "high",
+  "quote": "Total surface area = 6 ( 7.203 )^(2)= 311.299 = 311.3 m^(2)",
+  "detail": "solution does not compute 10*A as required"
+ },
+ {
+  "questionId": "695ee00b88d7701e561aabc5",
+  "subject": "Physics",
+  "chapter": "Waves",
+  "reported": true,
+  "reportIds": [
+   "R034"
+  ],
+  "repair": "solution_fix",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "high",
+  "quote": "Thus, the intensity is equal to the intensity of one wave. Therefore, assertion (A) is true.",
+  "detail": "Solution contradicts earlier statement and uses incorrect intensity formula, making reasoning invalid."
+ },
+ {
+  "questionId": "66fe9dbe22132e5a70a3e579",
+  "subject": "Zoology",
+  "chapter": "Chemical Coordination and Integration",
+  "reported": true,
+  "reportIds": [
+   "R035"
+  ],
+  "repair": "noise",
+  "field": "question",
+  "source": "lint",
+  "certain": true,
+  "severity": null,
+  "quote": null,
+  "detail": "single <ol><li> wrapper renders a stray '1.' before the text"
+ },
+ {
+  "questionId": "66fe9dbe22132e5a70a3e579",
+  "subject": "Zoology",
+  "chapter": "Chemical Coordination and Integration",
+  "reported": true,
+  "reportIds": [
+   "R035"
+  ],
+  "repair": "noise",
+  "field": "solution",
+  "source": "lint",
+  "certain": true,
+  "severity": null,
+  "quote": null,
+  "detail": "single <ol><li> wrapper renders a stray '1.' before the text"
+ },
+ {
+  "questionId": "66fe9dbe22132e5a70a3e579",
+  "subject": "Zoology",
+  "chapter": "Chemical Coordination and Integration",
+  "reported": true,
+  "reportIds": [
+   "R035"
+  ],
+  "repair": "noise",
+  "field": "question",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "1. Which of the following pairs",
+  "detail": "Stray list number appears before question text"
+ },
+ {
+  "questionId": "66fe9dbe22132e5a70a3e579",
+  "subject": "Zoology",
+  "chapter": "Chemical Coordination and Integration",
+  "reported": true,
+  "reportIds": [
+   "R035"
+  ],
+  "repair": "solution_fix",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "medium",
+  "quote": "Insulin and glucagon work synergistically to keep blood glucose concentrations normal",
+  "detail": "Incorrectly describes antagonistic hormones as synergistic"
+ },
+ {
+  "questionId": "66fe9dbe22132e5a70a3e579",
+  "subject": "Zoology",
+  "chapter": "Chemical Coordination and Integration",
+  "reported": true,
+  "reportIds": [
+   "R035"
+  ],
+  "repair": "solution_fix",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "widens the cervix.",
+  "detail": "Solution does not state an explicit final answer"
+ },
+ {
+  "questionId": "66fe9dbe22132e5a70a3e579",
+  "subject": "Zoology",
+  "chapter": "Chemical Coordination and Integration",
+  "reported": true,
+  "reportIds": [
+   "R035"
+  ],
+  "repair": "notation",
+  "field": "question",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "C) Aldosterone Atrial Natriuretic Factor",
+  "detail": "Missing hyphen between hormone names"
+ },
+ {
+  "questionId": "68f21df0941cda588bc0470b",
+  "subject": "Physics",
+  "chapter": "Work, power and energy",
+  "reported": true,
+  "reportIds": [
+   "R038"
+  ],
+  "repair": "markup_leak",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "(p_(2))/(p_(1))=sqrt((KE_(2))/(KE_(1)))",
+  "detail": "Raw LaTeX-like notation shown as plain text"
+ },
+ {
+  "questionId": "68c801bc1b1dbc16dc93bf2b",
+  "subject": "Physics",
+  "chapter": "Photoelectric effect and matter waves",
+  "reported": true,
+  "reportIds": [
+   "R039"
+  ],
+  "repair": "notation",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "K&=(1.574×10^(−29))/(1.638×10^(−13)) K&≈9.6×10^(−17) J",
+  "detail": "Ampersand appears, confusing variable notation"
+ },
+ {
+  "questionId": "63c7cce12981ed154ee92c94",
+  "subject": "Physics",
+  "chapter": "Geometrical optics and optical instruments",
+  "reported": true,
+  "reportIds": [
+   "R042"
+  ],
+  "repair": "markup_leak",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "C=kε_(0)(A)/(d)=8.85×10^(−8)F i_(d)=(d)/(dt)(CV)=2.2μ A",
+  "detail": "Raw LaTeX/markup appears in solution text"
+ },
+ {
+  "questionId": "68dea657387eea3d0d95f54a",
+  "subject": "Physics",
+  "chapter": "Geometrical optics and optical instruments",
+  "reported": false,
+  "reportIds": [],
+  "repair": "markup_leak",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "f_(eq)",
+  "detail": "Raw LaTeX symbols appear as plain text"
+ },
+ {
+  "questionId": "695ede2a88d7701e561aa9d9",
+  "subject": "Zoology",
+  "chapter": "Excretory Products and their Elimination",
+  "reported": false,
+  "reportIds": [],
+  "repair": "solution_fix",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "medium",
+  "quote": "making it a supportive measure when transplant isn't feasible (Statement-II)",
+  "detail": "Explanation contradicts the chosen answer, misleading reasoning"
+ },
+ {
+  "questionId": "68dea6e6387eea3d0d95f6f8",
+  "subject": "Physics",
+  "chapter": "Geometrical optics and optical instruments",
+  "reported": false,
+  "reportIds": [],
+  "repair": "markup_leak",
+  "field": "solution",
+  "source": "audit",
+  "certain": false,
+  "severity": "low",
+  "quote": "f =((D^(2)−x^(2))/(4 D))",
+  "detail": "Raw LaTeX syntax appears as plain text"
+ }
+]

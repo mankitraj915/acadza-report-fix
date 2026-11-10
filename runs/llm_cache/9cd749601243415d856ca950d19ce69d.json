@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "5fc60508028950133eac8963#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Numeric answer (no options).\n\nQuestion:\nA body of mass 2 kg is kept by pressing to a vertical wall by a force of 100 N. The friction between wall and body is 0.3. Then the frictional force is equal to\n"
+  }
+ ],
+ "content": "{\"working\":\"Normal force N equals the horizontal pressing force =100 N. Maximum static friction f_max=μN=0.3×100=30 N. Weight of the body W=mg=2 kg×10 m/s²=20 N. Since W < f_max, static friction adjusts to balance the weight, so frictional force =20 N.\",\"value\":\"20 N\",\"letters\":[],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.15674839,
+  "prompt_tokens": 477,
+  "prompt_time": 0.013434525,
+  "completion_tokens": 519,
+  "completion_time": 1.284407545,
+  "total_tokens": 996,
+  "total_time": 1.29784207,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 409
+  }
+ }
+}

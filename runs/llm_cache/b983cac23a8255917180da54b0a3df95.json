@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "edit",
+ "tag": "R006-stem_data-1#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You write ONE surgical find/replace edit on the raw stored markup (HTML with inline MathML) of a question record. A separate program checks your edit and rejects it if it breaks any rule below.\n\nRules:\n- \"field\" must be one of: [\"question\"].\n- \"find\" must be copied character for character from the raw markup of that field, and must occur exactly once in it. Include only as much surrounding text as is needed to make it unique. Keep it short.\n- \"replace\" is what \"find\" becomes. Change only what this repair needs. Keep every existing tag, entity and MathML element intact and well formed. If you add maths, write MathML in the same style as the markup around it.\n- This repair is \"stem_data\": A value or condition missing/wrong - only when the solution states it without doubt.\n  Insert the missing value or condition into the stem, using exactly the value the stored solution uses. Do not touch the options.\n- Never touch the answer key, never rewrite a whole question, never add content that the facts below do not support.\n- If no safe edit is possible, return nulls and say why in \"reason\".\n\nReturn ONLY a JSON object:\n{\"field\": string or null, \"find\": string or null, \"replace\": string or null, \"reason\": string}"
+  },
+  {
+   "role": "user",
+   "content": "What to fix: edge length of cube is not given. Cube dimensions missing; needed to compute ΔV The volume contraction of a solid copper cube, when subjected to a hydraulic pressure of 7×10^(6) Pa , would be ____ mm^(3) .\n\nFacts:\nStored key: \"50\". Checks: solve 1 = blocked: Original volume or dimensions of the copper cube are missing; solve 2 = blocked: Side length of the copper cube is missing; solution = 50; stored key = 50. Unresolved: the blind solves do not settle the key.\nClassifier evidence: A1 stem_data: cube dimensions missing; both blind solves blocked due to missing side length\n\nRAW MARKUP of field \"question\":\n<<<RAW\n<h3>The volume contraction of a solid copper cube, when subjected to a hydraulic pressure of <math display=\"inline\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mn>7</mn><mi>&times;</mi><msup><mn>10</mn><mrow><mn>6</mn></mrow></msup><mrow><mtext>&nbsp;</mtext><mi mathvariant=\"normal\">P</mi><mi mathvariant=\"normal\">a</mi></mrow></mrow></math>, would be <math display=\"inline\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi></mrow></math> <math display=\"inline\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msup><mrow><mi mathvariant=\"normal\">m</mi><mi mathvariant=\"normal\">m</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></math>.</h3>\n\n<h3>(Given bulk modulus of copper <math display=\"inline\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>=</mo><mn>1.4</mn><mi>&times;</mi><msup><mn>10</mn><mrow><mn>11</mn></mrow></msup><msup><mrow><mi mathvariant=\"normal\">N</mi><mi mathvariant=\"normal\">m</mi></mrow><mrow><mo>&minus;</mo><mn>2</mn></mrow></msup></mrow></math> )</h3>\n\nRAW>>>\n\nStored solution (read-only, text view):\nB=(ΔP)/((ΔV)/(V))\nΔV=(7×10^(6))/(1.4×10^(11))×(10×10^(−2))^(3)\nΔV=50mm^(3)\n"
+  }
+ ],
+ "content": "{\"field\":\"question\",\"find\":\"solid copper cube,\",\"replace\":\"solid copper cube of side length 10 cm,\",\"reason\":\"\"}",
+ "usage": {
+  "queue_time": 0.316412116,
+  "prompt_tokens": 981,
+  "prompt_time": 0.06016922,
+  "completion_tokens": 370,
+  "completion_time": 0.777358792,
+  "total_tokens": 1351,
+  "total_time": 0.837528012,
+  "completion_tokens_details": {
+   "reasoning_tokens": 332
+  }
+ }
+}

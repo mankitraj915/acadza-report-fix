@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "audit",
+ "tag": "68dea616d0cda73d07e93ae6#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You audit one stored record from a JEE/NEET question bank for content defects. You see the question, its options, the stored answer key, the stored solution and the chapter it is filed under. You are not told whether anyone complained about it.\n\nDo four things:\n1. solution_final: what the stored solution itself concludes. \"value\" = its final result as written; \"letters\" = the listed option(s) that result corresponds to (empty if none or not applicable). Use null for value if the solution reaches no conclusion. Read this from the solution text alone; never copy the stored key into it. If the question asks for a derived form (\"the value of n\", \"find 10A\", \"in cm\"), first note the solution's last expression, then convert it yourself to the asked form and report that converted value (for example a solution ending at q/(2 e0) for a question asking n in n q/(2 e0) gives value \"1\").\n2. solution_belongs: \"yes\", \"partly\" (it addresses this question but also contains lines from a different problem or garbled fragments) or \"no\" (it solves a different question).\n3. solution_supports_key: true, false or null. Follow the solution's own final result and say whether it lands on the stored key. Allow for unit conversion or the form the question asks for (for example \"in cm\", \"find 10A\", \"value of n\").\n4. issues: concrete defects you can point to. Each issue is\n   {\"repair\": one key from the list below, \"field\": \"question\" | \"solution\" | \"answer\" | \"meta\", \"quote\": the exact snippet where it occurs (at most 12 words, copied from the text), \"why\": at most 25 words, \"severity\": \"high\" | \"medium\" | \"low\"}\n   high = changes the correct answer or makes the question unanswerable; medium = misleads but is answerable; low = cosmetic.\n   Report only what you can point to. No style preferences. Do not re-solve with assumptions the question does not state. An empty list is a good answer when the record is clean.\n\nRepair keys:\n- spelling: Spelling or grammar. Words only; no value, symbol or image moves.\n- noise: Stray text: question numbers, 'Space for rough work', source labels.\n- exam_reference: '(JEE Main 2019)' style tag inside the question text.\n- markup_leak: Raw LaTeX / HTML visible as text.\n- answer_form: Unit / rounding / answer form not stated. Additive only.\n- notation: A symbol, exponent or bracket lost in one expression.\n- stem_data: A value or condition missing/wrong - only when the solution states it without doubt.\n- option_repair: An option missing, cut off or blank. Stem text must not change.\n- solution_fix: The solution has a wrong step, or belongs to another question.\n- solution_missing: Solution missing or unusable; write one ending in the keyed answer.\n- answer_key: Answer key wrong or malformed. Highest stakes - prove it independently.\n- type_mismatch: Stored as the wrong type (scq / mcq / integer).\n- identical_options: Two options repeat. New distractors are authored content.\n- diagram: Figure missing or wrong.\n- wrong_question: Question and solution do not belong together at all.\n- unsound: No valid answer as written (no correct option / two correct in SCQ).\n- wrong_chapter: Filed under the wrong chapter/subject.\n- syllabus: Student says it is outside the syllabus. Faculty confirm; question stays live meanwhile.\n\nReturn ONLY a JSON object:\n{\"solution_final\": {\"value\": string or null, \"letters\": [letters]}, \"solution_belongs\": \"yes\" | \"partly\" | \"no\", \"solution_supports_key\": true | false | null, \"issues\": [ ... ]}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nChapter: Electrostatics\nConcept: Electric flux and Gauss law / Electric Flux\nStored type: integerQuestion\n\nQuestion:\nThe charges (q)/(2) and 2 q are placed at the centre of face and corner of a cube respectively. Total flux through the cube is (n q)/(2 ε_(0)) . The value of ' n ' is\n\n\nStored answer key: \"2\"\n\nStored solution:\nFor centre of face ϕ_(1)=(1)/(2)((q)/(2))/(ε_(0))=(q)/(4 ε_(0)) For corner of a cube ϕ_(2)=(1)/(8)(2 q)/(ε_(0))=(q)/(4 ε_(0)) Total flux ϕ =(q)/(4 ε_(0))+(q)/(4 ε_(0))=(q)/(2 ε_(0))\n\nAutomatic checks already found:\n- nothing"
+  }
+ ],
+ "content": "{\"solution_final\":{\"value\":\"1\",\"letters\":[]},\"solution_belongs\":\"yes\",\"solution_supports_key\":false,\"issues\":[{\"repair\":\"answer_key\",\"field\":\"answer\",\"quote\":\"Stored answer key: \\\"2\\\"\",\"why\":\"Key gives n=2 but solution (and correct calculation) yields n=1\",\"severity\":\"high\"}]}",
+ "usage": {
+  "queue_time": 0.159662916,
+  "prompt_tokens": 1114,
+  "prompt_time": 0.061480967,
+  "completion_tokens": 598,
+  "completion_time": 1.294433289,
+  "total_tokens": 1712,
+  "total_time": 1.355914256,
+  "completion_tokens_details": {
+   "reasoning_tokens": 518
+  }
+ }
+}

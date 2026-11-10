@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "61ee6c9d90a1a968a168686b#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Zoology\nType: Options question. One or more options may be correct.\n\nQuestion:\nAggregates of lymphoid tissue present in the distal portion of the small intestine are known as\n(A) Villi\n(B) Peyer’s patches\n(C) Rugae\n(D) Choroid plexux"
+  }
+ ],
+ "content": "{\"working\":\"Peyer's patches are aggregates of lymphoid tissue located in the distal ileum (the distal part of the small intestine). Villi are finger‑like projections for absorption, rugae are folds in stomach, and choroid plexus is in brain ventricles. Hence the correct term is Peyer’s patches.\",\"value\":\"Peyer's patches\",\"letters\":[\"B\"],\"blocker\":null,\"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.15754553,
+  "prompt_tokens": 483,
+  "prompt_time": 0.017653274,
+  "completion_tokens": 237,
+  "completion_time": 0.541510016,
+  "total_tokens": 720,
+  "total_time": 0.55916329,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 137
+  }
+ }
+}

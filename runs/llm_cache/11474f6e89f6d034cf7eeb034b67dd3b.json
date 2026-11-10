@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "6956d7bb23cb221e570d6013#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Options question. One or more options may be correct.\n\nQuestion:\nThe angle of projection of a projectile for which horizontal range and height attain same magnitude is\n(A) tan^(− 1)( 2 )\n(B) tan^(− 1)( 4 )\n(C) tan^(− 1)( 3 )\n(D) tan^(− 1)( 0.5 )"
+  }
+ ],
+ "content": "{\"working\":\"For projectile from same level: Range R = u^2 sin2θ / g, max height H = u^2 sin^2θ /(2g). Set R = H: sin2θ = (1/2) sin^2θ. Using sin2θ = 2 sinθ cosθ gives 2 sinθ cosθ = (1/2) sin^2θ → multiply 2: 4 sinθ cosθ = sin^2θ. For sinθ≠0, divide by sinθ: 4 cosθ = sinθ → tanθ = 4. Hence θ = tan⁻¹4.\", \"value\":\"tan⁻¹(4)\", \"letters\":[\"B\"], \"blocker\":null, \"confidence\":1}",
+ "usage": {
+  "queue_time": 0.287008221,
+  "prompt_tokens": 502,
+  "prompt_time": 6.756732486,
+  "completion_tokens": 431,
+  "completion_time": 0.908058642,
+  "total_tokens": 933,
+  "total_time": 7.664791128,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 261
+  }
+ }
+}

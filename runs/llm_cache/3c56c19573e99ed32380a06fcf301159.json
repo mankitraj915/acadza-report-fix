@@ -1,0 +1,22 @@
+{
+ "provider": "gemini",
+ "model": "gemini-2.5-flash",
+ "role": "edit",
+ "tag": "R008-stem_data-1#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You write ONE surgical find/replace edit on the raw stored markup (HTML with inline MathML) of a question record. A separate program checks your edit and rejects it if it breaks any rule below.\n\nRules:\n- \"field\" must be one of: [\"question\"].\n- \"find\" must be copied character for character from the raw markup of that field, and must occur exactly once in it. Include only as much surrounding text as is needed to make it unique. Keep it short.\n- \"replace\" is what \"find\" becomes. Change only what this repair needs. Keep every existing tag, entity and MathML element intact and well formed. If you add maths, write MathML in the same style as the markup around it.\n- This repair is \"stem_data\": A value or condition missing/wrong - only when the solution states it without doubt.\n  Insert the missing value or condition into the stem, using exactly the value the stored solution uses. Do not touch the options.\n- Never touch the answer key, never rewrite a whole question, never add content that the facts below do not support.\n- If no safe edit is possible, return nulls and say why in \"reason\".\n\nReturn ONLY a JSON object:\n{\"field\": string or null, \"find\": string or null, \"replace\": string or null, \"reason\": string}"
+  },
+  {
+   "role": "user",
+   "content": "What to fix: Question is missing necessary data (inductance value).. Inductance value not provided, yet solution uses 95.5 mH ... an inductance are connected ...\n\nFacts:\nStored key: \"C\". Checks: solve 1 = blocked: Inductance value (L) is missing; solve 2 = blocked: Value of inductance L is missing; solution = C (50 ohm); stored key = C (50 ohm). Unresolved: the blind solves do not settle the key.\nClassifier evidence: 2 blind solves blocked by missing L; audit A1 confirms L missing from stem but used in solution.\n\nRAW MARKUP of field \"question\":\n<<<RAW\n<h3><span style=\"color:#000000\">A resistance of 40 ohm and an inductance are connected in series in a 50 cycles/second ac circuit. The impedance of this combination is very nearly</h3><h3>(A)<span style=\"color:#000000\"> <span style=\"color:#000000\">30 ohm<br />(B)<span style=\"color:#000000\"> <span style=\"color:#000000\">40 ohm<br />(C)<span style=\"color:#000000\"> <span style=\"color:#000000\">50 ohm<br />(D)</span></span></span><span style=\"color:#000000\"> </span></span></span><span style=\"color:#000000\">60 ohm</span></span></span></h3>\nRAW>>>\n\nStored solution (read-only, text view):\nZ=sqrt(R^(2)+(2πvL)^(2)) =sqrt((40)^(2)+4π^(2)×(50)^(2)×(95.5×10^(−3))^(2))=50ohm\n"
+  }
+ ],
+ "content": "{\n  \"field\": \"question\",\n  \"find\": \"an inductance are connected\",\n  \"replace\": \"an inductance of 95.5 mH are connected\",\n  \"reason\": null\n}",
+ "usage": {
+  "completion_tokens": 47,
+  "prompt_tokens": 699,
+  "total_tokens": 1059
+ }
+}

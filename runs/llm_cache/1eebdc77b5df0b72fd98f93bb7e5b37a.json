@@ -1,0 +1,29 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "6208e80a9cb2ab67dac61bd0#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Botany\nType: Options question. One or more options may be correct.\n\nQuestion:\nRate of photosynthesis is low in herbs, shrubs as compared to sun plants because\n(A) Herb, shrubs receive more red light\n(B) Herb, shrubs receive more blue light\n(C) Herb, shrubs receive more green light\n(D) Herb, shrubs receive more white light"
+  }
+ ],
+ "content": "{\"working\":\"Photosynthetic pigments absorb mainly red (≈660 nm) and blue (≈450 nm) light; green light is largely reflected or transmitted. Herbs and shrubs growing under canopy (shade plants) receive a higher proportion of green light and reduced red/blue light, leading to a lower photosynthetic rate compared to sun‑adapted plants. Hence the low rate is due to more green light.\",\"value\":\"\",\"letters\":[\"C\"],\"blocker\":null,\"confidence\":0.97}",
+ "usage": {
+  "queue_time": 0.824275499,
+  "prompt_tokens": 495,
+  "prompt_time": 0.038098173,
+  "completion_tokens": 264,
+  "completion_time": 0.556112874,
+  "total_tokens": 759,
+  "total_time": 0.594211047,
+  "completion_tokens_details": {
+   "reasoning_tokens": 154
+  }
+ }
+}

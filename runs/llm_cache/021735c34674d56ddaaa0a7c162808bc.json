@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "solve_a",
+ "tag": "68c8153cfb6b2f16e2d3ceaf#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a careful JEE/NEET subject expert solving one question exactly as it is written.\nYou are NOT shown an answer key. Do not guess what the \"intended\" answer might be.\n\nRules:\n- Use only the data given in the question. If a value or a figure that is needed to work out the result is missing, say what is missing in \"blocker\" and do not invent it. \"blocker\" is ONLY for missing inputs. A result that matches none of the listed options, or a blank option, is not a blocker: leave \"blocker\" null, return an empty \"letters\" list and give the result in \"value\".\n- Show the key steps with numbers in \"working\" (at most 120 words, plain text).\n- Options question: decide for every listed option whether it is correct, and return every correct letter in \"letters\" (one or several). If the correct result is not among the listed options, or the option that should hold it is blank, return an empty list and still give the result in \"value\".\n- Numeric question (no options): put the final number in \"value\", in the unit and form the question asks for.\n- \"value\" is the final result in words/numbers (for example \"50 V\", \"1 : 1\", \"Both statements are false\").\n\nReturn ONLY a JSON object:\n{\"working\": string, \"value\": string, \"letters\": [letters], \"blocker\": string or null, \"confidence\": number between 0 and 1}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nType: Options question. One or more options may be correct.\n\nQuestion:\nSelect the correct statement(s) from the following. The path of a charged particle moving with an initial velocity u\n(A) parallel to the uniform electrostatic field is a straight line.\n(B) perpendicular to the uniform electrostatic field is a parabola.\n(C) parallel to the uniform magnetic field is a helix with its axis parallel to the direction of B .\n(D) perpendicular to the uniform magnetic field is a circle in a plane normal to the field."
+  }
+ ],
+ "content": "{\"working\":\"In a uniform electric field E, force F=qE is constant. If the particle’s initial velocity u is parallel to E, the acceleration is along the same line, so the trajectory remains a straight line → A true. If u is perpendicular to E, the particle experiences constant transverse acceleration, giving a projectile‑type motion, i.e., a parabola → B true. In a uniform magnetic field B, magnetic force F=q(v×B) is zero when v∥B, so the particle moves straight, not helically → C false. When v⊥B, the magnetic force provides a constant centripetal force, producing uniform circular motion in a plane normal to B → D true.\", \"value\":\"A, B, D\", \"letters\":[\"A\",\"B\",\"D\"], \"blocker\":null, \"confidence\":0.99}",
+ "usage": {
+  "queue_time": 0.158789025,
+  "prompt_tokens": 530,
+  "prompt_time": 0.033282204,
+  "completion_tokens": 509,
+  "completion_time": 1.149088129,
+  "total_tokens": 1039,
+  "total_time": 1.182370333,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 323
+  }
+ }
+}

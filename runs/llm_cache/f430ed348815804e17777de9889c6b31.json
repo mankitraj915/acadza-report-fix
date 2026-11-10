@@ -1,0 +1,32 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-120b",
+ "role": "audit",
+ "tag": "68dea577d0cda73d07e9391c#1",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You audit one stored record from a JEE/NEET question bank for content defects. You see the question, its options, the stored answer key, the stored solution and the chapter it is filed under. You are not told whether anyone complained about it.\n\nDo four things:\n1. solution_final: what the stored solution itself concludes. \"value\" = its final result as written; \"letters\" = the listed option(s) that result corresponds to (empty if none or not applicable). Use null for value if the solution reaches no conclusion.\n2. solution_belongs: \"yes\", \"partly\" (it addresses this question but also contains lines from a different problem or garbled fragments) or \"no\" (it solves a different question).\n3. solution_supports_key: true, false or null. Follow the solution's own final result and say whether it lands on the stored key. Allow for unit conversion or the form the question asks for (for example \"in cm\", \"find 10A\", \"value of n\").\n4. issues: concrete defects you can point to. Each issue is\n   {\"repair\": one key from the list below, \"field\": \"question\" | \"solution\" | \"answer\" | \"meta\", \"quote\": the exact snippet where it occurs (at most 12 words, copied from the text), \"why\": at most 25 words, \"severity\": \"high\" | \"medium\" | \"low\"}\n   high = changes the correct answer or makes the question unanswerable; medium = misleads but is answerable; low = cosmetic.\n   Report only what you can point to. No style preferences. Do not re-solve with assumptions the question does not state. An empty list is a good answer when the record is clean.\n\nRepair keys:\n- spelling: Spelling or grammar. Words only; no value, symbol or image moves.\n- noise: Stray text: question numbers, 'Space for rough work', source labels.\n- exam_reference: '(JEE Main 2019)' style tag inside the question text.\n- markup_leak: Raw LaTeX / HTML visible as text.\n- answer_form: Unit / rounding / answer form not stated. Additive only.\n- notation: A symbol, exponent or bracket lost in one expression.\n- stem_data: A value or condition missing/wrong - only when the solution states it without doubt.\n- option_repair: An option missing, cut off or blank. Stem text must not change.\n- solution_fix: The solution has a wrong step, or belongs to another question.\n- solution_missing: Solution missing or unusable; write one ending in the keyed answer.\n- answer_key: Answer key wrong or malformed. Highest stakes - prove it independently.\n- type_mismatch: Stored as the wrong type (scq / mcq / integer).\n- identical_options: Two options repeat. New distractors are authored content.\n- diagram: Figure missing or wrong.\n- wrong_question: Question and solution do not belong together at all.\n- unsound: No valid answer as written (no correct option / two correct in SCQ).\n- wrong_chapter: Filed under the wrong chapter/subject.\n- syllabus: Student says it is outside the syllabus. Faculty confirm; question stays live meanwhile.\n\nReturn ONLY a JSON object:\n{\"solution_final\": {\"value\": string or null, \"letters\": [letters]}, \"solution_belongs\": \"yes\" | \"partly\" | \"no\", \"solution_supports_key\": true | false | null, \"issues\": [ ... ]}"
+  },
+  {
+   "role": "user",
+   "content": "Subject: Physics\nChapter: Electrostatics\nConcept: Electrostatic potential and energy / Electric Potential due to Charged Sphere\nStored type: integerQuestion\n\nQuestion:\nA total charge Q is uniformly distributed throughout the volume of a sphere. Electric potential at a point on the surface of the sphere is greater than the potential at infinity by 16 V . Find the potential difference (in volt) between point 𝐏 at a distance half of the radius of the sphere from the centre and the point 𝐒 at a distance double the radius of the sphere from the centre of the sphere.\n\n\nStored answer key: \"14\"\n\nStored solution:\nLet R be the radius of the sphere, therefore, potential on the surface is given by V_(0)=V_(∞)+(K Q)/(R)=V_(∞)+ V ⇒ V =(K Q)/(R) ∵V_(P)=V_(∞)+(K Q)/(2 R^(3))( 3 R^(2)−(R^(2))/(4))=V_(∞)+(11 V)/(8) and V_(S)=V_(∞)+(K Q)/(2 R)=V_(∞)+(V)/(2) ⇒V_(P)−V_(S)=(7 V)/(8)= 14 V\n\nAutomatic checks already found:\n- nothing"
+  }
+ ],
+ "content": "{\"solution_final\":{\"value\":\"14\",\"letters\":[]},\"solution_belongs\":\"yes\",\"solution_supports_key\":true,\"issues\":[]}",
+ "usage": {
+  "queue_time": 0.160129655,
+  "prompt_tokens": 1100,
+  "prompt_time": 0.096250542,
+  "completion_tokens": 498,
+  "completion_time": 1.0503543,
+  "total_tokens": 1598,
+  "total_time": 1.146604842,
+  "prompt_tokens_details": {
+   "cached_tokens": 768
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 461
+  }
+ }
+}
