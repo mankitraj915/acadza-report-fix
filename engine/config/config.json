@@ -1,0 +1,107 @@
+{
+  "paths": {
+    "questions": "data/questions.json",
+    "reports": "data/reports.json",
+    "taxonomy": "data/taxonomy.json",
+    "results": "results.json",
+    "bonus": "bonus_findings.json",
+    "trace": "runs/trace.json",
+    "usage": "runs/usage.json",
+    "labels": "labels.json"
+  },
+  "llm": {
+    "provider": "groq",
+    "cache_dir": "runs/llm_cache",
+    "temperature": 0,
+    "fallback_provider": "gemini",
+    "min_seconds_between_calls": {
+      "groq": 3.0,
+      "gemini": 6.5
+    },
+    "models": {
+      "groq": {
+        "solve_a": "openai/gpt-oss-120b",
+        "solve_b": "qwen/qwen3.8-27b",
+        "audit": "openai/gpt-oss-120b",
+        "classify": "openai/gpt-oss-120b",
+        "edit": "openai/gpt-oss-120b",
+        "reply": "openai/gpt-oss-20b"
+      },
+      "gemini": {
+        "solve_a": "gemini-flash-latest",
+        "solve_b": "gemini-flash-latest",
+        "audit": "gemini-flash-latest",
+        "classify": "gemini-flash-latest",
+        "edit": "gemini-flash-latest",
+        "reply": "gemini-flash-lite-latest"
+      }
+    },
+    "prices_usd_per_mtok": {
+      "_source": "console.groq.com/docs/models, read 2026-11-10; Gemini fallback models unpriced",
+      "openai/gpt-oss-120b": {
+        "in": 0.15,
+        "out": 0.6
+      },
+      "openai/gpt-oss-20b": {
+        "in": 0.075,
+        "out": 0.3
+      },
+      "qwen/qwen3.8-27b": {
+        "in": 0.8,
+        "out": 4.0
+      }
+    }
+  },
+  "prompts": {
+    "solve_a": "solve_a.v2",
+    "solve_b": "solve_b.v2",
+    "audit": "audit.v2",
+    "classify": "classify.v2",
+    "edit": "edit.v1",
+    "reply": "reply.v2"
+  },
+  "thresholds": {
+    "auto_apply": {
+      "default": 0.8,
+      "answer_key": 0.9,
+      "type_mismatch": 0.9,
+      "stem_data": 0.85,
+      "option_repair": 0.85,
+      "solution_fix": 0.85,
+      "solution_missing": 0.85
+    },
+    "needs_human_below": 0.5,
+    "integer_tolerance": 0.001
+  },
+  "limits": {
+    "max_find_chars": {
+      "default": 400,
+      "solution_fix": 2500,
+      "solution_missing": 6000,
+      "option_repair": 800
+    },
+    "reply_max_chars": 420,
+    "reply_max_sentences": 3
+  },
+  "reply_forbidden_unless_auto": "\\b(fixed|corrected|has been updated|have updated|is updated|we changed|theek kar di|sahi kar di|thik kar di)",
+  "stakes": {
+    "answer_key": 10,
+    "unsound": 10,
+    "wrong_question": 9,
+    "type_mismatch": 9,
+    "stem_data": 7,
+    "option_repair": 7,
+    "identical_options": 7,
+    "diagram": 7,
+    "solution_fix": 5,
+    "solution_missing": 5,
+    "notation": 4,
+    "answer_form": 4,
+    "markup_leak": 3,
+    "wrong_chapter": 2,
+    "syllabus": 2,
+    "spelling": 1,
+    "noise": 1,
+    "exam_reference": 1
+  }
+}
