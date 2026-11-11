@@ -3,9 +3,9 @@
 A triage engine and a faculty console for student error reports on JEE/NEET questions (Acadza AI intern
 assignment; the original brief is in [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md)).
 
-- **Live console:** _being deployed; the link is added here once the Vercel project is live_
+- **Live console:** [https://web-five-mu-40.vercel.app](https://web-five-mu-40.vercel.app)
 - **Engine output:** [`results.json`](results.json) (44 reports) · [`bonus_findings.json`](bonus_findings.json) (defects nobody reported)
-- **How the AI was directed, and where it was wrong:** [`PROMPTS.md`](PROMPTS.md) · **Product thinking:** [`PRODUCT.md`](PRODUCT.md) · **Video script:** [`VIDEO.md`](VIDEO.md)
+- **How the AI was directed, and where it was wrong:** [`PROMPTS.md`](PROMPTS.md) · **Product thinking:** [`PRODUCT.md`](PRODUCT.md)
 
 ![Console at 1440px: an answer-key case](docs/screenshots/case-answer-key-1440.png)
 
@@ -172,3 +172,19 @@ Built for a teacher clearing a queue late in the evening: what changed, why, and
 - **Approve does not write to a question bank.** It records the decision and the exact before/after in the audit
   log; applying it to production data is out of scope here.
 - **`auto_apply` means "the engine would apply this"**; in the console those cases still appear for confirmation.
+
+## Submission questions
+
+Answers to the four questions at the end of the brief ([`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md)):
+
+1. **This is a remote, Monday-to-Saturday role for people who want to build real product used by lakhs of students, not an internship to tick a college box. Is that you?**  
+   Yes, completely. As a 2026 graduate, I have already moved past "internship checkboxes"—I want to build and own real production systems that serve lakhs of students. I treat software engineering and AI systems as product craftsmanship, and I am fully aligned with the intensity, velocity, and ownership of a Monday–Saturday schedule.
+
+2. **How many months can you commit?**  
+   As a 2026 graduate, my commitment is long-term: I am looking for a focused 1–2 month internship as a fast-track evaluation period to ramp up and prove immediate production impact, with the direct objective of converting into a full-time engineering role right after.
+
+3. **Earliest start date:**  
+   Immediately.
+
+4. **In 2-3 lines, in your own words: why this work, why now?**  
+   In competitive exams like JEE/NEET, a single flawed question or bad key costs students critical percentile points, hours of confusion, and institutional trust. LLMs can finally automate the heavy lifting of triage and translation, but only if wrapped in strict deterministic code guardrails where facts—not hallucinations—decide truth. Building that boundary layer at Acadza's scale is a high-leverage problem I want to own.
